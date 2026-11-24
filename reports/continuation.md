@@ -24,6 +24,8 @@ The native trie audit found that a six-label terminal cap dropped 224 pronunciat
 
 At beam 250, the largest change came from Switchboard with 130 fewer errors over 4,569 words. Random-word trials tied at 76 errors over 200 words. Harvard sentences had three additional errors over 201 words. These corpus slices share the 926-trial tuning scope and the same neural logits. [Corpus and session counts](continuation.json)
 
+The external four-gram downloaded and decompressed in seven seconds. Direct KenLM membership checks matched the publisher’s companion vocabulary across all 125,924 decoder dictionary words, with 69,843 shared words. The original beam-100 four-gram pilot stopped after 8,384 successful requests when one request exceeded the 30-second deadline. The same trial had previously completed 87 times, with a maximum of 0.181 s. The cgroup peaked at 0.74 GB and recorded no OOM event. The failed pilot did not produce an admitted tuning WER. The repaired beam-250 arm has a separate pilot.
+
 ## Complete requests on the laptop
 
 The laptop benchmark used the official encoder on an RTX 3080 Laptop GPU and the Windows-compatible ZeroLM lexicon decoder. It timed released feature reads, transfer, smoothing, encoder completion, native search, and final text selection. Across three interleaved warm passes, each beam completed 288 requests on the same 96 length-sampled tuning trials. Batch size was one. References stayed closed, and the benchmark ran offline.
@@ -39,7 +41,7 @@ The original beam-250 cached-logit job charged up to 1.35 GB to its job cgroup, 
 
 ## Matched complete-pipeline timing on Gilbreth
 
-Three interleaved warm passes timed the same 96 feature trials across three search configurations on one A100 40 GB allocation with four CPUs. The encoder ran in FP32 and synchronized each GPU phase. All 864 requests returned text. The real-time factor divides total completed request time by original input duration in 20 ms bins.
+Three interleaved warm passes timed the same 96 feature trials across three search configurations on one PCIe A100 40 GB allocation with four CPUs. The encoder ran in FP32 and synchronized each GPU phase. All 864 requests returned text. The real-time factor divides total completed request time by original input duration in 20 ms bins.
 
 | System | p50 | p90 | p95 | p99 | Max | Real-time factor |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -49,7 +51,7 @@ Three interleaved warm passes timed the same 96 feature trials across three sear
 
 ![Matched complete-pipeline latency distribution](figures/v2_search_latency.png)
 
-Repaired beam 250 completed 7.74 requests per second of request time. Cold encoder initialization took 6.26 s within the Python benchmark. The combined allocation with three resident decoder services peaked at 3.11 GB cgroup charge, 1.41 GB summed RSS, and 1.61 GB device-wide GPU use. The PyTorch process peaked at 0.36 GB allocated and 1.07 GB reserved. The shared-resource figures cover the whole harness and cannot be assigned to individual arms. [Length-stratified timings and counters](continuation.json)
+Repaired beam 250 completed 7.74 requests per second of request time. Cold encoder initialization took 6.26 s within the Python benchmark. The combined allocation with three resident decoder services peaked at 3.11 GB cgroup charge, 1.41 GB summed RSS, 1.35 GB PSS, and 1.61 GB device-wide GPU use. The PyTorch process peaked at 0.36 GB allocated and 1.07 GB reserved. The cgroup used 99.90 user and 12.05 system CPU core-seconds, averaging 0.86 busy cores out of four. The shared-resource figures cover the whole harness and cannot be assigned to individual arms. [Length-stratified timings and counters](continuation.json)
 
 ## LightBeam with in-search fusion
 
@@ -65,4 +67,4 @@ The pinned LightBeam run decoded a fixed length-stratified subset of 24 `dev_tun
 
 Periodic fusion had nine fewer deletions and two more substitutions than final-only scoring. Three trials improved and one worsened. Repaired compact made 21 substitutions and two insertions. Periodic LightBeam made 20 substitutions and three deletions. The subset result does not establish a broader WER improvement.
 
-The periodic arm scored 527,000 target tokens across the timing passes, compared with 50,220 for final-only. Its cached-logit p95 was about 1.98 s, versus 0.79 s for final-only. The job peaked at 2.77 GB of cgroup charge, 4.12 GB of summed process RSS and 4.81 GB of device-wide GPU use. Shared memory can appear more than once in RSS. Cold initialization took 121.75 s. The periodic arm matched the simpler repaired search on this common subset, so this configuration remains a feasibility study. [LightBeam measurements](continuation.json)
+The periodic arm scored 527,000 target tokens across the timing passes, compared with 50,220 for final-only. Its cached-logit p95 was about 1.98 s, versus 0.79 s for final-only. The job used an SXM4 A100 40 GB and peaked at 2.77 GB of cgroup charge, 4.12 GB of summed process RSS and 4.81 GB of device-wide GPU use. Shared memory can appear more than once in RSS. Cold initialization took 121.75 s. The periodic arm matched the simpler repaired search on this common subset, so this configuration remains a feasibility study. [LightBeam measurements](continuation.json)

@@ -9199,7 +9199,9 @@
     "state": "complete",
     "mode": "released-features-to-text",
     "streaming": "unsupported",
+    "expected_requests": 576,
     "common_encoder_cold_s": 1.1138848001137376,
+    "sustained_warm_s": null,
     "conditions": {
       "50": {
         "requests": 288,
@@ -9825,7 +9827,11 @@
       },
       "sampler_seconds": 9.69244989962317,
       "method": "process-tree RSS fallback; shared pages can count more than once and file cache is outside the measurement",
-      "outcome": "complete"
+      "outcome": "complete",
+      "runtime": {
+        "torch": "2.8.0+cu126",
+        "cuda_runtime": "12.6"
+      }
     }
   },
   "gilbreth_search_timing": {
@@ -9834,8 +9840,10 @@
     "streaming": "unsupported",
     "completed_passes": 3,
     "attempted_requests": 864,
+    "expected_requests": 864,
     "memory_scope": "combined persistent benchmark workers, no concurrent requests",
     "common_encoder_cold_s": 6.261687117163092,
+    "sustained_warm_s": 97.9867717991583,
     "conditions": {
       "v2-s0-archived": {
         "requests": 288,
@@ -10854,6 +10862,46 @@
         "oom": 0,
         "oom_kill": 0,
         "oom_group_kill": 0
+      },
+      "gpu_summary": [
+        {
+          "name": "NVIDIA A100-PCIE-40GB",
+          "capability": [
+            8,
+            0
+          ],
+          "total_vram_bytes": 42405855232,
+          "device_wide_samples": 116,
+          "used_mib": {
+            "mean": 1330.8706896551723,
+            "peak": 1535.0
+          },
+          "utilization_percent": {
+            "mean": 15.517241379310345,
+            "peak": 42.0
+          },
+          "temperature_c": {
+            "mean": 34.87931034482759,
+            "peak": 36.0
+          },
+          "power_w": {
+            "mean": 49.37965517241379,
+            "peak": 95.66
+          },
+          "sm_clock_mhz": {
+            "mean": 787.5,
+            "peak": 1200.0
+          },
+          "memory_clock_mhz": {
+            "mean": 1215.0,
+            "peak": 1215.0
+          },
+          "peak_sampled_owned_processes_mib": 1526.0
+        }
+      ],
+      "runtime": {
+        "torch": "2.8.0+cu126",
+        "cuda_runtime": "12.6"
       }
     }
   },
@@ -11011,6 +11059,46 @@
         "oom": 0,
         "oom_kill": 0,
         "oom_group_kill": 0
+      },
+      "gpu_summary": [
+        {
+          "name": "NVIDIA A100-SXM4-40GB",
+          "capability": [
+            8,
+            0
+          ],
+          "total_vram_bytes": 42405855232,
+          "device_wide_samples": 934,
+          "used_mib": {
+            "mean": 4201.236616702356,
+            "peak": 4591.0
+          },
+          "utilization_percent": {
+            "mean": 32.028907922912204,
+            "peak": 46.0
+          },
+          "temperature_c": {
+            "mean": 31.8982869379015,
+            "peak": 34.0
+          },
+          "power_w": {
+            "mean": 84.81729122055675,
+            "peak": 133.29
+          },
+          "sm_clock_mhz": {
+            "mean": 1344.1059957173447,
+            "peak": 1410.0
+          },
+          "memory_clock_mhz": {
+            "mean": 1215.0,
+            "peak": 1215.0
+          },
+          "peak_sampled_owned_processes_mib": 4580.0
+        }
+      ],
+      "runtime": {
+        "torch": "2.8.0+cu126",
+        "cuda_runtime": "12.6"
       }
     },
     "matched_tuning_subset": {
@@ -11142,6 +11230,754 @@
         "stage_latency_seconds": {},
         "successful_real_time_factor": 0.06551578635904508,
         "successful_trials_per_request_second": 0.8209491391469582
+      }
+    }
+  },
+  "scheduler_steps": [
+    {
+      "JobID": "12523531",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1080",
+      "TotalCPU": "16:02.424",
+      "UserCPU": "14:34.014",
+      "SystemCPU": "01:28.410",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523531.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1080",
+      "TotalCPU": "16:02.353",
+      "UserCPU": "14:34.007",
+      "SystemCPU": "01:28.346",
+      "MaxRSS": "1202356K",
+      "MaxVMSize": "11563504K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523531.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1087",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523531.0",
+      "State": "COMPLETED",
+      "ElapsedRaw": "7",
+      "TotalCPU": "00:00.048",
+      "UserCPU": "00:00.004",
+      "SystemCPU": "00:00.043",
+      "MaxRSS": "3996K",
+      "MaxVMSize": "699080K",
+      "ReqMem": "",
+      "AllocCPUS": "1",
+      "AllocTRES": "cpu=1,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523531.1",
+      "State": "COMPLETED",
+      "ElapsedRaw": "6",
+      "TotalCPU": "00:00.022",
+      "UserCPU": "00:00.002",
+      "SystemCPU": "00:00.020",
+      "MaxRSS": "3996K",
+      "MaxVMSize": "699080K",
+      "ReqMem": "",
+      "AllocCPUS": "1",
+      "AllocTRES": "cpu=1,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523554",
+      "State": "CANCELLED by 2120622",
+      "ElapsedRaw": "0",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "0",
+      "AllocTRES": "",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523567",
+      "State": "FAILED",
+      "ElapsedRaw": "9",
+      "TotalCPU": "00:00.073",
+      "UserCPU": "00:00.024",
+      "SystemCPU": "00:00.049",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523567.batch",
+      "State": "FAILED",
+      "ElapsedRaw": "9",
+      "TotalCPU": "00:00.073",
+      "UserCPU": "00:00.024",
+      "SystemCPU": "00:00.049",
+      "MaxRSS": "3224K",
+      "MaxVMSize": "471236K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523567.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "15",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523568",
+      "State": "FAILED",
+      "ElapsedRaw": "40",
+      "TotalCPU": "00:48.670",
+      "UserCPU": "00:42.142",
+      "SystemCPU": "00:06.527",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523568.batch",
+      "State": "FAILED",
+      "ElapsedRaw": "40",
+      "TotalCPU": "00:48.670",
+      "UserCPU": "00:42.142",
+      "SystemCPU": "00:06.527",
+      "MaxRSS": "139492K",
+      "MaxVMSize": "471236K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523568.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "47",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523569",
+      "State": "COMPLETED",
+      "ElapsedRaw": "428",
+      "TotalCPU": "01:31.753",
+      "UserCPU": "00:54.321",
+      "SystemCPU": "00:37.431",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523569.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "428",
+      "TotalCPU": "01:31.753",
+      "UserCPU": "00:54.321",
+      "SystemCPU": "00:37.431",
+      "MaxRSS": "1582536K",
+      "MaxVMSize": "11494320K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523569.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "434",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523580",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1120",
+      "TotalCPU": "16:41.815",
+      "UserCPU": "15:10.804",
+      "SystemCPU": "01:31.011",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523580.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1120",
+      "TotalCPU": "16:41.815",
+      "UserCPU": "15:10.804",
+      "SystemCPU": "01:31.011",
+      "MaxRSS": "1808052K",
+      "MaxVMSize": "16939572K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523580.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1127",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523585",
+      "State": "FAILED",
+      "ElapsedRaw": "678",
+      "TotalCPU": "10:24.209",
+      "UserCPU": "09:53.180",
+      "SystemCPU": "00:31.029",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523585.batch",
+      "State": "FAILED",
+      "ElapsedRaw": "678",
+      "TotalCPU": "10:24.209",
+      "UserCPU": "09:53.180",
+      "SystemCPU": "00:31.029",
+      "MaxRSS": "643000K",
+      "MaxVMSize": "5207888K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "1:0"
+    },
+    {
+      "JobID": "12523585.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "684",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523601",
+      "State": "COMPLETED",
+      "ElapsedRaw": "325",
+      "TotalCPU": "03:54.205",
+      "UserCPU": "03:36.614",
+      "SystemCPU": "00:17.590",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523601.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "325",
+      "TotalCPU": "03:54.205",
+      "UserCPU": "03:36.614",
+      "SystemCPU": "00:17.590",
+      "MaxRSS": "463704K",
+      "MaxVMSize": "4584688K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523601.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "331",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523602",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1320",
+      "TotalCPU": "20:30.206",
+      "UserCPU": "19:07.204",
+      "SystemCPU": "01:23.001",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523602.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1320",
+      "TotalCPU": "20:30.206",
+      "UserCPU": "19:07.204",
+      "SystemCPU": "01:23.001",
+      "MaxRSS": "1089528K",
+      "MaxVMSize": "6442108K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523602.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "1326",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523640",
+      "State": "CANCELLED by 2120622",
+      "ElapsedRaw": "0",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "0",
+      "AllocTRES": "",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523701",
+      "State": "CANCELLED by 2120622",
+      "ElapsedRaw": "0",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "0",
+      "AllocTRES": "",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523726",
+      "State": "CANCELLED by 2120622",
+      "ElapsedRaw": "0",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "0",
+      "AllocTRES": "",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523737",
+      "State": "COMPLETED",
+      "ElapsedRaw": "299",
+      "TotalCPU": "01:56.055",
+      "UserCPU": "01:42.476",
+      "SystemCPU": "00:13.578",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "15000M",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523737.batch",
+      "State": "COMPLETED",
+      "ElapsedRaw": "299",
+      "TotalCPU": "01:55.992",
+      "UserCPU": "01:42.461",
+      "SystemCPU": "00:13.530",
+      "MaxRSS": "1407860K",
+      "MaxVMSize": "13623592K",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523737.extern",
+      "State": "COMPLETED",
+      "ElapsedRaw": "305",
+      "TotalCPU": "00:00:00",
+      "UserCPU": "00:00:00",
+      "SystemCPU": "00:00:00",
+      "MaxRSS": "",
+      "MaxVMSize": "",
+      "ReqMem": "",
+      "AllocCPUS": "4",
+      "AllocTRES": "billing=4,cpu=4,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    },
+    {
+      "JobID": "12523737.0",
+      "State": "COMPLETED",
+      "ElapsedRaw": "7",
+      "TotalCPU": "00:00.063",
+      "UserCPU": "00:00.015",
+      "SystemCPU": "00:00.047",
+      "MaxRSS": "3076K",
+      "MaxVMSize": "699080K",
+      "ReqMem": "",
+      "AllocCPUS": "1",
+      "AllocTRES": "cpu=1,gres/gpu=1,gres/hp_a100-40gb=1,mem=15000M,node=1",
+      "ExitCode": "0:0"
+    }
+  ],
+  "search_pilots": {
+    "12523585": {
+      "state": "timeout",
+      "mode": "cached-logit-to-text",
+      "streaming": "unsupported",
+      "completed_passes": 87,
+      "attempted_requests": 8385,
+      "expected_requests": 8448,
+      "memory_scope": "combined persistent benchmark workers, no concurrent requests",
+      "common_encoder_cold_s": 0.1664822311140597,
+      "sustained_warm_s": null,
+      "conditions": {
+        "100": {
+          "requests": 8385,
+          "successes": 8384,
+          "failures": 1,
+          "timeouts": 1,
+          "latency_seconds": {
+            "p50": 0.0680624539963901,
+            "p90": 0.1068571303971112,
+            "p95": 0.11835933625698088,
+            "p99": 0.1490924592502415,
+            "max": 30.001706536859274
+          },
+          "successful_latency_seconds": {
+            "p50": 0.06806131615303457,
+            "p90": 0.10682321847416461,
+            "p95": 0.11833669389598071,
+            "p99": 0.14909067694097758,
+            "max": 0.24958569323644042
+          },
+          "stage_latency_seconds": {
+            "cache_read_verify_s": {
+              "p50": 0.0015628309920430183,
+              "p90": 0.0020411742851138117,
+              "p95": 0.002159884455613792,
+              "p99": 0.017158250468783134,
+              "max": 0.09357830509543419
+            },
+            "native_search_s": {
+              "p50": 0.0646248604170978,
+              "p90": 0.10039499197155236,
+              "p95": 0.11429368604440239,
+              "p99": 0.1457597776548937,
+              "max": 0.1767372521571815
+            },
+            "ipc_search_s": {
+              "p50": 0.06574782519601285,
+              "p90": 0.10157870990224181,
+              "p95": 0.1157886662986129,
+              "p99": 0.14729810697026552,
+              "max": 0.24806565698236227
+            },
+            "neural_and_selection_s": {
+              "p50": 1.2521632015705109e-06,
+              "p90": 1.593027263879776e-06,
+              "p95": 1.7229467630386353e-06,
+              "p99": 2.07571778446436e-06,
+              "max": 0.00015673507004976273
+            }
+          },
+          "successful_real_time_factor": 0.0038760993832457086,
+          "successful_trials_per_request_second": 13.42252251763482,
+          "by_length": {
+            "short": {
+              "requests": 2799,
+              "successes": 2799,
+              "failures": 0,
+              "timeouts": 0,
+              "latency_seconds": {
+                "p50": 0.051602215971797705,
+                "p90": 0.07175046801567078,
+                "p95": 0.07407786818221211,
+                "p99": 0.08280363330617546,
+                "max": 0.24958569323644042
+              },
+              "successful_latency_seconds": {
+                "p50": 0.051602215971797705,
+                "p90": 0.07175046801567078,
+                "p95": 0.07407786818221211,
+                "p99": 0.08280363330617546,
+                "max": 0.24958569323644042
+              },
+              "stage_latency_seconds": {
+                "cache_read_verify_s": {
+                  "p50": 0.0015514437109231949,
+                  "p90": 0.0020260958001017573,
+                  "p95": 0.0021400829311460255,
+                  "p99": 0.016582542601972818,
+                  "max": 0.0752498209476471
+                },
+                "native_search_s": {
+                  "p50": 0.049183602910488844,
+                  "p90": 0.06896156594157218,
+                  "p95": 0.07110335305333138,
+                  "p99": 0.0748939883429557,
+                  "max": 0.10336732305586338
+                },
+                "ipc_search_s": {
+                  "p50": 0.049777799751609564,
+                  "p90": 0.06989261051639915,
+                  "p95": 0.07181225642561913,
+                  "p99": 0.0761139658652246,
+                  "max": 0.24806565698236227
+                },
+                "neural_and_selection_s": {
+                  "p50": 1.2530945241451263e-06,
+                  "p90": 1.593027263879776e-06,
+                  "p95": 1.7243437469005585e-06,
+                  "p99": 2.1038670092821123e-06,
+                  "max": 9.046867489814758e-06
+                }
+              },
+              "successful_real_time_factor": 0.004394138773988413,
+              "successful_trials_per_request_second": 19.200634485463556
+            },
+            "middle": {
+              "requests": 2794,
+              "successes": 2794,
+              "failures": 0,
+              "timeouts": 0,
+              "latency_seconds": {
+                "p50": 0.06289342441596091,
+                "p90": 0.09427047069184483,
+                "p95": 0.09710927710402757,
+                "p99": 0.1015846549253911,
+                "max": 0.1926375748589635
+              },
+              "successful_latency_seconds": {
+                "p50": 0.06289342441596091,
+                "p90": 0.09427047069184483,
+                "p95": 0.09710927710402757,
+                "p99": 0.1015846549253911,
+                "max": 0.1926375748589635
+              },
+              "stage_latency_seconds": {
+                "cache_read_verify_s": {
+                  "p50": 0.0015592484269291162,
+                  "p90": 0.0020330652128905057,
+                  "p95": 0.002161900885403156,
+                  "p99": 0.019003178663551872,
+                  "max": 0.09357830509543419
+                },
+                "native_search_s": {
+                  "p50": 0.06035254057496786,
+                  "p90": 0.0909133686684072,
+                  "p95": 0.09375671986490489,
+                  "p99": 0.09694408002309501,
+                  "max": 0.1767372521571815
+                },
+                "ipc_search_s": {
+                  "p50": 0.0611187694594264,
+                  "p90": 0.09222218785434962,
+                  "p95": 0.09497761961538345,
+                  "p99": 0.0980130890198052,
+                  "max": 0.17781486501917243
+                },
+                "neural_and_selection_s": {
+                  "p50": 1.2521632015705109e-06,
+                  "p90": 1.593027263879776e-06,
+                  "p95": 1.7128651961684227e-06,
+                  "p99": 2.01311893761158e-06,
+                  "max": 0.00015673507004976273
+                }
+              },
+              "successful_real_time_factor": 0.003753595679847179,
+              "successful_trials_per_request_second": 15.241640430250225
+            },
+            "long": {
+              "requests": 2792,
+              "successes": 2791,
+              "failures": 1,
+              "timeouts": 1,
+              "latency_seconds": {
+                "p50": 0.09431196423247457,
+                "p90": 0.12858700109645724,
+                "p95": 0.1481535050785169,
+                "p99": 0.1510863730311394,
+                "max": 30.001706536859274
+              },
+              "successful_latency_seconds": {
+                "p50": 0.09430941473692656,
+                "p90": 0.128548176959157,
+                "p95": 0.14812449016608298,
+                "p99": 0.15097874486818907,
+                "max": 0.1971319057047367
+              },
+              "stage_latency_seconds": {
+                "cache_read_verify_s": {
+                  "p50": 0.0015799272805452347,
+                  "p90": 0.002061903942376375,
+                  "p95": 0.0021764980629086494,
+                  "p99": 0.017770708166062826,
+                  "max": 0.08001053286716342
+                },
+                "native_search_s": {
+                  "p50": 0.09118595207110047,
+                  "p90": 0.12456176709383726,
+                  "p95": 0.14479587273672223,
+                  "p99": 0.14767449218779802,
+                  "max": 0.17233296018093824
+                },
+                "ipc_search_s": {
+                  "p50": 0.09228398511186242,
+                  "p90": 0.12610875302925706,
+                  "p95": 0.14632293372415006,
+                  "p99": 0.14868927435018123,
+                  "max": 0.17359377723187208
+                },
+                "neural_and_selection_s": {
+                  "p50": 1.2433156371116638e-06,
+                  "p90": 1.5832483768463135e-06,
+                  "p95": 1.7280690371990204e-06,
+                  "p99": 2.1072570234537096e-06,
+                  "max": 9.458046406507492e-06
+                }
+              },
+              "successful_real_time_factor": 0.0037191780332985545,
+              "successful_trials_per_request_second": 9.44399366166141
+            }
+          },
+          "setup": {
+            "mode": "lexicon_kenlm",
+            "native_setup_s": 2.1647469978779554,
+            "process_ready_s": 2.382321036886424,
+            "warmup_s": 0.12284369068220258
+          }
+        }
+      },
+      "resources": {
+        "elapsed_seconds": 630.4651670120656,
+        "host_ceiling_bytes": 15728640000,
+        "slurm_requested_bytes": 15728640000,
+        "cgroup_effective_limit_bytes": 15728640000,
+        "peak_accounted_host_bytes": 740675584,
+        "peak_cgroup_bytes": 740978688,
+        "peak_tree_rss_bytes": 657403904,
+        "peak_tree_pss_bytes": 627382272,
+        "peak_tree_uss_bytes": 620929024,
+        "peak_device_used_bytes": null,
+        "peak_cuda_allocated_bytes": null,
+        "peak_cuda_reserved_bytes": null,
+        "cpu": {
+          "cpu_scope": "job cgroup",
+          "cpu_user_core_seconds": 590.024955,
+          "cpu_system_core_seconds": 29.736568,
+          "cpu_busy_cores_sample": 0.16621241610760273,
+          "cpu_busy_cores_average": 0.983089763662581,
+          "cpu_utilization_of_allocation": 0.041553104026900683,
+          "cpu_average_utilization_of_allocation": 0.24577244091564526
+        },
+        "sampler_seconds": 30.555526942946017,
+        "method": "job cgroup memory charge including page cache",
+        "outcome": "failed",
+        "cgroup_events_delta": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        },
+        "gpu_summary": [],
+        "runtime": {
+          "torch": "2.8.0+cu126",
+          "cuda_runtime": "12.6"
+        }
       }
     }
   }

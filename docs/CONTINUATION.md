@@ -22,11 +22,48 @@ BEST reports hierarchical phone, character and audio-compatible representations.
 
 Use the verified baseline and decoder environments from [Gilbreth setup](GILBRETH.md). Keep the v2 checkout at `$RCAC_SCRATCH/btt-25-cw/v2` and v1 assets in `workspace`.
 
+After reproducing the v1 feature-only validation cache and training-only three-gram, submit the following on Gilbreth. Set `account` to an allocation authorized for the A100 partition. The repaired arm builds a job-specific wheel and runs its own sustained pilot before decoding.
+
+```bash
+p="$RCAC_SCRATCH/btt-25-cw"
+mkdir -p "$p/slurm"
+slurm=(--account="$account" --partition=a100-40gb --qos=normal --nodes=1 --ntasks=1
+       --gpus-per-node=1 --cpus-per-task=4 --mem=15000M --signal=B:USR1@90
+       --kill-on-invalid-dep=yes --output="$p/slurm/%x-%j.out" --parsable)
+pilot=$(sbatch "${slurm[@]}" --job-name=btt-v2-original-pilot --time=00:24:00 \
+  "$p/v2/hpc/gilbreth_v2_pilot.sh")
+original=$(sbatch "${slurm[@]}" --job-name=btt-v2-original --time=00:27:00 \
+  --dependency="afterok:$pilot" "$p/v2/hpc/gilbreth_v2_search.sh" original "$pilot")
+repaired=$(sbatch "${slurm[@]}" --job-name=btt-v2-repaired --time=00:42:00 \
+  --dependency="afterok:$original" "$p/v2/hpc/gilbreth_v2_search.sh" repaired "$pilot")
+sbatch "${slurm[@]}" --job-name=btt-v2-search-benchmark --time=00:17:00 \
+  --dependency="afterok:$repaired" "$p/v2/hpc/gilbreth_v2_search_benchmark.sh" "$repaired"
+```
+
+The LightBeam experiment additionally needs its pinned upstream source and the checksum-verified Qwen3-1.7B snapshot. Submit its setup and comparison in sequence after other active experiments.
+
+```bash
+setup=$(sbatch "${slurm[@]}" --job-name=btt-v2-lightbeam-setup --time=00:25:00 \
+  "$p/v2/hpc/gilbreth_v2_lightbeam_setup.sh")
+sbatch "${slurm[@]}" --job-name=btt-v2-lightbeam --time=00:32:00 \
+  --dependency="afterok:$setup" "$p/v2/hpc/gilbreth_v2_lightbeam.sh"
+```
+
+The current campaign has these scheduler receipts.
+
 ```bash
 p="$RCAC_SCRATCH/btt-25-cw"
 sacct -j 12523531,12523569,12523580,12523585,12523601,12523602,12523724,12523725,12523737,12523756,12523757,12523635,12523697,12523698,12523758 \
   --format=JobID,State,Elapsed,TotalCPU,MaxRSS,ReqMem,ExitCode
 squeue --me
+```
+
+Save the scheduler's job and step receipts after each stage finishes. The aggregate exporter accepts this exact column order.
+
+```bash
+sacct -P -j "$completed_job_ids" \
+  --format=JobID,State,ElapsedRaw,TotalCPU,UserCPU,SystemCPU,MaxRSS,MaxVMSize,ReqMem,AllocCPUS,AllocTRES,ExitCode \
+  > "$receipts_dir/scheduler.psv"
 ```
 
 The `hpc/gilbreth_v2_*.sh` scripts use new job-specific output directories. A training resume needs the checkpoint, its SHA-256 sidecar, and the exact arm’s measured `pilot/admission.json`. Run from `workspace` with the v2 `src` on `PYTHONPATH` and supply the original effective LM and lexicon.

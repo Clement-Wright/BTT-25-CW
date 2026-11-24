@@ -1,5 +1,6 @@
 """Export allowlisted aggregate evidence for the public continuation report."""
 import argparse
+import csv
 import json
 from pathlib import Path
 import re
@@ -12,6 +13,10 @@ RESOURCE_FIELDS = ("elapsed_seconds", "host_ceiling_bytes", "slurm_requested_byt
                    "peak_accounted_host_bytes", "peak_cgroup_bytes", "peak_tree_rss_bytes", "peak_tree_pss_bytes",
                    "peak_tree_uss_bytes", "peak_rss_bytes", "peak_device_used_bytes", "peak_cuda_allocated_bytes",
                    "peak_cuda_reserved_bytes", "cpu", "sampler_seconds", "method", "outcome", "cgroup_events_delta")
+GPU_FIELDS = ("name", "capability", "total_vram_bytes", "device_wide_samples", "used_mib", "utilization_percent",
+              "temperature_c", "power_w", "sm_clock_mhz", "memory_clock_mhz", "peak_sampled_owned_processes_mib")
+SCHEDULER_FIELDS = ("JobID", "State", "ElapsedRaw", "TotalCPU", "UserCPU", "SystemCPU", "MaxRSS", "MaxVMSize",
+                    "ReqMem", "AllocCPUS", "AllocTRES", "ExitCode")
 
 
 def read(path):
@@ -20,6 +25,16 @@ def read(path):
 
 def fields(data, keys):
     return {k: data[k] for k in keys if k in data}
+
+
+def resource_summary(path):
+    source = read(path)
+    result = fields(source, RESOURCE_FIELDS)
+    if "gpu_summary" in source:
+        result["gpu_summary"] = [fields(row, GPU_FIELDS) for row in source["gpu_summary"]]
+    if "hardware" in source:
+        result["runtime"] = fields(source["hardware"], ("torch", "cuda_runtime"))
+    return result
 
 
 def condition(spec):
@@ -36,7 +51,7 @@ def condition(spec):
     metrics = fields(raw, SEARCH_FIELDS)
     resources = directory / "decode/resources.json"
     if resources.is_file():
-        metrics["decode_resources"] = fields(read(resources), RESOURCE_FIELDS)
+        metrics["decode_resources"] = resource_summary(resources)
     for field in ("by_corpus", "by_session"):
         metrics[field] = {key: fields(value, SEARCH_FIELDS) for key, value in raw.get(field, {}).items()}
     if raw.get("model"):
@@ -52,21 +67,43 @@ def report_results(directory):
         data = read(directory / name / "metrics.json")
         if data["freeze_manifest_hash"] != result["freeze"] or data["evaluation_status"] != "exploratory_after_v1_report_exposure":
             raise ValueError("Unexpected report status or freeze")
+        conditions = {}
+        for key, val in data["conditions"].items():
+            if not re.fullmatch(r"v2-[a-z0-9-]+", key):
+                raise ValueError("Unexpected frozen condition ID")
+            entry = fields(val, selected)
+            for filename in ("by_corpus", "by_session", "length_bins"):
+                grouped = directory / name / key / f"{filename}.csv"
+                with grouped.open(encoding="utf-8", newline="") as stream:
+                    entry[filename] = list(csv.DictReader(stream))
+            conditions[key] = entry
         result["splits"][name] = {
-            "conditions": {key: fields(val, selected) for key, val in data["conditions"].items()},
+            "conditions": conditions,
             "paired_wer": data["paired_wer"], "paired_by_corpus": data["paired_by_corpus"],
         }
     return result
 
 
+def scheduler(path):
+    with path.open(encoding="utf-8", newline="") as stream:
+        reader = csv.DictReader(stream, delimiter="|")
+        if tuple(reader.fieldnames or ()) != SCHEDULER_FIELDS:
+            raise ValueError("Use the documented sacct fields for the public scheduler receipt")
+        rows = list(reader)
+    if any(not re.fullmatch(r"[0-9]+(?:\.(?:batch|extern|[0-9]+))?", row["JobID"]) for row in rows):
+        raise ValueError("Expected numeric Slurm job and step IDs")
+    return rows
+
+
 def latency(path):
     metrics = read(path / "metrics.json")
     names = metrics.get("by_condition", metrics.get("by_beam"))
-    return {**fields(metrics, ("state", "mode", "streaming", "completed_passes", "attempted_requests", "memory_scope")),
+    return {**fields(metrics, ("state", "mode", "streaming", "completed_passes", "attempted_requests", "expected_requests", "memory_scope")),
             "common_encoder_cold_s": metrics["cold_setup"].get("encoder_s"),
+            "sustained_warm_s": metrics["cold_setup"].get("sustained_warm_s"),
             "conditions": {k: {**v, "setup": fields(metrics["cold_setup"].get(k, {}),
                  ("mode", "native_setup_s", "process_ready_s", "warmup_s", "encoder_setup_s", "neural_setup_s"))}
-                           for k, v in names.items()}, "resources": fields(read(path / "resources.json"), RESOURCE_FIELDS)}
+                           for k, v in names.items()}, "resources": resource_summary(path / "resources.json")}
 
 
 def lightbeam(path):
@@ -76,7 +113,7 @@ def lightbeam(path):
                      "scope", "rows", "cold_setup_s"))
     resource = path / "resources.json"
     if resource.is_file():
-        summary["resources"] = fields(read(resource), RESOURCE_FIELDS)
+        summary["resources"] = resource_summary(resource)
     matched = path / "matched_tune_subset.json"
     if matched.is_file():
         summary["matched_tuning_subset"] = read(matched)
@@ -150,18 +187,31 @@ def main():
     parser.add_argument("--laptop-benchmark", type=Path)
     parser.add_argument("--search-benchmark", type=Path)
     parser.add_argument("--lightbeam", type=Path)
+    parser.add_argument("--scheduler-receipt", type=Path)
+    parser.add_argument("--search-pilot", action="append", default=[], metavar="JOB_ID=DIRECTORY")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     evidence = {"tuning": dict(map(condition, args.tune))}
     if args.report:
         evidence["reports"] = report_results(args.report)
-        evidence["matched_timing"] = latency(args.report / "feature-benchmark")
+        benchmark = args.report / "feature-benchmark"
+        if (benchmark / "metrics.json").is_file() and (benchmark / "resources.json").is_file():
+            evidence["matched_timing"] = latency(benchmark)
+        else:
+            evidence["matched_timing_status"] = "No complete timing artifacts in the report run"
     if args.laptop_benchmark:
         evidence["laptop_zerolm"] = latency(args.laptop_benchmark)
     if args.search_benchmark:
         evidence["gilbreth_search_timing"] = latency(args.search_benchmark)
     if args.lightbeam:
         evidence["lightbeam"] = lightbeam(args.lightbeam)
+    if args.scheduler_receipt:
+        evidence["scheduler_steps"] = scheduler(args.scheduler_receipt)
+    for spec in args.search_pilot:
+        job, directory = spec.split("=", 1)
+        if not re.fullmatch(r"[0-9]+", job):
+            raise ValueError("Expected a Slurm job ID for the search pilot")
+        evidence.setdefault("search_pilots", {})[job] = latency(Path(directory))
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "continuation.json").write_text(json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     figures(evidence, args.output / "figures")
