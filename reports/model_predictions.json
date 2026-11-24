@@ -1,0 +1,141 @@
+{
+  "condition_count": 5,
+  "declared_ids_source_sha256": "4f7f94b1684a16996a6f53442030274539ff2ec1d3dd4a13a407f9a134a265b1",
+  "example_count": 5,
+  "examples": [
+    {
+      "example_id_sha256": "fe235f3ef3aa8cc678a00265266b8dbae044ed82b65de860cff91e470ac33c7e",
+      "example_number": 1,
+      "predictions": {
+        "A0": {
+          "status": "ok",
+          "text": "healthy vision"
+        },
+        "A1": {
+          "status": "ok",
+          "text": "healthy vision"
+        },
+        "A2": {
+          "status": "ok",
+          "text": "healthy vision"
+        },
+        "B1": {
+          "status": "ok",
+          "text": "healthy vision"
+        },
+        "B2": {
+          "status": "ok",
+          "text": "healthy vision"
+        }
+      }
+    },
+    {
+      "example_id_sha256": "0170d896feeed1311830916ae8f15d6cf891d0b8530ff552fceaae872d9e3d17",
+      "example_number": 2,
+      "predictions": {
+        "A0": {
+          "status": "ok",
+          "text": "i just bought a new house"
+        },
+        "A1": {
+          "status": "ok",
+          "text": "i just bought a new house"
+        },
+        "A2": {
+          "status": "ok",
+          "text": "i just bought a new house"
+        },
+        "B1": {
+          "status": "ok",
+          "text": "i just part a new house"
+        },
+        "B2": {
+          "status": "ok",
+          "text": "i just part a new house"
+        }
+      }
+    },
+    {
+      "example_id_sha256": "1e1bda8bef5c21e950be0f24489e389cb09df60027efb7c28ca54727aedee21a",
+      "example_number": 3,
+      "predictions": {
+        "A0": {
+          "status": "ok",
+          "text": "we've had one as long as i can remember"
+        },
+        "A1": {
+          "status": "ok",
+          "text": "we've had one as long as i can remember"
+        },
+        "A2": {
+          "status": "ok",
+          "text": "we've had one as long as i can remember"
+        },
+        "B1": {
+          "status": "ok",
+          "text": "we've had one as long as i can remember"
+        },
+        "B2": {
+          "status": "ok",
+          "text": "we've had one as long as i can remember"
+        }
+      }
+    },
+    {
+      "example_id_sha256": "2df2c8954022f05a3737e5e41e117f4f36fb34a0ef2bfeb7715a185fcb904570",
+      "example_number": 4,
+      "predictions": {
+        "A0": {
+          "status": "ok",
+          "text": "to ask automaker's for more jobs what're"
+        },
+        "A1": {
+          "status": "ok",
+          "text": "to ask automakers for more jobs what're"
+        },
+        "A2": {
+          "status": "ok",
+          "text": "to ask automakers for more jobs what're"
+        },
+        "B1": {
+          "status": "ok",
+          "text": "to ask automaker's for more jobs what're"
+        },
+        "B2": {
+          "status": "ok",
+          "text": "to ask automaker's for more jobs what're"
+        }
+      }
+    },
+    {
+      "example_id_sha256": "a17f69f31c743edd96b681877b85ca36b343fa91249aef65c467781b2f008902",
+      "example_number": 5,
+      "predictions": {
+        "A0": {
+          "status": "ok",
+          "text": "in other words there is a choice to make"
+        },
+        "A1": {
+          "status": "ok",
+          "text": "in other words there is a choice to make"
+        },
+        "A2": {
+          "status": "ok",
+          "text": "in other words there is a choice to make"
+        },
+        "B1": {
+          "status": "ok",
+          "text": "in other words there is a choice to make"
+        },
+        "B2": {
+          "status": "ok",
+          "text": "in other words there is a choice to make"
+        }
+      }
+    }
+  ],
+  "ids_hash": "a853a129d2d2d6ae6694e3fb2b41d7c3fc1d58441058bd346098d0683615b81e",
+  "score_split": "dev_report",
+  "source_sha256": "25804a1fff3645db4c151df31112d0afd229c0ff1a972aae3087098a9db47af1",
+  "state": "included"
+}

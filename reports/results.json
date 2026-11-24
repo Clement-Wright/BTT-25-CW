@@ -1,0 +1,2413 @@
+{
+  "compact_decoder": {
+    "lm_weight": 2.0,
+    "mode": "kenlm_3gram"
+  },
+  "comparisons": {
+    "A1-minus-A0": {
+      "condition_a": "A0",
+      "condition_b": "A1",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.027277159374743135,
+          "units": 500,
+          "upper": -0.01664658940850851,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.02198124267291912,
+        "errors_a": 678,
+        "errors_b": 603,
+        "harm_count": 7,
+        "measured": true,
+        "rate_a": 0.19871043376318875,
+        "rate_b": 0.17672919109026963,
+        "reference_length": 3412,
+        "rescue_count": 77,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.027099601358253417,
+          "units": 24,
+          "upper": -0.017058150641805363,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.02665096744530108,
+          "units": 22,
+          "upper": -0.017484551289314806,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 416
+      }
+    },
+    "A2-minus-A0": {
+      "condition_a": "A0",
+      "condition_b": "A2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.023378233097135458,
+          "units": 500,
+          "upper": -0.01341238270403706,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.01817116060961313,
+        "errors_a": 678,
+        "errors_b": 616,
+        "harm_count": 5,
+        "measured": true,
+        "rate_a": 0.19871043376318875,
+        "rate_b": 0.18053927315357562,
+        "reference_length": 3412,
+        "rescue_count": 62,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.022612545413982114,
+          "units": 24,
+          "upper": -0.014118111682532174,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.022338373187246508,
+          "units": 22,
+          "upper": -0.014301643096515949,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 433
+      }
+    },
+    "A2-minus-A1": {
+      "condition_a": "A1",
+      "condition_b": "A2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": 0.0014594172577200727,
+          "units": 500,
+          "upper": 0.006295011217412892,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0038100820633059918,
+        "errors_a": 603,
+        "errors_b": 616,
+        "harm_count": 15,
+        "measured": true,
+        "rate_a": 0.17672919109026963,
+        "rate_b": 0.18053927315357562,
+        "reference_length": 3412,
+        "rescue_count": 2,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0013898837945105643,
+          "units": 24,
+          "upper": 0.006338241927442807,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0014634968452763417,
+          "units": 22,
+          "upper": 0.006486511534704322,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 483
+      }
+    },
+    "A2-minus-A3_seed20261116": {
+      "condition_a": "A3_seed20261116",
+      "condition_b": "A2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.010625702437701057,
+          "units": 500,
+          "upper": -0.0029325083455666195,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.006740914419695182,
+        "errors_a": 639,
+        "errors_b": 616,
+        "harm_count": 10,
+        "measured": true,
+        "rate_a": 0.1872801875732708,
+        "rate_b": 0.18053927315357562,
+        "reference_length": 3412,
+        "rescue_count": 31,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.009878920978018256,
+          "units": 24,
+          "upper": -0.003962750821058789,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.009478310559799169,
+          "units": 22,
+          "upper": -0.004119555882348691,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 459
+      }
+    },
+    "A2-minus-A3_seed20261117": {
+      "condition_a": "A3_seed20261117",
+      "condition_b": "A2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.013482781227579713,
+          "units": 500,
+          "upper": -0.004642294816856437,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.008792497069167626,
+        "errors_a": 646,
+        "errors_b": 616,
+        "harm_count": 10,
+        "measured": true,
+        "rate_a": 0.18933177022274325,
+        "rate_b": 0.18053927315357562,
+        "reference_length": 3412,
+        "rescue_count": 36,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.013376009304478081,
+          "units": 24,
+          "upper": -0.004606542920187587,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.013110405593572592,
+          "units": 22,
+          "upper": -0.004599834039580316,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 454
+      }
+    },
+    "A2-minus-A3_seed20261118": {
+      "condition_a": "A3_seed20261118",
+      "condition_b": "A2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1550,
+        "errors_b": 1550,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10535617183251768,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.013698829883707459,
+          "units": 500,
+          "upper": -0.0049005477082732785,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.009085580304806551,
+        "errors_a": 647,
+        "errors_b": 616,
+        "harm_count": 8,
+        "measured": true,
+        "rate_a": 0.18962485345838218,
+        "rate_b": 0.18053927315357562,
+        "reference_length": 3412,
+        "rescue_count": 34,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.013002069502676876,
+          "units": 24,
+          "upper": -0.005581642497805698,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.012723819653239295,
+          "units": 22,
+          "upper": -0.0053805008320569414,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 458
+      }
+    },
+    "B1-minus-A0": {
+      "condition_a": "A0",
+      "condition_b": "B1",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": -0.0008238279570920402,
+          "units": 500,
+          "upper": 0.0005500587885473574,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.00013594344752583531,
+        "errors_a": 1550,
+        "errors_b": 1548,
+        "harm_count": 11,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10522022838499184,
+        "reference_length": 14712,
+        "rescue_count": 11,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.0006265970101033836,
+          "units": 24,
+          "upper": 0.00034906825055943205,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.0005966598238052168,
+          "units": 22,
+          "upper": 0.0003936083292371937,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 478
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.0008862694721183312,
+          "units": 500,
+          "upper": 0.0032632478483334316,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0011723329425556706,
+        "errors_a": 678,
+        "errors_b": 682,
+        "harm_count": 9,
+        "measured": true,
+        "rate_a": 0.19871043376318875,
+        "rate_b": 0.19988276670574442,
+        "reference_length": 3412,
+        "rescue_count": 5,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.0006697608589699838,
+          "units": 24,
+          "upper": 0.0031750407650001514,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.0006815059692298217,
+          "units": 22,
+          "upper": 0.0030497293064979036,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 486
+      }
+    },
+    "B2-minus-A0": {
+      "condition_a": "A0",
+      "condition_b": "B2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": -0.0008238279570920402,
+          "units": 500,
+          "upper": 0.0005500587885473574,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": -0.00013594344752583531,
+        "errors_a": 1550,
+        "errors_b": 1548,
+        "harm_count": 11,
+        "measured": true,
+        "rate_a": 0.10535617183251768,
+        "rate_b": 0.10522022838499184,
+        "reference_length": 14712,
+        "rescue_count": 11,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.0006265970101033836,
+          "units": 24,
+          "upper": 0.00034906825055943205,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.0005966598238052168,
+          "units": 22,
+          "upper": 0.0003936083292371937,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 478
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": -0.0008862694721183312,
+          "units": 500,
+          "upper": 0.0032632478483334316,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0011723329425556706,
+        "errors_a": 678,
+        "errors_b": 682,
+        "harm_count": 9,
+        "measured": true,
+        "rate_a": 0.19871043376318875,
+        "rate_b": 0.19988276670574442,
+        "reference_length": 3412,
+        "rescue_count": 5,
+        "session_block_cluster_bootstrap": {
+          "lower": -0.0006697608589699838,
+          "units": 24,
+          "upper": 0.0031750407650001514,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": -0.0006815059692298217,
+          "units": 22,
+          "upper": 0.0030497293064979036,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 486
+      }
+    },
+    "B2-minus-B1": {
+      "condition_a": "B1",
+      "condition_b": "B2",
+      "confidence_level": 0.95,
+      "missing_block_count": 0,
+      "missing_session_count": 0,
+      "per": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 1548,
+        "errors_b": 1548,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.10522022838499184,
+        "rate_b": 0.10522022838499184,
+        "reference_length": 14712,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      },
+      "replicates": 2000,
+      "seed": 20261116,
+      "trial_count": 500,
+      "wer": {
+        "bootstrap": {
+          "lower": 0.0,
+          "units": 500,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "delta_b_minus_a": 0.0,
+        "errors_a": 682,
+        "errors_b": 682,
+        "harm_count": 0,
+        "measured": true,
+        "rate_a": 0.19988276670574442,
+        "rate_b": 0.19988276670574442,
+        "reference_length": 3412,
+        "rescue_count": 0,
+        "session_block_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 24,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "session_cluster_bootstrap": {
+          "lower": 0.0,
+          "units": 22,
+          "upper": 0.0,
+          "valid_replicates": 2000
+        },
+        "unchanged_count": 500
+      }
+    }
+  },
+  "confidence": {
+    "call_scope": "full_validation",
+    "conditions": {
+      "A0": {
+        "called_latency_p50_seconds": null,
+        "called_latency_p95_seconds": null,
+        "lm_call_savings_fraction": 1.0,
+        "lm_calls": 0,
+        "lm_calls_saved_vs_every_trial": 1426,
+        "lm_candidates": 0,
+        "lm_failures": 0,
+        "lm_total_seconds": 0,
+        "scored_trial_lm_calls": 0,
+        "trial_latency_p50_seconds": 0.02138775889761746,
+        "trial_latency_p95_seconds": 0.041913235327228904
+      },
+      "A1": {
+        "called_latency_p50_seconds": 0.06361300661228597,
+        "called_latency_p95_seconds": 0.06786525447387248,
+        "lm_call_savings_fraction": 0.0,
+        "lm_calls": 1426,
+        "lm_calls_saved_vs_every_trial": 0,
+        "lm_candidates": 12795,
+        "lm_failures": 0,
+        "lm_total_seconds": 83.36928722541779,
+        "scored_trial_lm_calls": 500,
+        "trial_latency_p50_seconds": 0.06372320302762091,
+        "trial_latency_p95_seconds": 0.0679688734235242
+      },
+      "A2": {
+        "called_latency_p50_seconds": 0.06381851620972157,
+        "called_latency_p95_seconds": 0.07010803106240927,
+        "lm_call_savings_fraction": 0.5182328190743338,
+        "lm_calls": 687,
+        "lm_calls_saved_vs_every_trial": 739,
+        "lm_candidates": 6747,
+        "lm_failures": 0,
+        "lm_total_seconds": 43.60437763482332,
+        "scored_trial_lm_calls": 239,
+        "trial_latency_p50_seconds": 9.372597560286522e-05,
+        "trial_latency_p95_seconds": 0.06453998386859894
+      },
+      "A3_seed20261116": {
+        "called_latency_p50_seconds": 0.06370100611820817,
+        "called_latency_p95_seconds": 0.0676704212557524,
+        "lm_call_savings_fraction": 0.5182328190743338,
+        "lm_calls": 687,
+        "lm_calls_saved_vs_every_trial": 739,
+        "lm_candidates": 6305,
+        "lm_failures": 0,
+        "lm_total_seconds": 40.88640348613262,
+        "scored_trial_lm_calls": 239,
+        "trial_latency_p50_seconds": 9.703170508146286e-05,
+        "trial_latency_p95_seconds": 0.06434122438076884
+      },
+      "A3_seed20261117": {
+        "called_latency_p50_seconds": 0.06370998499915004,
+        "called_latency_p95_seconds": 0.06730452980846165,
+        "lm_call_savings_fraction": 0.5182328190743338,
+        "lm_calls": 687,
+        "lm_calls_saved_vs_every_trial": 739,
+        "lm_candidates": 6247,
+        "lm_failures": 0,
+        "lm_total_seconds": 40.2963570500724,
+        "scored_trial_lm_calls": 239,
+        "trial_latency_p50_seconds": 9.572948329150677e-05,
+        "trial_latency_p95_seconds": 0.06442652677651495
+      },
+      "A3_seed20261118": {
+        "called_latency_p50_seconds": 0.06363621586933732,
+        "called_latency_p95_seconds": 0.06767306365072724,
+        "lm_call_savings_fraction": 0.5182328190743338,
+        "lm_calls": 687,
+        "lm_calls_saved_vs_every_trial": 739,
+        "lm_candidates": 6323,
+        "lm_failures": 0,
+        "lm_total_seconds": 40.91449101641774,
+        "scored_trial_lm_calls": 239,
+        "trial_latency_p50_seconds": 9.249849244952202e-05,
+        "trial_latency_p95_seconds": 0.06439349346328527
+      }
+    },
+    "gate_threshold": 0.30328855169095803,
+    "scorer_setup_seconds": 41.02124310610816,
+    "selected_lambda": 1.0,
+    "shared_compact_decode": {
+      "recorded_source_run_elapsed_seconds": 39.805762154981494,
+      "sum_trial_decode_seconds": 32.64358441485092
+    }
+  },
+  "encoder_parity": {
+    "exact_greedy_phoneme_agreement": 1426,
+    "references_loaded": false,
+    "resources": {
+      "elapsed_seconds": 82.07646776922047,
+      "memory_scope": "process_tree",
+      "peak_cuda_allocated_bytes": 372325888,
+      "peak_cuda_reserved_bytes": 937426944,
+      "peak_device_used_bytes": 1474363392,
+      "peak_tree_rss_bytes": 715218944
+    },
+    "scope": "decoded phone IDs and output lengths across laptop and A100; no bitwise logit claim",
+    "source_sha256": "06adc3ed9e85d19dd0ba7680a2c9714e5a7ef9333a4bd7aaab53b4ec21645412",
+    "trial_order_and_frame_lengths_match": true,
+    "trials": 1426
+  },
+  "laptop_baseline": {
+    "decoder": "lexicon_only",
+    "evaluated_count": 926,
+    "failed_count": 0,
+    "first_time_setup": {
+      "checkpoint_zip_bytes": 484944889,
+      "checkpoint_zip_seconds": 35.00186870001198,
+      "scorer_cpu_fixture_load_seconds": 21.703352199998335,
+      "scorer_cpu_fixture_peak_reported_rss_bytes": 1015078912
+    },
+    "missing_count": 0,
+    "per": 0.10003748125937031,
+    "phoneme": {
+      "deletions": 505,
+      "errors": 2669,
+      "insertions": 296,
+      "reference_length": 26680,
+      "substitutions": 1868
+    },
+    "score_split": "dev_tune",
+    "source_sha256": "da3734b5dd6df5410081f20be17ce87d9b8e2c1e6341345c42fd532b67a4cd55",
+    "wer": 0.7578319244157136,
+    "word": {
+      "deletions": 29,
+      "errors": 4572,
+      "insertions": 1204,
+      "reference_length": 6033,
+      "substitutions": 3339
+    }
+  },
+  "model_predictions": {
+    "condition_count": 5,
+    "declared_ids_source_sha256": "4f7f94b1684a16996a6f53442030274539ff2ec1d3dd4a13a407f9a134a265b1",
+    "example_count": 5,
+    "ids_hash": "a853a129d2d2d6ae6694e3fb2b41d7c3fc1d58441058bd346098d0683615b81e",
+    "score_split": "dev_report",
+    "source_sha256": "25804a1fff3645db4c151df31112d0afd229c0ff1a972aae3087098a9db47af1",
+    "state": "included"
+  },
+  "provenance": {
+    "exporter_sha256": "68725493839d714e0d13f038cd6eb199d0028efd58824e9bd8dd99700abc8815",
+    "freeze_manifest_hash": "c7b12685c9552344144b0f089a0a3c4d7dc6bec88e6df513e52947e926ba7b56",
+    "source_sha256": {
+      "complete_json": "641613367c39a206fa3f05eda4c708626c2fb2f639664432f865f7bbf9137752",
+      "experiments_csv": "2776a39754841280689b042567d2fd8f81cb1cf33933871cfa91aa3e198cc077",
+      "joint_freeze_json": "37a567d3359f46934a8d27a9b8c95bd9794cd5209cc13e1bc75c53c554cf6afd"
+    },
+    "split_manifest_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf"
+  },
+  "resources": {
+    "laptop": {
+      "baseline_inference": {
+        "elapsed_seconds": 132.48948229999223,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 9141989376,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 372325888,
+        "peak_cuda_reserved_bytes": 937426944,
+        "peak_device_used_bytes": 2145910784,
+        "peak_tree_private_bytes": 2914201600,
+        "peak_tree_rss_bytes": 1039097856,
+        "sample_count": 1556,
+        "trials_saved": 1426
+      },
+      "lexicon_decode": {
+        "elapsed_seconds": 67.51599999994505,
+        "memory_scope": "worker_process",
+        "minimum_system_available_bytes": 12810354688,
+        "outcome": "complete",
+        "peak_private_bytes": 769650688,
+        "peak_rss_bytes": 278622208,
+        "sample_count": 1495,
+        "trials_saved": 1426
+      },
+      "session_bias_pilot": {
+        "checkpoint_median_seconds": 0.3247349499943084,
+        "elapsed_seconds": 905.0972805000056,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 4407025664,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 512284160,
+        "peak_cuda_reserved_bytes": 1914699776,
+        "peak_device_used_bytes": 3133669376,
+        "peak_tree_private_bytes": 5241823232,
+        "peak_tree_rss_bytes": 2393329664,
+        "sample_count": 8220,
+        "step_p95_seconds": 0.18801443999691397,
+        "steps": 7340,
+        "sustained_seconds": 900.7962278999912,
+        "validation_8_median_seconds": 0.3974098499966203
+      }
+    },
+    "study": {
+      "A0": {
+        "elapsed_seconds": 39.8178584119305,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "worker_process",
+        "minimum_required_system_available_bytes": 2000000000,
+        "minimum_system_available_bytes": 1018510303232,
+        "outcome": "complete",
+        "peak_private_bytes": 0,
+        "peak_rss_bytes": 262217728,
+        "sample_count": 1467,
+        "sampling_seconds": 1
+      },
+      "A1": {
+        "elapsed_seconds": 107.41154626524076,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 1021680369664,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 352969216,
+        "peak_cuda_reserved_bytes": 375390208,
+        "peak_device_used_bytes": 910229504,
+        "peak_tree_private_bytes": 0,
+        "peak_tree_rss_bytes": 1169522688,
+        "sample_count": 1530,
+        "sampling_seconds": 1
+      },
+      "A2": {
+        "elapsed_seconds": 66.73661476420239,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 1022627573760,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 352969216,
+        "peak_cuda_reserved_bytes": 375390208,
+        "peak_device_used_bytes": 910229504,
+        "peak_tree_private_bytes": 0,
+        "peak_tree_rss_bytes": 1178935296,
+        "sample_count": 1492,
+        "sampling_seconds": 1
+      },
+      "A3_seed20261116": {
+        "elapsed_seconds": 63.89586798893288,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 1022933139456,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 352969216,
+        "peak_cuda_reserved_bytes": 375390208,
+        "peak_device_used_bytes": 910229504,
+        "peak_tree_private_bytes": 0,
+        "peak_tree_rss_bytes": 1188036608,
+        "sample_count": 1489,
+        "sampling_seconds": 1
+      },
+      "A3_seed20261117": {
+        "elapsed_seconds": 63.34257776895538,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 1023302799360,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 352969216,
+        "peak_cuda_reserved_bytes": 375390208,
+        "peak_device_used_bytes": 910229504,
+        "peak_tree_private_bytes": 0,
+        "peak_tree_rss_bytes": 1190592512,
+        "sample_count": 1488,
+        "sampling_seconds": 1
+      },
+      "A3_seed20261118": {
+        "elapsed_seconds": 63.77901283977553,
+        "host_ceiling_bytes": 21474836480,
+        "host_target_bytes": 19327352832,
+        "memory_scope": "process_tree",
+        "minimum_system_available_bytes": 1022983127040,
+        "outcome": "complete",
+        "peak_cuda_allocated_bytes": 352969216,
+        "peak_cuda_reserved_bytes": 375390208,
+        "peak_device_used_bytes": 910229504,
+        "peak_tree_private_bytes": 0,
+        "peak_tree_rss_bytes": 1190596608,
+        "sample_count": 1489,
+        "sampling_seconds": 1
+      },
+      "B1": {
+        "elapsed_seconds": 214.81462536612526,
+        "memory_scope": "sequential_stage_peaks",
+        "peak_device_used_bytes": 1474363392,
+        "peak_tree_rss_bytes": 1201496064,
+        "stages": {
+          "decode_attempt_1": {
+            "elapsed_seconds": 38.38548893807456,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "worker_process",
+            "minimum_required_system_available_bytes": 2000000000,
+            "minimum_system_available_bytes": 1019237359616,
+            "outcome": "complete",
+            "peak_private_bytes": 0,
+            "peak_rss_bytes": 262397952,
+            "sample_count": 1466,
+            "sampling_seconds": 1
+          },
+          "evaluate_attempt_1": {
+            "elapsed_seconds": 19.354813503101468,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1019277107200,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 0,
+            "peak_cuda_reserved_bytes": 0,
+            "peak_device_used_bytes": 446758912,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 476860416,
+            "sample_count": 944,
+            "sampling_seconds": 1
+          },
+          "infer_attempt_1": {
+            "elapsed_seconds": 70.97275693900883,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1018712358912,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 372325888,
+            "peak_cuda_reserved_bytes": 937426944,
+            "peak_device_used_bytes": 1474363392,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 742543360,
+            "sample_count": 1496,
+            "sampling_seconds": 1
+          },
+          "train_attempt_1": {
+            "elapsed_seconds": 73.87382359663025,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1017767120896,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 370022400,
+            "peak_cuda_reserved_bytes": 796917760,
+            "peak_device_used_bytes": 1342242816,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 1201496064,
+            "sample_count": 792,
+            "sampling_seconds": 1
+          }
+        }
+      },
+      "B2": {
+        "elapsed_seconds": 180.23794993013144,
+        "memory_scope": "sequential_stage_peaks",
+        "peak_device_used_bytes": 1751187456,
+        "peak_tree_rss_bytes": 1173688320,
+        "stages": {
+          "decode_attempt_1": {
+            "elapsed_seconds": 37.67661389103159,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "worker_process",
+            "minimum_required_system_available_bytes": 2000000000,
+            "minimum_system_available_bytes": 1025887387648,
+            "outcome": "complete",
+            "peak_private_bytes": 0,
+            "peak_rss_bytes": 263712768,
+            "sample_count": 1466,
+            "sampling_seconds": 1
+          },
+          "evaluate_attempt_1": {
+            "elapsed_seconds": 18.869828273076564,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1025513676800,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 0,
+            "peak_cuda_reserved_bytes": 0,
+            "peak_device_used_bytes": 446758912,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 476983296,
+            "sample_count": 944,
+            "sampling_seconds": 1
+          },
+          "infer_attempt_1": {
+            "elapsed_seconds": 62.21808218676597,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1019472003072,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 372325888,
+            "peak_cuda_reserved_bytes": 937426944,
+            "peak_device_used_bytes": 1474363392,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 739332096,
+            "sample_count": 1487,
+            "sampling_seconds": 1
+          },
+          "train_attempt_1": {
+            "elapsed_seconds": 51.097718072123826,
+            "host_ceiling_bytes": 21474836480,
+            "host_target_bytes": 19327352832,
+            "memory_scope": "process_tree",
+            "minimum_system_available_bytes": 1018498793472,
+            "outcome": "complete",
+            "peak_cuda_allocated_bytes": 467993088,
+            "peak_cuda_reserved_bytes": 1203765248,
+            "peak_device_used_bytes": 1751187456,
+            "peak_tree_private_bytes": 0,
+            "peak_tree_rss_bytes": 1173688320,
+            "sample_count": 771,
+            "sampling_seconds": 1
+          }
+        }
+      }
+    }
+  },
+  "results": {
+    "dev_report": {
+      "A0": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.19871043376318875,
+        "word": {
+          "deletions": 11,
+          "errors": 678,
+          "insertions": 56,
+          "reference_length": 3412,
+          "substitutions": 611
+        }
+      },
+      "A1": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.17672919109026963,
+        "word": {
+          "deletions": 15,
+          "errors": 603,
+          "insertions": 46,
+          "reference_length": 3412,
+          "substitutions": 542
+        }
+      },
+      "A2": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.18053927315357562,
+        "word": {
+          "deletions": 14,
+          "errors": 616,
+          "insertions": 48,
+          "reference_length": 3412,
+          "substitutions": 554
+        }
+      },
+      "A3_seed20261116": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.1872801875732708,
+        "word": {
+          "deletions": 13,
+          "errors": 639,
+          "insertions": 46,
+          "reference_length": 3412,
+          "substitutions": 580
+        }
+      },
+      "A3_seed20261117": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.18933177022274325,
+        "word": {
+          "deletions": 13,
+          "errors": 646,
+          "insertions": 50,
+          "reference_length": 3412,
+          "substitutions": 583
+        }
+      },
+      "A3_seed20261118": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10535617183251768,
+        "phoneme": {
+          "deletions": 311,
+          "errors": 1550,
+          "insertions": 164,
+          "reference_length": 14712,
+          "substitutions": 1075
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.18962485345838218,
+        "word": {
+          "deletions": 12,
+          "errors": 647,
+          "insertions": 54,
+          "reference_length": 3412,
+          "substitutions": 581
+        }
+      },
+      "B1": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10522022838499184,
+        "phoneme": {
+          "deletions": 313,
+          "errors": 1548,
+          "insertions": 153,
+          "reference_length": 14712,
+          "substitutions": 1082
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.19988276670574442,
+        "word": {
+          "deletions": 11,
+          "errors": 682,
+          "insertions": 57,
+          "reference_length": 3412,
+          "substitutions": 614
+        }
+      },
+      "B2": {
+        "evaluated_count": 500,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3344,
+          "in_lexicon_type_count": 973,
+          "oov_token_count": 68,
+          "oov_token_rate": 0.01992966002344666,
+          "oov_type_count": 6,
+          "oov_type_rate": 0.006128702757916241,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.13,
+          "sentences_with_oov": 65,
+          "token_coverage": 0.9800703399765534,
+          "type_coverage": 0.9938712972420838
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 3219,
+          "in_lexicon_type_count": 793,
+          "oov_token_count": 193,
+          "oov_token_rate": 0.05656506447831184,
+          "oov_type_count": 186,
+          "oov_type_rate": 0.18998978549540346,
+          "reference_token_count": 3412,
+          "reference_type_count": 979,
+          "sentence_count": 500,
+          "sentence_oov_rate": 0.254,
+          "sentences_with_oov": 127,
+          "token_coverage": 0.9434349355216881,
+          "type_coverage": 0.8100102145045965
+        },
+        "missing_count": 0,
+        "per": 0.10522022838499184,
+        "phoneme": {
+          "deletions": 313,
+          "errors": 1548,
+          "insertions": 153,
+          "reference_length": 14712,
+          "substitutions": 1082
+        },
+        "skipped_count": 0,
+        "successful_count": 500,
+        "unusual_random_corpora": {},
+        "wer": 0.19988276670574442,
+        "word": {
+          "deletions": 11,
+          "errors": 682,
+          "insertions": 57,
+          "reference_length": 3412,
+          "substitutions": 614
+        }
+      }
+    },
+    "official_val": {
+      "A0": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.405,
+            "word": {
+              "deletions": 0,
+              "errors": 81,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 74
+            }
+          }
+        },
+        "wer": 0.20243515087347802,
+        "word": {
+          "deletions": 35,
+          "errors": 1912,
+          "insertions": 169,
+          "reference_length": 9445,
+          "substitutions": 1708
+        }
+      },
+      "A1": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.445,
+            "word": {
+              "deletions": 0,
+              "errors": 89,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 82
+            }
+          }
+        },
+        "wer": 0.18210693488618315,
+        "word": {
+          "deletions": 49,
+          "errors": 1720,
+          "insertions": 136,
+          "reference_length": 9445,
+          "substitutions": 1535
+        }
+      },
+      "A2": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.43,
+            "word": {
+              "deletions": 0,
+              "errors": 86,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 79
+            }
+          }
+        },
+        "wer": 0.18697723663313923,
+        "word": {
+          "deletions": 44,
+          "errors": 1766,
+          "insertions": 144,
+          "reference_length": 9445,
+          "substitutions": 1578
+        }
+      },
+      "A3_seed20261116": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.425,
+            "word": {
+              "deletions": 0,
+              "errors": 85,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 78
+            }
+          }
+        },
+        "wer": 0.19142403388035997,
+        "word": {
+          "deletions": 42,
+          "errors": 1808,
+          "insertions": 147,
+          "reference_length": 9445,
+          "substitutions": 1619
+        }
+      },
+      "A3_seed20261117": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.42,
+            "word": {
+              "deletions": 0,
+              "errors": 84,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 77
+            }
+          }
+        },
+        "wer": 0.19396506087877183,
+        "word": {
+          "deletions": 42,
+          "errors": 1832,
+          "insertions": 153,
+          "reference_length": 9445,
+          "substitutions": 1637
+        }
+      },
+      "A3_seed20261118": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10192790877464245,
+        "phoneme": {
+          "deletions": 816,
+          "errors": 4219,
+          "insertions": 460,
+          "reference_length": 41392,
+          "substitutions": 2943
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14492753623188406,
+            "phoneme": {
+              "deletions": 39,
+              "errors": 180,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 124
+            },
+            "wer": 0.435,
+            "word": {
+              "deletions": 0,
+              "errors": 87,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 80
+            }
+          }
+        },
+        "wer": 0.19322392800423505,
+        "word": {
+          "deletions": 41,
+          "errors": 1825,
+          "insertions": 152,
+          "reference_length": 9445,
+          "substitutions": 1632
+        }
+      },
+      "B1": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10180711248550445,
+        "phoneme": {
+          "deletions": 823,
+          "errors": 4214,
+          "insertions": 446,
+          "reference_length": 41392,
+          "substitutions": 2945
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14653784219001612,
+            "phoneme": {
+              "deletions": 40,
+              "errors": 182,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 125
+            },
+            "wer": 0.405,
+            "word": {
+              "deletions": 0,
+              "errors": 81,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 74
+            }
+          }
+        },
+        "wer": 0.20243515087347802,
+        "word": {
+          "deletions": 36,
+          "errors": 1912,
+          "insertions": 164,
+          "reference_length": 9445,
+          "substitutions": 1712
+        }
+      },
+      "B2": {
+        "evaluated_count": 1426,
+        "failed_count": 0,
+        "lexicon_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 9233,
+          "in_lexicon_type_count": 1936,
+          "oov_token_count": 212,
+          "oov_token_rate": 0.022445738485971412,
+          "oov_type_count": 10,
+          "oov_type_rate": 0.0051387461459403904,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.1423562412342216,
+          "sentences_with_oov": 203,
+          "token_coverage": 0.9775542615140286,
+          "type_coverage": 0.9948612538540597
+        },
+        "lm_oov": {
+          "empty_reference_count": 0,
+          "in_lexicon_token_count": 8850,
+          "in_lexicon_type_count": 1392,
+          "oov_token_count": 595,
+          "oov_token_rate": 0.06299629433562731,
+          "oov_type_count": 554,
+          "oov_type_rate": 0.2846865364850976,
+          "reference_token_count": 9445,
+          "reference_type_count": 1946,
+          "sentence_count": 1426,
+          "sentence_oov_rate": 0.2791023842917251,
+          "sentences_with_oov": 398,
+          "token_coverage": 0.9370037056643726,
+          "type_coverage": 0.7153134635149023
+        },
+        "missing_count": 0,
+        "per": 0.10180711248550445,
+        "phoneme": {
+          "deletions": 823,
+          "errors": 4214,
+          "insertions": 447,
+          "reference_length": 41392,
+          "substitutions": 2944
+        },
+        "skipped_count": 0,
+        "successful_count": 1426,
+        "unusual_random_corpora": {
+          "random_1": {
+            "evaluated_count": 39,
+            "failed_count": 0,
+            "lexicon_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 198,
+              "in_lexicon_type_count": 185,
+              "oov_token_count": 2,
+              "oov_token_rate": 0.01,
+              "oov_type_count": 2,
+              "oov_type_rate": 0.0106951871657754,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.05128205128205128,
+              "sentences_with_oov": 2,
+              "token_coverage": 0.99,
+              "type_coverage": 0.9893048128342246
+            },
+            "lm_oov": {
+              "empty_reference_count": 0,
+              "in_lexicon_token_count": 166,
+              "in_lexicon_type_count": 153,
+              "oov_token_count": 34,
+              "oov_token_rate": 0.17,
+              "oov_type_count": 34,
+              "oov_type_rate": 0.18181818181818182,
+              "reference_token_count": 200,
+              "reference_type_count": 187,
+              "sentence_count": 39,
+              "sentence_oov_rate": 0.41025641025641024,
+              "sentences_with_oov": 16,
+              "token_coverage": 0.83,
+              "type_coverage": 0.8181818181818182
+            },
+            "missing_count": 0,
+            "per": 0.14653784219001612,
+            "phoneme": {
+              "deletions": 40,
+              "errors": 182,
+              "insertions": 17,
+              "reference_length": 1242,
+              "substitutions": 125
+            },
+            "wer": 0.405,
+            "word": {
+              "deletions": 0,
+              "errors": 81,
+              "insertions": 7,
+              "reference_length": 200,
+              "substitutions": 74
+            }
+          }
+        },
+        "wer": 0.20243515087347802,
+        "word": {
+          "deletions": 36,
+          "errors": 1912,
+          "insertions": 163,
+          "reference_length": 9445,
+          "substitutions": 1713
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "interval_scope": "resampling of this participant and dataset",
+    "official_val": "includes dev_tune and dev_report; original checkpoint selected using validation",
+    "participant_count": 1
+  },
+  "state": "complete",
+  "test_submissions": {
+    "conditions": {
+      "A0": {
+        "empty_text_count": 0,
+        "expected_count": 1450,
+        "row_count": 1450,
+        "sequential_ids_verified": true,
+        "sha256": "5bd9f460da59f43de7aa18e1068c515707d56ecc3cee0fcb739bcaa04b4bae89",
+        "test_accuracy": "unavailable"
+      }
+    },
+    "state": "coverage_verified"
+  }
+}

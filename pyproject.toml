@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=72"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "btt25-cw"
+version = "0.1.0"
+description = "Reproducible T15 decoding and bounded laptop experiments"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2,<3", "scipy>=1.15,<2", "h5py>=3.13,<4", "torch>=2.8,<2.9", "PyYAML>=6,<7", "psutil>=5.9,<8"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+btt25 = "btt25.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

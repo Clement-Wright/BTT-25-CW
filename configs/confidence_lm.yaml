@@ -1,0 +1,12 @@
+scorer: distilbert/distilgpt2
+revision: 2290a62682d06624634c1f46a6ad5be0f47f38aa
+candidate_count: 10
+compact_decoder: lexicon_only
+neural_lambda_grid: [0, 0.1, 0.3, 1]
+gate: normalized_top_two_compact_margin
+call_fraction: 0.5
+random_seeds: [20261116, 20261117, 20261118]
+random_matching: reference-free candidate word-count bins within each frozen scoring partition
+score: compact_score + lambda * teacher_forced_log_likelihood
+selection: A0 uses lambda zero; select positive lambda on grouped gate-fit dev_tune for A1/A2/A3
+stop_rule: preserve negative comparisons; no report-driven model search

@@ -1,0 +1,48 @@
+{
+  "cluster": "Purdue Gilbreth",
+  "scope": "Setup and measured diagnostic cost, separate from scientific condition budgets",
+  "setup_elapsed_seconds": 196,
+  "data_acquisition_and_expansion_elapsed_seconds": 336,
+  "data_expansion_seconds": 95.80795246409252,
+  "data_expanded_bytes": 12916863318,
+  "verified_hdf5_files": 127,
+  "release_verification_and_manifest_job_elapsed_seconds": 172,
+  "kenlm_build_elapsed_seconds": 32,
+  "failed_initial_kenlm_build_elapsed_seconds": 11,
+  "sustained_pilots": {
+    "head": {
+      "sustained_seconds": 900.5950014637783,
+      "steps": 14569,
+      "step_median_seconds": 0.017611349001526833,
+      "step_p95_seconds": 0.031851916201412665,
+      "checkpoint_median_seconds": 0.29511969070881605,
+      "validation_8_median_seconds": 0.29120990657247603,
+      "longest_train_input": 2475,
+      "trainable_parameters": 31529,
+      "elapsed_seconds": 930.7590232877992,
+      "peak_tree_rss_bytes": 1307815936,
+      "peak_device_used_bytes": 2032205824,
+      "peak_cuda_allocated_bytes": 383170560,
+      "peak_cuda_reserved_bytes": 1486880768,
+      "host_target_bytes": 12000000000,
+      "slurm_elapsed_seconds": 971
+    },
+    "session_bias": {
+      "sustained_seconds": 900.8427025689743,
+      "steps": 12334,
+      "step_median_seconds": 0.026191536337137222,
+      "step_p95_seconds": 0.04508321115281432,
+      "checkpoint_median_seconds": 0.5099938926286995,
+      "validation_8_median_seconds": 0.2999737709760666,
+      "longest_train_input": 2475,
+      "trainable_parameters": 54569,
+      "elapsed_seconds": 930.0861470294185,
+      "peak_tree_rss_bytes": 1379766272,
+      "peak_device_used_bytes": 2462121984,
+      "peak_cuda_allocated_bytes": 512284160,
+      "peak_cuda_reserved_bytes": 1914699776,
+      "host_target_bytes": 19327352832,
+      "slurm_elapsed_seconds": 1096
+    }
+  }
+}

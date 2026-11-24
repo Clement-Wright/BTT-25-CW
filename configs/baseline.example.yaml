@@ -1,0 +1,11 @@
+# Set these local paths after acquiring authorized assets. No data is bundled.
+checkpoint: assets/local/official_model/t15_pretrained_rnn_baseline/checkpoint/best_checkpoint
+checkpoint_hash: 47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1
+model_args: assets/local/official_model/t15_pretrained_rnn_baseline/checkpoint/args.yaml
+data_manifest: assets/local/data_manifest.json
+split_manifest: assets/local/splits.json
+contract_hash: 887e537c9a9f132f0c8a1b5599f2c03db90f2df7f661e6110f4aff3c6a7c35c0
+corpus_metadata: assets/local/corpus_metadata.csv
+device: cuda
+cpu_threads: 4
+max_seconds: 28200

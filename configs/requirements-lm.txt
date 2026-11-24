@@ -1,0 +1,25 @@
+# Verified optional scorer stack: CPython 3.13.5 on Windows x64.
+# Supplements the working torch==2.8.0+cu126 / scipy==1.15.3 baseline.
+# Install with uv pip install --python .venv/Scripts/python.exe --no-deps -r configs/requirements-lm.txt
+# --no-deps preserves the separately verified baseline instead of redownloading torch.
+--extra-index-url https://download.pytorch.org/whl/cu126
+transformers==4.56.2
+tokenizers==0.22.2
+safetensors==0.6.2
+huggingface-hub==0.35.3
+torchvision==0.23.0+cu126
+numpy==2.3.3
+pillow==11.1.0
+certifi==2026.10.23
+charset-normalizer==3.5.2
+colorama==0.4.6
+filelock==4.2.10
+fsspec==2026.9.0
+idna==3.20
+packaging==26.3
+pyyaml==6.0.3
+regex==2026.11.15
+requests==2.34.2
+tqdm==4.70.1
+typing-extensions==4.16.0
+urllib3==2.8.0

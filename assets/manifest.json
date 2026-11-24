@@ -1,0 +1,32 @@
+{
+  "official_model": {
+    "canonical_metadata": "https://datadryad.org/api/v2/files/4150349",
+    "canonical_url": "https://datadryad.org/downloads/file_stream/4150349",
+    "mirror_url": "https://huggingface.co/datasets/yw784/brain-to-text-25-competition/resolve/2f2fabacbc9af637da3bac483bf14e1231fb4e8a/t15_pretrained_rnn_baseline.zip",
+    "mirror_provenance": "Independent mirror; complete archive hash verified against official Dryad metadata",
+    "filename": "t15_pretrained_rnn_baseline.zip",
+    "bytes": 484944889,
+    "sha256": "04ab2275eeb48abad9b4011dde6f7c9e5dd9f643b8a677c1ba5e06dc53bb4111",
+    "checkpoint_sha256": "47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1",
+    "args_sha256": "405695a9a928a78ddd6f493e10ae1f376b81d2d52cc2a38de225f15fe9011785",
+    "terms": "https://datadryad.org/dataset/doi:10.5061/dryad.dncjsxm85",
+    "redistributed": false
+  },
+  "official_data": {
+    "canonical_url": "https://datadryad.org/dataset/doi:10.5061/dryad.dncjsxm85",
+    "version": "374060 (v5, 2025-07-03)",
+    "filename": "t15_copyTask_neuralData.zip",
+    "bytes": 11051034483,
+    "sha256": "fb828fa7ef937aca405d6912addc876f6747f75a8a1711f6d2052aacf34ec5b5",
+    "local_verification": "Existing expanded release reused; expected counts and contracts verified; expanded file hashes recorded separately",
+    "redistributed": false
+  },
+  "distilgpt2": {
+    "source": "https://huggingface.co/distilbert/distilgpt2",
+    "revision": "2290a62682d06624634c1f46a6ad5be0f47f38aa",
+    "role": "Teacher-forced likelihood of existing word candidates; optional experiment",
+    "pretraining": "OpenWebText; unknown benchmark-text overlap",
+    "license": "Apache-2.0",
+    "redistributed": false
+  }
+}

@@ -1,0 +1,5 @@
+# Isolated Windows x64 decoder environment, verified with CPython 3.12.15.
+# flashlight-text 0.0.7 publishes a cp312-win_amd64 wheel; do not build from source.
+flashlight-text==0.0.7
+numpy==2.2.6
+psutil==7.0.0

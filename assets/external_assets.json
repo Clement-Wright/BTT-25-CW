@@ -1,0 +1,99 @@
+{
+  "distilgpt2": {
+    "model_id": "distilbert/distilgpt2",
+    "revision": "2290a62682d06624634c1f46a6ad5be0f47f38aa",
+    "source_tree_url": "https://huggingface.co/api/models/distilbert/distilgpt2/tree/2290a62682d06624634c1f46a6ad5be0f47f38aa?recursive=false&expand=false",
+    "license": "Apache-2.0",
+    "pretraining_corpus": "OpenWebText",
+    "benchmark_text_overlap": "unknown",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 762,
+        "sha256": "4ec5947c1d59fee6212cdf3b0ec1a53eac02092554c5ff0a733488cbd2c64f3a",
+        "source_sha256": null,
+        "source_git_blob_sha1": "fed02aafb76b46aa5da200966f9e42262e758023",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/config.json",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "vocab.json",
+        "bytes": 1042301,
+        "sha256": "196139668be63f3b5d6574427317ae82f612a97c5d1cdaf36ed2256dbf636783",
+        "source_sha256": null,
+        "source_git_blob_sha1": "1f1d9aaca301414e7f6c9396df506798ff4eb9a6",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/vocab.json",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "merges.txt",
+        "bytes": 456318,
+        "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+        "source_sha256": null,
+        "source_git_blob_sha1": "226b0752cac7789c48f0cb3ec53eda48b7be36cc",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/merges.txt",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 1355256,
+        "sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+        "source_sha256": null,
+        "source_git_blob_sha1": "4b988bccc9dc5adacd403c00b4704976196548f8",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/tokenizer.json",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 26,
+        "sha256": "5e04eb606e3a1583530a42e36c2a6b6615c86f34fe77e44d9ddeb43ff940931f",
+        "source_sha256": null,
+        "source_git_blob_sha1": "be4d21d94f3b4687e5a54d84bf6ab46ed0f8defd",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/tokenizer_config.json",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "README.md",
+        "bytes": 10992,
+        "sha256": "111f8d09ac565c745d91df88929147159eaa62b2e58e03943a2e03c1a1439ad7",
+        "source_sha256": null,
+        "source_git_blob_sha1": "86f7c9ae4422de194e6b6104b0acc9c8b9d2cd0a",
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/README.md",
+        "verified_against_source_metadata": true
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 352824413,
+        "sha256": "e1ff18884359fe8beb795a5f414feb85a6ce3d929ad019c0d958c039d2b94a1b",
+        "source_sha256": "e1ff18884359fe8beb795a5f414feb85a6ce3d929ad019c0d958c039d2b94a1b",
+        "source_git_blob_sha1": null,
+        "source_url": "https://huggingface.co/distilbert/distilgpt2/resolve/2290a62682d06624634c1f46a6ad5be0f47f38aa/model.safetensors",
+        "verified_against_source_metadata": true
+      }
+    ],
+    "acquisition_seconds": 231.43489689999842,
+    "total_bytes": 355690068
+  },
+  "cmudict": {
+    "repository": "cmusphinx/cmudict",
+    "revision": "74790861f652b15e4ac49015a90074ad62a27690",
+    "files": {
+      "cmudict.dict": {
+        "url": "https://raw.githubusercontent.com/cmusphinx/cmudict/74790861f652b15e4ac49015a90074ad62a27690/cmudict.dict",
+        "bytes": 3618488,
+        "sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
+      },
+      "LICENSE": {
+        "url": "https://raw.githubusercontent.com/cmusphinx/cmudict/74790861f652b15e4ac49015a90074ad62a27690/LICENSE",
+        "bytes": 1754,
+        "sha256": "bd4ce8e44170a5f9f481310ca85c51de3c4f851a65e679b40e603b143bd3542a"
+      }
+    }
+  },
+  "corpus_metadata": {
+    "filename": "corpus_metadata.csv",
+    "url": "https://raw.githubusercontent.com/Neuroprosthetics-Lab/nejm-brain-to-text/980a5b7e96392210edf976d76bdb5d15d2e0e62b/data/t15_copyTaskData_description.csv",
+    "bytes": 10331,
+    "sha256": "3af3cd71a4875e19d87b35eb5784dc523cf38238d1942170c8da1a3e479ed5c3"
+  }
+}

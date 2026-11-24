@@ -1,0 +1,13 @@
+# Scientific settings; combine with your ignored configs/local.yaml paths.
+calibration_per_session: 16
+seed: 20261116
+lr: 0.00001
+updates: 720
+regularization: 1.0
+backbone_dropout: 0
+control: head
+adaptation: session_bias
+selection: last checkpoint at fixed matched update count
+target_seconds: 27000
+absolute_watchdog_seconds: 28200
+reserved_final_seconds: 1800

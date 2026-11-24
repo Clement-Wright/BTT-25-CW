@@ -1,0 +1,11 @@
+beam: 50
+nbest: 10
+beam_threshold: 25
+mode: kenlm_3gram
+lm_order: 3
+lm_weight_units: natural_log
+initial_lm_weight: 1.0
+dev_tune_lm_weights: [0.5, 1.0, 2.0]
+word_insertion_score: 0
+silence_score: 0
+selection: lowest summed dev_tune word edit count; ties prefer 1.0, then smallest weight

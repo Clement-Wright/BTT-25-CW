@@ -1,0 +1,19 @@
+{
+  "trials": 1426,
+  "trial_order_and_frame_lengths_match": true,
+  "exact_greedy_phoneme_agreement": 1426,
+  "checkpoint_hash": "47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1",
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "cpu_threads": 4,
+  "elapsed_seconds": 82.07646776922047,
+  "peak_tree_rss_bytes": 715218944,
+  "peak_device_used_bytes": 1474363392,
+  "peak_cuda_allocated_bytes": 372325888,
+  "peak_cuda_reserved_bytes": 937426944,
+  "source_prediction_hashes": {
+    "laptop": "7a2133aaccef01e4e177fa9791786736172c357be79e74825da33ad521361c9d",
+    "gilbreth": "69431ab00f97ea19a15b202358fbb1d2706cba4ccf46fd590573f2e4d26421a7"
+  },
+  "references_loaded": false,
+  "scope": "Compare decoded phone IDs and known output lengths across environments; no claim of bitwise logits."
+}

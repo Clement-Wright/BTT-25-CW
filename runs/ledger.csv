@@ -1,0 +1,38 @@
+run_id,stage,status,artifact,elapsed_seconds,predictions,per,wer,notes
+baseline-tune-phones,dev_tune,scored,runs/baseline-tune-phones,,926,0.10007496251874062,,
+baseline-tune-phones-fp32,dev_tune,scored,runs/baseline-tune-phones-fp32,,926,0.10003748125937031,,
+baseline-tune-words,dev_tune,scored,runs/baseline-tune-words,,926,0.10003748125937031,0.7578319244157136,
+baseline-val,phoneme_inference,complete,runs/baseline-val,131.99888640000427,1426,,,feature-only coverage
+baseline-val-fp32,phoneme_inference,complete,runs/baseline-val-fp32,132.48948229999223,1426,,,feature-only coverage
+baseline-word-val,lexicon_only,complete,runs/baseline-word-val,67.51599999994505,1426,,,
+pilot-session-bias,session_bias,failed,runs/pilot-session-bias,4.163426799990702,0,,,cuDNN RNN backward requires training mode; reproduced and fixed with dropout explicitly zero; no completed pilot claimed
+pilot-session-bias-v2,session_bias,budget_stopped,runs/pilot-session-bias-v2,735.2135834000073,0,,,BudgetExceeded: OS available memory below 2 GB
+pilot-session-bias-v3,session_bias,diagnostic_complete,runs/pilot-session-bias-v3,905.0972805000056,8,0.07692307692307693,,8 dev_tune trials; learning diagnostic only; not a completed research condition
+baseline-val-a100,phoneme_inference,complete,runs/gilbreth/workspace/runs/baseline-val-a100,82.07646776922047,1426,,,feature-only coverage
+calibration-bias-a100,dev_tune,complete,runs/gilbreth/workspace/runs/calibration-bias-a100,182.27395306434482,1426,0.09992503748125937,0.20387866732968674,
+calibration-head-a100,dev_tune,complete,runs/gilbreth/workspace/runs/calibration-head-a100,216.8131086169742,1426,0.09992503748125937,0.20387866732968674,
+compact-a100/weight-0.5/decode,lexicon_kenlm,complete,runs/gilbreth/workspace/runs/compact-a100/weight-0.5/decode,94.14789612405002,1426,,,
+compact-a100/weight-0.5/dev_tune,dev_tune,scored,runs/gilbreth/workspace/runs/compact-a100/weight-0.5/dev_tune,,926,0.10003748125937031,0.2947124150505553,
+compact-a100/weight-1/decode,lexicon_kenlm,complete,runs/gilbreth/workspace/runs/compact-a100/weight-1/decode,56.77463309606537,1426,,,
+compact-a100/weight-1/dev_tune,dev_tune,scored,runs/gilbreth/workspace/runs/compact-a100/weight-1/dev_tune,,926,0.10003748125937031,0.2366981601193436,
+compact-a100/weight-2/decode,lexicon_kenlm,complete,runs/gilbreth/workspace/runs/compact-a100/weight-2/decode,39.8178584119305,1426,,,
+compact-a100/weight-2/dev_tune,dev_tune,scored,runs/gilbreth/workspace/runs/compact-a100/weight-2/dev_tune,,926,0.10003748125937031,0.20454168738604342,
+locked-a100/dev_report/A0,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A0,39.8178584119305,500,0.10535617183251768,0.19871043376318875,
+locked-a100/dev_report/A1,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A1,107.41154626524076,500,0.10535617183251768,0.17672919109026963,
+locked-a100/dev_report/A2,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A2,66.73661476420239,500,0.10535617183251768,0.18053927315357562,
+locked-a100/dev_report/A3_seed20261116,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A3_seed20261116,63.89586798893288,500,0.10535617183251768,0.1872801875732708,
+locked-a100/dev_report/A3_seed20261117,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A3_seed20261117,63.34257776895538,500,0.10535617183251768,0.18933177022274325,
+locked-a100/dev_report/A3_seed20261118,dev_report,complete,runs/gilbreth/workspace/runs/locked-a100/A/A3_seed20261118,63.77901283977553,500,0.10535617183251768,0.18962485345838218,
+locked-a100/dev_report/B1,dev_report,scored,runs/gilbreth/workspace/runs/locked-a100/dev_report/B1,214.81462536612526,500,0.10522022838499184,0.19988276670574442,
+locked-a100/dev_report/B2,dev_report,scored,runs/gilbreth/workspace/runs/locked-a100/dev_report/B2,180.23794993013144,500,0.10522022838499184,0.19988276670574442,
+locked-a100/official_val/A0,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A0,39.8178584119305,1426,0.10192790877464245,0.20243515087347802,
+locked-a100/official_val/A1,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A1,107.41154626524076,1426,0.10192790877464245,0.18210693488618315,
+locked-a100/official_val/A2,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A2,66.73661476420239,1426,0.10192790877464245,0.18697723663313923,
+locked-a100/official_val/A3_seed20261116,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A3_seed20261116,63.89586798893288,1426,0.10192790877464245,0.19142403388035997,
+locked-a100/official_val/A3_seed20261117,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A3_seed20261117,63.34257776895538,1426,0.10192790877464245,0.19396506087877183,
+locked-a100/official_val/A3_seed20261118,official_val,complete,runs/gilbreth/workspace/runs/locked-a100/official_val/A3_seed20261118,63.77901283977553,1426,0.10192790877464245,0.19322392800423505,
+locked-a100/official_val/B1,official_val,scored,runs/gilbreth/workspace/runs/locked-a100/official_val/B1,214.81462536612526,1426,0.10180711248550445,0.20243515087347802,
+locked-a100/official_val/B2,official_val,scored,runs/gilbreth/workspace/runs/locked-a100/official_val/B2,180.23794993013144,1426,0.10180711248550445,0.20243515087347802,
+pilot-head-a100,head,diagnostic_complete,runs/gilbreth/workspace/runs/pilot-head-a100,930.7590232877992,8,0.08144796380090498,,8 dev_tune trials; learning diagnostic only; not a completed research condition
+pilot-session-bias-a100,session_bias,diagnostic_complete,runs/gilbreth/workspace/runs/pilot-session-bias-a100,930.0861470294185,8,0.07692307692307693,,8 dev_tune trials; learning diagnostic only; not a completed research condition
+test-a100/test_decode,lexicon_kenlm,complete,runs/gilbreth/workspace/runs/test-a100/decode,39.23399753309786,1450,,,
