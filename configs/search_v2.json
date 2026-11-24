@@ -1,0 +1,44 @@
+{
+  "study": "v2-candidate-coverage-initial",
+  "evaluation_status": "exploratory_after_v1_report_exposure",
+  "reference_access": "dev_tune",
+  "split_manifest_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf",
+  "archived_v1_revision": "fe5fb4081f2ce256b41ba2a91f104a6a64a53deb",
+  "archived_v1_freeze": "c7b12685c9552344144b0f089a0a3c4d7dc6bec88e6df513e52947e926ba7b56",
+  "oracle_k": [10, 25, 50],
+  "host_ceiling_bytes": 16000000000,
+  "host_target_bytes": 12000000000,
+  "target_seconds": 27000,
+  "watchdog_seconds": 28200,
+  "pilot_seconds": 900,
+  "fixed": {
+    "emissions": "verified official GRU float32, exact saved frame lengths",
+    "lexicon": "unchanged complete CMUdict lexicon; terminal cap determined by arm",
+    "ngram": "v1 train-only KenLM 3-gram",
+    "lm_weight_natural_log": 2.0,
+    "beam_threshold": 25.0,
+    "acoustic_scale": 1.0,
+    "word_score": 0.0,
+    "silence_score": 0.0,
+    "blank_id": 0,
+    "silence_id": 40
+  },
+  "conditions": [
+    {"id": "v2-s0-archived", "backend": "v0.0.7", "beam": 50, "nbest": 10},
+    {"id": "v2-s1-original-50", "backend": "v0.0.7", "beam": 50, "nbest": 50},
+    {"id": "v2-s2-original-100", "backend": "v0.0.7", "beam": 100, "nbest": 50},
+    {"id": "v2-s3-original-250", "backend": "v0.0.7", "beam": 250, "nbest": 50},
+    {"id": "v2-s4-repaired-50", "backend": "unlimited-label-patch", "beam": 50, "nbest": 50},
+    {"id": "v2-s5-repaired-100", "backend": "unlimited-label-patch", "beam": 100, "nbest": 50},
+    {"id": "v2-s6-repaired-250", "backend": "unlimited-label-patch", "beam": 250, "nbest": 50},
+    {"id": "v2-s7-aac-fourgram", "backend": "v0.0.7", "beam": 100, "nbest": 50, "ngram_override": {
+      "name": "ImagineVille Dec 2019 Small 4-gram KenLM",
+      "source": "https://imagineville.org/software/lm/dec19/",
+      "license": "CC-BY-4.0",
+      "overlap_status": "Unknown incidental overlap from public text. No project tuning or reporting transcripts used.",
+      "endpoint": "Standard KenLM EOS scoring on T15 word sequences. The external model's text used explicit punctuation tokens."
+    }}
+  ],
+  "selection": "On dev_tune, retain lowest selected edit count among complete admissible runs; break ties by lower oracle@50 edits, lower median latency, then narrower beam. Analyze matched original versus repaired beams separately. At oracle@50 above 10%, prioritize first-pass coverage over larger fixed-list rescoring.",
+  "reporting": "Register separate v2 artifact freeze before accessing dev_report or official_val; mark these results exploratory."
+}

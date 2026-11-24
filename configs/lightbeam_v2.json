@@ -1,0 +1,17 @@
+{
+  "study": "v2-pinned-lightbeam-pilot",
+  "evaluation_status": "exploratory_after_v1_report_exposure",
+  "reference_access": "dev_tune",
+  "checkpoint": "verified official T15 GRU cache with no reporting labels",
+  "upstream_revision": "90e0ac086d4dee643be154f446a6c374600575d7",
+  "conditions": {"v2-lb0-ngram": null, "v2-lb1-final": 0, "v2-lb2-periodic": 10},
+  "scope": "24 deterministic length-quantile tuning trials including the longest trial; score only the first pass, and repeat requests for a sustained pilot",
+  "initial_beam": 25,
+  "initial_contexts_per_beam": 8,
+  "ngram_log_weight": 2.0,
+  "qwen_log_weight": 0.9,
+  "ngram_context_update": "Train-only three-gram steers the beam between refreshes. Each neural refresh replaces the accumulated context score so prior refresh scores are not added again.",
+  "endpoint": "Use the upstream two neutral tail frames to close lexical boundaries. Preserve all original frame values and count feature duration from raw frames.",
+  "pilot_seconds": 900,
+  "reporting": "Development diagnostic on a declared subset. Requires a separate admission and freeze for a wider exploratory comparison."
+}

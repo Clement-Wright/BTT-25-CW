@@ -36,3 +36,27 @@ locked-a100/official_val/B2,official_val,scored,runs/gilbreth/workspace/runs/loc
 pilot-head-a100,head,diagnostic_complete,runs/gilbreth/workspace/runs/pilot-head-a100,930.7590232877992,8,0.08144796380090498,,8 dev_tune trials; learning diagnostic only; not a completed research condition
 pilot-session-bias-a100,session_bias,diagnostic_complete,runs/gilbreth/workspace/runs/pilot-session-bias-a100,930.0861470294185,8,0.07692307692307693,,8 dev_tune trials; learning diagnostic only; not a completed research condition
 test-a100/test_decode,lexicon_kenlm,complete,runs/gilbreth/workspace/runs/test-a100/decode,39.23399753309786,1450,,,
+v2-s0-archived,dev_tune,scored,runs/v2-s0-archived,,926,,0.20454168738604342,Archived compact score replay; oracle 986/6033
+v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.176080200006254,576,,,Offline batch-one laptop ZeroLM; three warm passes and two sequential beam services
+12523531,v2_search_pilot,pilot_complete,v2/runs/v2-pilot-12523531,901.688,16128,,,Warm seconds and requests across three settings; process-tree fallback
+12523553,v2_search_original,cancelled_before_start,v2/runs/v2-search-attempt-12523553,,,,,Replaced by independently reviewed search submission
+12523554,v2_search_repaired,cancelled_before_start,v2/runs/v2-search-attempt-12523554,,,,,Replaced to require a matching sustained native repair pilot
+12523567,v2_search_original,failed_preflight,v2/runs/v2-search-attempt-12523567,9,,,,Conservative 1217.54 second budget exceeded the first 20 minute admission window
+12523568,v2_search_repaired,failed_build,v2/runs/v2-search-attempt-12523568,40,,,,Build used CPython 3.9 instead of decoder CPython 3.12 and failed native import
+12523569,v2_lightbeam_setup,complete,v2/runs/v2-lightbeam-setup-12523569,428,,,,Pinned private source dependencies and official Qwen Base asset verification
+12523580,v2_lightbeam_comparison,running,v2/runs/v2-lightbeam-12523580,,,,,Real trial trace for the predeclared tuning subset and matched final-only and periodic settings
+12523585,v2_aac_fourgram,submitted,v2/runs/v2-s7-aac-fourgram-12523585,,,,,ImagineVille Small four-gram matched first-pass search
+12523601,v2_search_original,complete,v2/runs/v2-search-attempt-12523601,325,4278,,,Three full validation decodes; tuning-only WER in each condition directory
+12523602,v2_search_repaired,complete,v2/runs/v2-search-attempt-12523602,1320,4278,,,Native repair restored all pronunciations; matching sustained pilot and three validation decodes complete
+12523640,v2_fixed_candidates,cancelled_before_start,v2/runs/v2-fixed-12523640,,,,,Replaced to include expanded search as a candidate source
+12523635,v2_transformer,submitted,v2/runs/v2-e1-transformer-12523635,,,,,Causal Transformer sustained pilot and conditional 40000-update training
+12523697,v2_monophone,submitted,v2/runs/v2-e2-monophone-12523697,,,,,Matched frozen-GRU monophone control pilot and conditional adaptation
+12523698,v2_diphone,submitted,v2/runs/v2-e3-diphone-12523698,,,,,Matched joint diphone frozen-GRU pilot and conditional adaptation
+12523701,v2_frozen_report,cancelled_before_start,v2/runs/v2-report-12523701,,,,,Replaced to include expanded search
+12523724,v2_expanded_fourgram,submitted,v2/runs/v2-s8-repaired-aac-250-12523724,,,,,Four-gram first pass with repaired beam 250; matched three-gram comparator
+12523725,v2_fixed_candidates,submitted,v2/runs/v2-fixed-12523725,,,,,DistilGPT2 and Qwen1.7B on up to 25 shared candidates per trial
+12523726,v2_frozen_report,cancelled_before_start,v2/runs/v2-report-12523726,,,,,Replaced to include the same-candidate Qwen4B comparison
+12523737,v2_search_feature_timing,submitted,v2/runs/v2-search-timing-12523737,,,,,Three interleaved batch-one warm passes on one allocation
+12523756,v2_qwen4_setup,submitted,v2/runs/v2-qwen4-setup-12523756,,,,,Official three-shard Qwen3-4B-Base acquisition and checksum verification
+12523757,v2_fixed_qwen4,submitted,v2/runs/v2-fixed-4b-12523757,,,,,Matching fixed candidates and precision with a sustained pilot
+12523758,v2_frozen_report,submitted,v2/runs/v2-report-12523758,,,,,Separate exploratory freeze and interleaved complete-pipeline timing before scoring

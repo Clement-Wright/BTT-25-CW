@@ -11,11 +11,13 @@ import json
 import os
 from pathlib import Path
 import re
+import sys
 import threading
 import time
 
 import numpy as np
-import psutil
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
+from btt25.host_accounting import HostAccounting, WATCHDOG_SECONDS
 
 
 TOKENS = (
@@ -299,47 +301,32 @@ class ProcessMonitor:
 
     def __init__(self, output, max_seconds):
         self.output, self.max_seconds = Path(output), max_seconds
-        self.soft_ram, self.hard_ram = 12_000_000_000, 16_000_000_000
-        self.ram_source = 'laptop defaults'
-        allocation_mib = os.environ.get('SLURM_MEM_PER_NODE') if os.environ.get('SLURM_JOB_ID') else None
-        if allocation_mib and allocation_mib.isdecimal() and int(allocation_mib) > 0:
-            self.hard_ram = int(allocation_mib)*1024**2
-            self.soft_ram = int(self.hard_ram*.90)
-            self.ram_source = 'Slurm node allocation'
+        self.host = HostAccounting()
+        self.max_seconds = min(self.max_seconds, WATCHDOG_SECONDS)
+        self.soft_ram, self.hard_ram = self.host.soft, self.host.hard
+        self.ram_source = self.host.limit_source
         self.minimum_required_available = 2_000_000_000
         self.started = time.monotonic()
         self.stop = threading.Event()
         self.lock = threading.Lock()
         self.reason = None
-        self.count, self.peak_rss, self.peak_private = 0, 0, 0
-        self.minimum_available = psutil.virtual_memory().available
-        self.process = psutil.Process()
+        self.observations = []
 
     def sample(self):
         with self.lock:
-            memory, available = self.process.memory_info(), psutil.virtual_memory().available
-            elapsed = time.monotonic() - self.started
-            self.peak_rss = max(self.peak_rss, memory.rss, getattr(memory, 'peak_wset', 0))
-            self.peak_private = max(self.peak_private, getattr(memory, 'private', 0))
-            self.minimum_available = min(self.minimum_available, available)
-            self.count += 1
-            self.samples.write(json.dumps({'elapsed_seconds': elapsed, 'rss_bytes': memory.rss, 'private_bytes': getattr(memory, 'private', None), 'system_available_bytes': available}) + '\n')
+            sample = self.host.sample()
+            self.observations.append(sample)
+            self.samples.write(json.dumps(sample) + '\n')
             self.samples.flush()
-            if elapsed > self.max_seconds:
-                self.reason = 'worker wall-clock deadline'
-            elif memory.rss > self.hard_ram:
-                self.reason = f'{self.hard_ram / 1_000_000_000:g} GB worker RAM ceiling exceeded'
-            elif memory.rss > self.soft_ram:
-                self.reason = f'{self.soft_ram / 1_000_000_000:g} GB worker RAM target exceeded'
-            elif available < self.minimum_required_available:
-                self.reason = 'OS available memory below 2 GB'
+            if self.reason is None:
+                self.reason = ('worker wall-clock deadline' if sample['elapsed_seconds'] > self.max_seconds
+                               else self.host.stop_reason(sample, self.minimum_required_available))
 
     def loop(self):
         while not self.stop.wait(1.0):
             self.sample()
 
     def check(self):
-        self.sample()
         stop_file = os.environ.get('BTT_STOP_FILE')
         if stop_file and Path(stop_file).exists():
             self.reason = 'whole-job supervisor requested a safe stop'
@@ -358,15 +345,28 @@ class ProcessMonitor:
         self.thread.join(timeout=3)
         self.sample()
         self.samples.close()
-        write_json(self.output, {'device': 'N/A', 'method': 'psutil current worker RSS; Windows peak working set when available; no Torch or GPU use',
-                                'elapsed_seconds': time.monotonic() - self.started, 'sample_count': self.count, 'sampling_seconds': 1,
-                                'peak_rss_bytes': self.peak_rss, 'peak_private_bytes': self.peak_private,
-                                'host_target_bytes': self.soft_ram, 'host_ceiling_bytes': self.hard_ram,
-                                'host_limit_source': self.ram_source,
+        def peak(key):
+            return max((s[key] for s in self.observations if s.get(key) is not None), default=None)
+
+        final = self.observations[-1]
+        write_json(self.output, {**self.host.describe(), 'device': 'CPU',
+                                'elapsed_seconds': time.monotonic() - self.started,
+                                'sample_count': len(self.observations), 'sampling_seconds': 1,
+                                'peak_rss_bytes': peak('tree_rss_bytes'),
+                                'peak_private_bytes': peak('tree_private_bytes'),
+                                'peak_pss_bytes': peak('tree_pss_bytes'), 'peak_uss_bytes': peak('tree_uss_bytes'),
+                                'peak_accounted_host_bytes': peak('accounted_host_bytes'),
+                                'peak_cgroup_bytes': peak('cgroup_peak_bytes'),
+                                'cgroup_events': final['cgroup_events'],
+                                'cpu': {k: v for k, v in final.items() if k.startswith('cpu_')},
+                                'sampler_seconds': sum(s['sampler_seconds'] for s in self.observations),
                                 'minimum_required_system_available_bytes': self.minimum_required_available,
-                                'ceiling_method': 'Current worker RSS sampled each second; cooperative limits and stop file checked between trials; native decoding is not interrupted mid-trial; parent watchdog owns whole-job limits',
-                                'minimum_system_available_bytes': self.minimum_available, 'stop_reason': self.reason,
-                                'outcome': 'failed' if error else 'complete'})
+                                'ceiling_method': 'Cooperative checks between trials; the scheduler can terminate a native call',
+                                'minimum_system_available_bytes': min(s['system_available_bytes'] for s in self.observations),
+                                'stop_reason': self.reason,
+                                'outcome': 'budget_stopped' if isinstance(error, (TimeoutError, KeyboardInterrupt)) or (self.reason and error is None)
+                                else 'failed' if error else 'complete'})
+
 
 
 def indexed(rows, name):
@@ -421,6 +421,7 @@ def run_decode(logit_run, lexicon, output_dir, manifest, unigrams=None, tokens_m
         'tokens_hash': object_hash(TOKENS), 'unigrams_path': str(Path(unigrams).resolve()) if unigrams else None,
         'unigrams_sha256': sha256(unigrams) if unigrams else None,
         'decoder': {'backend': 'flashlight-text', 'version': importlib.metadata.version('flashlight-text'),
+                    'variant': os.environ.get('BTT_FLASHLIGHT_VARIANT', 'v0.0.7'),
                     'numpy_version': np.__version__, 'beam': beam, 'beam_size_token': 41, 'beam_threshold': beam_threshold,
                     'nbest': nbest, 'blank_id': 0, 'sil_id': 40, 'log_add': True, 'unigram_weight': unigram_weight,
                     'lm': 'ZeroLM', 'unknown_words': 'forbidden'},

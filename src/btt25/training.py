@@ -232,7 +232,11 @@ def admit(profile_dir, updates, final_seconds, max_hours=7.5, config=None, mode=
     resource=load_json(Path(profile_dir)/"resources.json")
     if evidence["sustained_seconds"]<900 or resource["stop_reason"]:
         raise ValueError("A successful sustained >=15-minute pilot is required")
-    if resource["peak_tree_rss_bytes"]>=resource.get("host_target_bytes",12_000_000_000) or resource["minimum_system_available_bytes"]<2_000_000_000:
+    host_peak = max(resource.get("peak_accounted_host_bytes", resource["peak_tree_rss_bytes"]),
+                    resource.get("peak_cgroup_bytes") or 0)
+    if (host_peak >= resource.get("host_target_bytes", 12_000_000_000)
+            or (not resource.get("slurm_requested_bytes")
+                and resource["minimum_system_available_bytes"] < 2_000_000_000)):
         raise ValueError("Pilot did not leave the required host memory headroom")
     for gpu in resource["hardware"].get("gpu",[]):
         if resource["peak_device_used_bytes"]>0.8*gpu["total_vram_bytes"]:

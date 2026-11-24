@@ -1,5 +1,7 @@
 # Provenance
 
+V2 registrations, immutable v1 archive links, and model-source revisions are in the [continuation runbook](CONTINUATION.md). The continuation builds the external MIT-licensed Flashlight Text dependency at a pinned revision and removes the terminal label guard in an isolated build. The updater verifies the upstream insertion block, native ABI, and retained labels. Public code keeps the separate BrainAudio checkout and its runtime patch outside Git. Model metadata and acquired file hashes are kept in each experiment’s private artifact bundle.
+
 This project recovers an unfinished T15 research pipeline. The new repository has a fresh history. The original private/team repositories, local branches, checkpoints and uncommitted work remain intact.
 
 | Component | Source | Treatment |

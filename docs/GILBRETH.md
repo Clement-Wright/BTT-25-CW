@@ -1,5 +1,7 @@
 # Run on Gilbreth
 
+The accuracy and efficiency continuation uses a separate scratch checkout and new conditions. See the [v2 registration and resume commands](CONTINUATION.md) and the [current job ledger](../runs/ledger.csv). This page preserves the workflow used to reproduce the original release.
+
 The checked-in `hpc/` scripts use CPython 3.12 from `anaconda/2024.10-py312`, `uv/0.8.0`, and PyTorch 2.8.0+cu126. Baseline/scorer and native-decoder packages live in separate scratch environments. These instructions launch bounded stages; they do not claim a completed study or a cluster-wide performance result.
 
 Use your existing Gilbreth access and normal host-key/MFA procedure. Discover your allowed account and partition with `slist`, `sinfo` and the current RCAC documentation. Set `ACCOUNT` and `PARTITION` in your shell from that discovery. Gilbreth requires an account and partition; `standby` is a QOS with a four-hour limit and access to idle resources. See [RCAC's account, partition and QOS rules](https://docs.rcac.purdue.edu/userguides/gilbreth/run_jobs/queues/).

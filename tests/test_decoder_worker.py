@@ -245,12 +245,13 @@ class ProcessMonitorTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(mock.patch.dict(os.environ, {'SLURM_JOB_ID': '', 'SLURM_MEM_PER_NODE': ''}))
 
-    def test_slurm_allocation_is_used_instead_of_laptop_defaults(self):
+    def test_slurm_allocation_cannot_raise_task_cap(self):
         with mock.patch.dict(os.environ, {'SLURM_JOB_ID': '1', 'SLURM_MEM_PER_NODE': '20480'}):
             monitor = worker.ProcessMonitor('unused-resources.json', max_seconds=60)
-        self.assertEqual(monitor.hard_ram, 20 * 1024**3)
-        self.assertEqual(monitor.soft_ram, int(20 * 1024**3 * 0.90))
-        self.assertEqual(monitor.ram_source, 'Slurm node allocation')
+        self.assertEqual(monitor.hard_ram, 16_000_000_000)
+        self.assertEqual(monitor.soft_ram, 12_000_000_000)
+        self.assertEqual(monitor.ram_source, 'task')
+        self.assertEqual(monitor.host.slurm_limit, 20 * 1024**3)
 
     def test_supervisor_stop_request_is_cooperative_and_recorded(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -262,7 +263,7 @@ class ProcessMonitorTests(unittest.TestCase):
                     with worker.ProcessMonitor(output, max_seconds=60) as monitor:
                         monitor.check()
             summary = json.loads(output.read_text())
-            self.assertEqual(summary['outcome'], 'failed')
+            self.assertEqual(summary['outcome'], 'budget_stopped')
             self.assertIn('supervisor requested a safe stop', summary['stop_reason'])
             self.assertEqual(summary['host_target_bytes'], 12_000_000_000)
             self.assertEqual(summary['host_ceiling_bytes'], 16_000_000_000)
@@ -270,19 +271,20 @@ class ProcessMonitorTests(unittest.TestCase):
             self.assertIn('between trials', summary['ceiling_method'])
 
     def test_ram_target_hard_ceiling_and_os_reserve_have_distinct_reasons(self):
-        cases = ((13_000_000_000, 3_000_000_000, '12 GB worker RAM target'),
-                 (17_000_000_000, 3_000_000_000, '16 GB worker RAM ceiling'),
+        cases = ((13_000_000_000, 3_000_000_000, '12 GB host RAM target'),
+                 (17_000_000_000, 3_000_000_000, '16 GB host RAM ceiling'),
                  (100_000_000, 1_000_000_000, 'OS available memory below 2 GB'))
         for rss, available, reason in cases:
             with self.subTest(reason=reason):
                 monitor = worker.ProcessMonitor('unused-resources.json', max_seconds=60)
                 monitor.samples = io.StringIO()
-                monitor.process = mock.Mock()
-                monitor.process.memory_info.return_value = SimpleNamespace(rss=rss, private=rss)
+                sample = {'elapsed_seconds': 0, 'accounted_host_bytes': rss,
+                          'system_available_bytes': available}
+                with mock.patch.object(monitor.host, 'sample', return_value=sample):
+                    monitor.sample()
                 with mock.patch.dict(os.environ, {'BTT_STOP_FILE': ''}):
-                    with mock.patch.object(worker.psutil, 'virtual_memory', return_value=SimpleNamespace(available=available)):
-                        with self.assertRaisesRegex(TimeoutError, reason):
-                            monitor.check()
+                    with self.assertRaisesRegex(TimeoutError, reason):
+                        monitor.check()
 
 
 @unittest.skipUnless(native_available(), 'Run native contracts under .decoder-venv CPython 3.12')
@@ -352,7 +354,7 @@ class NativeDecoderTests(unittest.TestCase):
             self.assertEqual(len(worker.read_jsonl(output / 'candidates.jsonl')), 1)
             resources = json.loads((output / 'resources.json').read_text())
             self.assertGreater(resources['peak_rss_bytes'], 0)
-            self.assertEqual(resources['device'], 'N/A')
+            self.assertEqual(resources['device'], 'CPU')
             worker.run_decode(source, lexicon, output, manifest)
             self.assertEqual(len(worker.read_jsonl(output / 'predictions.jsonl')), 1)
             lexicon.write_text('different AA AA\n')

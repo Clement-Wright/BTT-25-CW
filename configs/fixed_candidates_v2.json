@@ -1,0 +1,14 @@
+{
+  "study": "v2-fixed-lexical-candidates",
+  "reference_access": "dev_tune",
+  "conditions": ["v2-f1-distilgpt2", "v2-f2-qwen17b"],
+  "candidate_source": "Best completed preregistered initial search row by tuning edits, then oracle@50 errors, median latency and beam width",
+  "candidate_limit": 25,
+  "batch_size": 8,
+  "models": {"v2-f1-distilgpt2": "2290a62682d06624634c1f46a6ad5be0f47f38aa", "v2-f2-qwen17b": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1"},
+  "weights": [0.25, 0.5, 0.75, 1.0, 1.25],
+  "score": "Flashlight accumulated acoustic score plus weight times exact completed-candidate neural natural log likelihood. KenLM remains an acquisition prior only. Tie by source rank.",
+  "weight_selection": "Minimize corpus edit count on the existing dev_tune allowlist, tie by smaller weight.",
+  "pilot_seconds": 900,
+  "precision": "DistilGPT2 and Qwen BF16 on the same A100 allocation; FP32 log probability reduction, no offloading"
+}

@@ -1,0 +1,10 @@
+{
+  "study": "v2-expanded-search-followup",
+  "evaluation_status": "exploratory_after_v1_report_exposure",
+  "reference_access": "dev_tune",
+  "split_manifest_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf",
+  "oracle_k": [10, 25, 50],
+  "fixed": {"lm_weight_natural_log": 2.0, "beam_threshold": 25.0},
+  "conditions": [{"id": "v2-s8-repaired-aac-250", "backend": "unlimited-label-patch", "beam": 250, "nbest": 50}],
+  "scope": "After the matched beam comparison, exchange only the n-gram in the beam-250 repaired decoder. Attend the same 900-second sustained admission and compare with v2-s6-repaired-250. Use the same external asset as v2-s7-aac-fourgram."
+}

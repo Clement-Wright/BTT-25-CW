@@ -1,0 +1,18 @@
+{
+  "study": "v2-encoder-contracts",
+  "reference_access": "dev_tune",
+  "split_manifest_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf",
+  "archived_v1_freeze": "c7b12685c9552344144b0f089a0a3c4d7dc6bec88e6df513e52947e926ba7b56",
+  "oracle_k": [10, 25, 50],
+  "conditions": [
+    {"id": "v2-e0-gru-50", "backend": "v0.0.7", "beam": 50, "nbest": 50},
+    {"id": "v2-e1-transformer", "backend": "v0.0.7", "beam": 50, "nbest": 50},
+    {"id": "v2-e2-monophone", "backend": "v0.0.7", "beam": 50, "nbest": 50},
+    {"id": "v2-e3-diphone", "backend": "v0.0.7", "beam": 50, "nbest": 50}
+  ],
+  "pilot_seconds": 900,
+  "fixed": {"lm_weight_natural_log": 2.0, "beam_threshold": 25.0},
+  "training": {"transformer_updates": 40000, "head_updates": 1024, "seed": 20261124, "lr": 0.0003},
+  "decoder": "Original compact Flashlight KenLM 3-gram, natural-log weight 2, threshold 25, no bonus",
+  "selection": "Use the fixed final update for each admitted model. Under the same decoder, compare scratch-trained Transformer to the official GRU and the diphone head to its matched monophone head. Compare on dev_tune before any separate exploratory freeze."
+}

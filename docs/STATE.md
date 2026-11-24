@@ -1,4 +1,16 @@
-# Recovery state
+# Project state
+
+## Accuracy and efficiency continuation
+
+The [continuation registration](CONTINUATION.md) defines the separate v2 study. The v1 report and study freeze remain archived at public revision `fe5fb4081f2ce256b41ba2a91f104a6a64a53deb` and private freeze `c7b12685c9552344144b0f089a0a3c4d7dc6bec88e6df513e52947e926ba7b56`. V1 reporting results informed v2. The old reporting membership serves as an exposed benchmark for any frozen v2 exploratory report.
+
+The v2 scratch tree is `$RCAC_SCRATCH/btt-25-cw/v2`. It reads the original validated logit cache and decoder assets from `workspace` and writes its own runs. A tuning-only replay recovered 1,234 / 6,033 selected word errors and a 986 / 6,033 oracle for the existing compact lists. Separately, the offline laptop ZeroLM smoke benchmark completed 576 real feature-to-text requests over three interleaved passes. That benchmark used the Windows lexical decoder because the cluster KenLM build is Linux.
+
+The original and repaired Flashlight arms completed in `12523601` and `12523602`. Each saved 1,426 predictions without references after a matching pilot. The repaired beam-250 row has 953 / 6,033 tuning edits and an oracle of 566 / 6,033 at up to 50 candidates. The native repair retained all 134,711 pronunciations. The pinned Qwen download and LightBeam dependency setup finished in `12523569`.
+
+LightBeam `12523580` is running and has written real predictions for its three modes. Serial successors are A100 feature-to-text timing `12523737`, external four-gram `12523585`, repaired four-gram `12523724`, DistilGPT2 and Qwen1.7B `12523725`, Qwen4B acquisition and matched scoring `12523756` and `12523757`, Transformer `12523635`, monophone `12523697`, diphone `12523698`, and exploratory freeze plus full timing `12523758`. The next action is to verify `v2/runs/v2-lightbeam-12523580/metrics.json` and the 864-request timing in `v2/runs/v2-search-timing-12523737/features`. Reporting references remain unopened for v2. Use `squeue --me` and the job IDs in [the ledger](../runs/ledger.csv) to locate current receipts. Exact commands are in [the continuation runbook](CONTINUATION.md).
+
+## Archived v1 recovery state
 
 Updated 2026-11-24. Baseline, both frozen studies, resource measurement and test export are complete.
 
@@ -10,7 +22,7 @@ Completed evidence: all 127 local HDF5 files located (45 training, 41 validation
 
 Recovered official model ZIP from pinned independent Hugging Face mirror; full SHA256 matches official Dryad metadata (`04ab2275...bb4111`). Checkpoint SHA256 `47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1`. Strict loading removes only the uniform `_orig_mod.` compile prefix. Local legacy checkpoints are documented separately and have incompatible experimental token/model contracts.
 
-The complete data has 8072/1426/1450 train/val/test trials. Frozen session/block validation memberships: 926 tune, 500 report; split SHA256 `8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf`. No reporting references have been opened. Inherited official checkpoint was selected using official validation; no untouched historical or unseen-day claim.
+The complete data has 8072/1426/1450 train/val/test trials. Frozen session/block validation memberships: 926 tune, 500 report; split SHA256 `8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf`. The v1 studies kept reporting references closed until their joint freeze. The inherited official checkpoint was selected using official validation; it cannot establish an untouched historical benchmark or unseen-day performance.
 
 Decoder setup: CPython 3.12 plus the Flashlight Text 0.0.7 Windows wheel works. The Windows build lacks the KenLM DLL, so the laptop word run explicitly uses ZeroLM. It saved 1426 / 1426 trials with zero decoder errors in 67.5 s, peak RSS 0.279 GB. At `dev_tune`, 4572 / 6033 word edits give 75.78% WER. The A100 environment uses the Linux wheel and a separately built, pinned KenLM 0.3.0 estimator.
 

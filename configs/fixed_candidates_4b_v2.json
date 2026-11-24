@@ -1,0 +1,15 @@
+{
+  "study": "v2-qwen-base-size-comparison",
+  "reference_access": "dev_tune",
+  "conditions": ["v2-f3-qwen4b"],
+  "candidate_source": "The same candidate packet hash and source selected for the two completed 1.7B and DistilGPT2 comparisons",
+  "candidate_limit": 25,
+  "batch_size": 8,
+  "models": {"v2-f3-qwen4b": "906bfd4b4dc7f14ee4320094d8b41684abff8539"},
+  "weights": [0.25, 0.5, 0.75, 1.0, 1.25],
+  "score": "Flashlight accumulated acoustic score plus exact completed-candidate neural natural log likelihood multiplied by the tuning weight. KenLM remains an acquisition prior only.",
+  "weight_selection": "Minimize corpus edit count on the existing dev_tune allowlist, tie by smaller weight.",
+  "pilot_seconds": 900,
+  "precision": "Qwen BF16 on one A100 with FP32 reduction, no offloading",
+  "rationale": "The repaired beam-250 oracle at 50 candidates dropped below 10% on dev_tune. Compare one stronger official base model under the identical 25-candidate contract used in the primary fixed rescoring conditions."
+}
