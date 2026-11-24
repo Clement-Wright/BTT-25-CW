@@ -1,5 +1,7 @@
 # Reproduce the pipeline
 
+For the v2 search repair, LightBeam comparison, and complete-request benchmarks, use the [continuation runbook](CONTINUATION.md) and [measured results](../reports/continuation.md). The commands below reproduce the archived v1 pipeline.
+
 Run commands at the repository root. This guide describes executable stages; a command's presence does not establish that its study has finished. Keep downloaded assets, reference text, resolved machine paths and run artifacts outside the public source tree's tracked files.
 
 Read [DATA_CARD.md](DATA_CARD.md) and [MODEL_CARD.md](MODEL_CARD.md) before interpreting scores. The official checkpoint already used the known sessions and official validation during its original development. The project's frozen `dev_report` split protects new choices within this project; it does not establish unseen-day generalization.

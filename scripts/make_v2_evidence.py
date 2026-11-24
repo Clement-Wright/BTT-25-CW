@@ -77,6 +77,9 @@ def lightbeam(path):
     resource = path / "resources.json"
     if resource.is_file():
         summary["resources"] = fields(read(resource), RESOURCE_FIELDS)
+    matched = path / "matched_tune_subset.json"
+    if matched.is_file():
+        summary["matched_tuning_subset"] = read(matched)
     trace = path / "timing.jsonl"
     if trace.is_file():
         buckets = {}
@@ -121,6 +124,23 @@ def figures(evidence, output):
             ax.legend()
             fig.savefig(output / "v2_accuracy_latency.png", dpi=160)
             plt.close(fig)
+    if evidence.get("gilbreth_search_timing"):
+        timing = evidence["gilbreth_search_timing"]["conditions"]
+        labels = {"v2-s0-archived": "Original beam 50", "v2-s3-original-250": "Original beam 250",
+                  "v2-s6-repaired-250": "Repaired beam 250"}
+        fig, ax = plt.subplots(figsize=(8.3, 3.4), layout="constrained")
+        for key, row in timing.items():
+            ms = {name: 1000 * val for name, val in row["latency_seconds"].items()}
+            y = labels.get(key, key)
+            ax.plot([ms["p50"], ms["p99"]], [y, y], color="#86b1bd", linewidth=4, solid_capstyle="round")
+            ax.scatter(ms["p95"], y, color="#1c778b", s=65, zorder=3)
+            ax.text(ms["p95"], y, f"{ms['p95']:.0f}", ha="center", va="bottom", fontsize=9)
+        ax.invert_yaxis()
+        ax.set_xlabel("Batch-one response time in milliseconds · p50 to p99, dot at p95")
+        ax.set_title("Complete feature-to-text requests on one A100", loc="left", weight="bold")
+        ax.spines[["top", "right"]].set_visible(False)
+        fig.savefig(output / "v2_search_latency.png", dpi=160)
+        plt.close(fig)
 
 
 def main():

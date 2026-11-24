@@ -44,8 +44,8 @@ v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.
 12523567,v2_search_original,failed_preflight,v2/runs/v2-search-attempt-12523567,9,,,,Conservative 1217.54 second budget exceeded the first 20 minute admission window
 12523568,v2_search_repaired,failed_build,v2/runs/v2-search-attempt-12523568,40,,,,Build used CPython 3.9 instead of decoder CPython 3.12 and failed native import
 12523569,v2_lightbeam_setup,complete,v2/runs/v2-lightbeam-setup-12523569,428,,,,Pinned private source dependencies and official Qwen Base asset verification
-12523580,v2_lightbeam_comparison,running,v2/runs/v2-lightbeam-12523580,,,,,Real trial trace for the predeclared tuning subset and matched final-only and periodic settings
-12523585,v2_aac_fourgram,submitted,v2/runs/v2-s7-aac-fourgram-12523585,,,,,ImagineVille Small four-gram matched first-pass search
+12523580,v2_lightbeam_comparison,diagnostic_complete,v2/runs/v2-lightbeam-12523580,940.5465362281539,24,,0.14743589743589744,Periodic scored 23/156 on fixed tuning subset; total timed requests 1440 across three arms
+12523585,v2_aac_fourgram,running,v2/runs/v2-s7-aac-fourgram-12523585,,,,,ImagineVille Small four-gram matched first-pass search
 12523601,v2_search_original,complete,v2/runs/v2-search-attempt-12523601,325,4278,,,Three full validation decodes; tuning-only WER in each condition directory
 12523602,v2_search_repaired,complete,v2/runs/v2-search-attempt-12523602,1320,4278,,,Native repair restored all pronunciations; matching sustained pilot and three validation decodes complete
 12523640,v2_fixed_candidates,cancelled_before_start,v2/runs/v2-fixed-12523640,,,,,Replaced to include expanded search as a candidate source
@@ -56,7 +56,7 @@ v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.
 12523724,v2_expanded_fourgram,submitted,v2/runs/v2-s8-repaired-aac-250-12523724,,,,,Four-gram first pass with repaired beam 250; matched three-gram comparator
 12523725,v2_fixed_candidates,submitted,v2/runs/v2-fixed-12523725,,,,,DistilGPT2 and Qwen1.7B on up to 25 shared candidates per trial
 12523726,v2_frozen_report,cancelled_before_start,v2/runs/v2-report-12523726,,,,,Replaced to include the same-candidate Qwen4B comparison
-12523737,v2_search_feature_timing,submitted,v2/runs/v2-search-timing-12523737,,,,,Three interleaved batch-one warm passes on one allocation
+12523737,v2_search_feature_timing,complete,v2/runs/v2-search-timing-12523737,130.97700126376003,864,,,Three matched warm passes; repaired beam 250 p95 248.3 ms
 12523756,v2_qwen4_setup,submitted,v2/runs/v2-qwen4-setup-12523756,,,,,Official three-shard Qwen3-4B-Base acquisition and checksum verification
 12523757,v2_fixed_qwen4,submitted,v2/runs/v2-fixed-4b-12523757,,,,,Matching fixed candidates and precision with a sustained pilot
 12523758,v2_frozen_report,submitted,v2/runs/v2-report-12523758,,,,,Separate exploratory freeze and interleaved complete-pipeline timing before scoring

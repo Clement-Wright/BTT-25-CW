@@ -36,3 +36,33 @@ The laptop benchmark used the official encoder on an RTX 3080 Laptop GPU and the
 Combined process-tree RSS peaked at 1.53 GB with both decoder processes resident. Device-wide use peaked at 2.28 GB. The encoder process reported a 0.37 GB PyTorch allocated peak and 1.07 GB reserved peak. Cold checkpoint setup took 1.11 s. The two native services became ready in 2.11 s and 2.02 s. ZeroLM timing describes that laptop configuration. The matched KenLM and neural-LM systems use the Gilbreth allocations.
 
 The original beam-250 cached-logit job charged up to 1.35 GB to its job cgroup, with process RSS around 0.28 GB. Its 15,000 MiB Slurm request set an effective host limit of 15,728,640,000 bytes. Cgroup charge includes the file cache and is reported separately from process RSS. [Aggregate counts and timings](continuation.json)
+
+## Matched complete-pipeline timing on Gilbreth
+
+Three interleaved warm passes timed the same 96 feature trials across three search configurations on one A100 40 GB allocation with four CPUs. The encoder ran in FP32 and synchronized each GPU phase. All 864 requests returned text. The real-time factor divides total completed request time by original input duration in 20 ms bins.
+
+| System | p50 | p90 | p95 | p99 | Max | Real-time factor |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original beam 50 | 64.7 ms | 135.5 ms | 222.4 ms | 312.1 ms | 488.0 ms | 0.00446 |
+| Original beam 250 | 109.3 ms | 220.0 ms | 243.3 ms | 263.4 ms | 320.8 ms | 0.00699 |
+| Repaired beam 250 | 111.3 ms | 230.7 ms | 248.3 ms | 298.6 ms | 313.7 ms | 0.00706 |
+
+![Matched complete-pipeline latency distribution](figures/v2_search_latency.png)
+
+Repaired beam 250 completed 7.74 requests per second of request time. Cold encoder initialization took 6.26 s within the Python benchmark. The combined allocation with three resident decoder services peaked at 3.11 GB cgroup charge, 1.41 GB summed RSS, and 1.61 GB device-wide GPU use. The PyTorch process peaked at 0.36 GB allocated and 1.07 GB reserved. The shared-resource figures cover the whole harness and cannot be assigned to individual arms. [Length-stratified timings and counters](continuation.json)
+
+## LightBeam with in-search fusion
+
+The pinned LightBeam run decoded a fixed length-stratified subset of 24 `dev_tune` trials. It saved text and phones for every trial in each arm. Twenty passes completed 1,440 decoder requests in 940.55 warm seconds. Only the first pass contributed to word errors. Qwen3-1.7B-Base scored exact candidate tokens inside the Gilbreth A100 allocation. This uses the same final scorer in both neural arms and the published search backend with our own settings and assets. [LightBeam paper](https://arxiv.org/html/2603.14002v1)
+
+| Condition | Word edits / 156 | WER |
+| --- | ---: | ---: |
+| LightBeam with training-only three-gram | 31 | 19.87% |
+| LightBeam with final-only Qwen | 30 | 19.23% |
+| LightBeam with periodic and final Qwen | 23 | 14.74% |
+| Original compact beam 50 on the same trials | 25 | 16.03% |
+| Repaired compact beam 250 on the same trials | 23 | 14.74% |
+
+Periodic fusion had nine fewer deletions and two more substitutions than final-only scoring. Three trials improved and one worsened. Repaired compact made 21 substitutions and two insertions. Periodic LightBeam made 20 substitutions and three deletions. The subset result does not establish a broader WER improvement.
+
+The periodic arm scored 527,000 target tokens across the timing passes, compared with 50,220 for final-only. Its cached-logit p95 was about 1.98 s, versus 0.79 s for final-only. The job peaked at 2.77 GB of cgroup charge, 4.12 GB of summed process RSS and 4.81 GB of device-wide GPU use. Shared memory can appear more than once in RSS. Cold initialization took 121.75 s. The periodic arm matched the simpler repaired search on this common subset, so this configuration remains a feasibility study. [LightBeam measurements](continuation.json)
