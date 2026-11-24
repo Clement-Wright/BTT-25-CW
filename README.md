@@ -21,7 +21,7 @@ flowchart LR
 
 ## Measured results
 
-The v2 tuning comparison widens compact search and repairs a terminal cap that made 208 dictionary words unreachable. On 6,033 `dev_tune` reference words, selected WER fell from 20.45% to 15.80%. The repaired beam-250 candidate list reached a 9.38% oracle at up to 50 candidates. The [continuation report](reports/continuation.md) includes edit counts and batch-one feature-to-text measurements. The frozen v1 results follow.
+The v2 system selected on `dev_tune` combines the official GRU, repaired beam-250 Flashlight search, and DistilGPT2 reranking. It scored **14.80% WER on `dev_report`** and **13.84% on full validation**, with **285 ms p95** from released features to final text on one A100. These scores are exploratory because v1 reporting results informed v2. The repaired candidate list reached a 9.38% tuning oracle at up to 50 candidates. [V2 results, timing, and LightBeam comparison](reports/continuation.md)
 
 Both the laptop and A100 runs saved phonemes for all 1,426 validation trials. Their decoded phone sequences and frame counts agreed on every trial. The laptop took 132.5 seconds for inference. Its separate CPU lexicon-only fallback took 67.5 seconds and scored 75.78% WER on `dev_tune`. The train-only KenLM decoder selected on the A100 run scored 20.45% WER on that same split. [Development evidence](reports/development.json)
 

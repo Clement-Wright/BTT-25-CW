@@ -49,14 +49,16 @@ v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.
 12523601,v2_search_original,complete,v2/runs/v2-search-attempt-12523601,325,4278,,,Three full validation decodes; tuning-only WER in each condition directory
 12523602,v2_search_repaired,complete,v2/runs/v2-search-attempt-12523602,1320,4278,,,Native repair restored all pronunciations; matching sustained pilot and three validation decodes complete
 12523640,v2_fixed_candidates,cancelled_before_start,v2/runs/v2-fixed-12523640,,,,,Replaced to include expanded search as a candidate source
-12523635,v2_transformer,submitted,v2/runs/v2-e1-transformer-12523635,,,,,Causal Transformer sustained pilot and conditional 40000-update training
-12523697,v2_monophone,submitted,v2/runs/v2-e2-monophone-12523697,,,,,Matched frozen-GRU monophone control pilot and conditional adaptation
-12523698,v2_diphone,submitted,v2/runs/v2-e3-diphone-12523698,,,,,Matched joint diphone frozen-GRU pilot and conditional adaptation
+12523635,v2_transformer,budget_stopped,v2/runs/v2-e1-transformer-12523635,1569,,,,Sustained pilot passed; checkpoint saved at update 24987 after cgroup reached 12.014 GB
+12523697,v2_monophone,complete,v2/runs/v2-e2-monophone-12523697,1354,1426,,,Matched frozen-GRU monophone control completed 1024 updates and full validation decode
+12523698,v2_diphone,complete,v2/runs/v2-e3-diphone-12523698,1388,1426,,,Matched joint diphone completed 1024 updates and full validation decode
 12523701,v2_frozen_report,cancelled_before_start,v2/runs/v2-report-12523701,,,,,Replaced to include expanded search
-12523724,v2_expanded_fourgram,running,v2/runs/v2-s8-repaired-aac-250-12523724,,,,,Four-gram first pass with repaired beam 250; matched three-gram comparator
-12523725,v2_fixed_candidates,submitted,v2/runs/v2-fixed-12523725,,,,,DistilGPT2 and Qwen1.7B on up to 25 shared candidates per trial
+12523724,v2_expanded_fourgram,pilot_timeout,v2/runs/v2-s8-repaired-aac-250-12523724,810,4867,,,One 30 second native stall after 4867 successes; same trial previously completed 50 times; no admission or full decode
+12523725,v2_fixed_candidates,complete,v2/runs/v2-fixed-12523725,1474,2852,,,DistilGPT2 and Qwen1.7B each covered all validation trials with up to 25 shared candidates
 12523726,v2_frozen_report,cancelled_before_start,v2/runs/v2-report-12523726,,,,,Replaced to include the same-candidate Qwen4B comparison
 12523737,v2_search_feature_timing,complete,v2/runs/v2-search-timing-12523737,130.97700126376003,864,,,Three matched warm passes; repaired beam 250 p95 248.3 ms
-12523756,v2_qwen4_setup,submitted,v2/runs/v2-qwen4-setup-12523756,,,,,Official three-shard Qwen3-4B-Base acquisition and checksum verification
-12523757,v2_fixed_qwen4,submitted,v2/runs/v2-fixed-4b-12523757,,,,,Matching fixed candidates and precision with a sustained pilot
-12523758,v2_frozen_report,submitted,v2/runs/v2-report-12523758,,,,,Separate exploratory freeze and interleaved complete-pipeline timing before scoring
+12523756,v2_qwen4_setup,complete,v2/runs/v2-qwen4-setup-12523756,138,,,,Official three-shard Qwen3-4B-Base acquired and verified
+12523757,v2_fixed_qwen4,complete,v2/runs/v2-fixed-4b-12523757,1287,1426,,,Same candidate packet as the smaller models and measured sustained admission
+12523758,v2_frozen_report,complete,v2/runs/v2-report-12523758,318,1426,,0.13838009528851244,Exploratory full-validation selected WER; four systems completed 1152 matched warm timing requests
+12527227,v2_transformer_resume,submitted,v2/runs/v2-e1-transformer-12527227,,,,,Same 40000-update endpoint and 12 GB target from checksummed update 24987
+12527230,v2_transformer_addendum,submitted,v2/runs/v2-report-12527230,,,,,Separate exploratory freeze and matched timing after successful Transformer resume

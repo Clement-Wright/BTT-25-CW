@@ -8,7 +8,7 @@ import re
 
 SEARCH_FIELDS = ("reference_words", "trials", "successful", "selected_errors", "selected_wer", "substitutions",
                  "deletions", "insertions", "oracle", "candidate_count_histogram", "lexicon_oov_tokens",
-                 "lm_oov_tokens", "chosen_weight")
+                 "lm_oov_tokens", "chosen_weight", "tuning_weight_grid")
 RESOURCE_FIELDS = ("elapsed_seconds", "host_ceiling_bytes", "slurm_requested_bytes", "cgroup_effective_limit_bytes",
                    "peak_accounted_host_bytes", "peak_cgroup_bytes", "peak_tree_rss_bytes", "peak_tree_pss_bytes",
                    "peak_tree_uss_bytes", "peak_rss_bytes", "peak_device_used_bytes", "peak_cuda_allocated_bytes",
@@ -131,6 +131,32 @@ def lightbeam(path):
     return summary
 
 
+def encoder_study(path):
+    summary = {}
+    metrics = ("status", "updates", "sustained_seconds", "trials", "wer", "per", "excluded_infeasible",
+               "trainable_parameters", "total_parameters", "checkpoint_sha256")
+    for stage in ("pilot", "train"):
+        directory = path / stage
+        if (directory / "metrics.json").is_file():
+            summary[stage] = fields(read(directory / "metrics.json"), metrics)
+            if (directory / "resources.json").is_file():
+                summary[stage]["resources"] = resource_summary(directory / "resources.json")
+    admission = path / "pilot/admission.json"
+    if admission.is_file():
+        summary["admission"] = fields(read(admission), ("forecast_seconds", "admitted_updates", "resume_pilot",
+                                                       "registration_sha256"))
+    return summary
+
+
+def fixed_study(path):
+    summary = fields(read(path / "metrics.json"), ("state", "cold_model_setup_s", "pilot_passes", "pilot_seconds",
+                                                "forecast_seconds"))
+    for filename in ("resources", "tuning-resources"):
+        if (path / f"{filename}.json").is_file():
+            summary[filename] = resource_summary(path / f"{filename}.json")
+    return summary
+
+
 def figures(evidence, output):
     import matplotlib
     matplotlib.use("Agg")
@@ -189,6 +215,8 @@ def main():
     parser.add_argument("--lightbeam", type=Path)
     parser.add_argument("--scheduler-receipt", type=Path)
     parser.add_argument("--search-pilot", action="append", default=[], metavar="JOB_ID=DIRECTORY")
+    parser.add_argument("--encoder-run", action="append", default=[], metavar="CONDITION=DIRECTORY")
+    parser.add_argument("--fixed-run", action="append", default=[], metavar="JOB_ID=DIRECTORY")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     evidence = {"tuning": dict(map(condition, args.tune))}
@@ -212,6 +240,16 @@ def main():
         if not re.fullmatch(r"[0-9]+", job):
             raise ValueError("Expected a Slurm job ID for the search pilot")
         evidence.setdefault("search_pilots", {})[job] = latency(Path(directory))
+    for spec in args.encoder_run:
+        name, directory = spec.split("=", 1)
+        if not re.fullmatch(r"v2-e[1-3]-[a-z0-9-]+", name):
+            raise ValueError("Expected a registered encoder condition ID")
+        evidence.setdefault("encoder_studies", {})[name] = encoder_study(Path(directory))
+    for spec in args.fixed_run:
+        job, directory = spec.split("=", 1)
+        if not re.fullmatch(r"[0-9]+", job):
+            raise ValueError("Expected a Slurm job ID for the fixed-candidate study")
+        evidence.setdefault("fixed_candidate_studies", {})[job] = fixed_study(Path(directory))
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "continuation.json").write_text(json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     figures(evidence, args.output / "figures")

@@ -49,6 +49,19 @@ sbatch "${slurm[@]}" --job-name=btt-v2-lightbeam --time=00:32:00 \
   --dependency="afterok:$setup" "$p/v2/hpc/gilbreth_v2_lightbeam.sh"
 ```
 
+After the registered search arms finish, pass their condition directories to the fixed-candidate runner. The example below uses the completed three-gram directories. If either registered four-gram arm completes, include its directory too. The runner checks each search registration and chooses the source by the declared tuning rule.
+
+```bash
+sources=("$p/v2/runs/v2-search-attempt-$original"/v2-s*/ "$p/v2/runs/v2-search-attempt-$repaired"/v2-s*/)
+fixed=$(sbatch "${slurm[@]}" --job-name=btt-v2-fixed --time=00:52:00 \
+  "$p/v2/hpc/gilbreth_v2_fixed.sh" "${sources[@]}")
+setup4=$(sbatch "${slurm[@]}" --job-name=btt-v2-qwen4-setup --time=00:24:00 \
+  --dependency="afterok:$fixed" "$p/v2/hpc/gilbreth_v2_qwen4_setup.sh")
+sbatch "${slurm[@]}" --job-name=btt-v2-fixed-4b --time=01:32:00 \
+  --dependency="afterok:$setup4" --export="ALL,BTT_QWEN_4B_PRIOR=$p/v2/runs/v2-fixed-$fixed" \
+  "$p/v2/hpc/gilbreth_v2_fixed.sh" "${sources[@]}"
+```
+
 The current campaign has these scheduler receipts.
 
 ```bash

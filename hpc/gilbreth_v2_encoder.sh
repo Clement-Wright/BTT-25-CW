@@ -16,6 +16,13 @@ case "$mode" in
     *) exit 2 ;;
 esac
 run="$new/runs/$id-${SLURM_JOB_ID:?}"
+resume_dir=${2:-}
+if [[ "$resume_dir" ]]; then
+    [[ "$mode" = transformer && "$resume_dir" =~ ^[0-9]+$ ]]
+    previous="$new/runs/$id-$resume_dir"
+    test -s "$previous/train/checkpoints/last.pt.sha256.json"
+    test -s "$previous/pilot/admission.json"
+fi
 mkdir -p "$run"
 cd "$old"
 export PYTHONPATH="$new/src"
@@ -36,6 +43,7 @@ lexicon="$old/assets/local/lexicon.txt"
 lm="$old/runs/compact-a100/lm/train-3gram.binary"
 flags=(--config configs/local.yaml --decoder-python "$decoder" --lexicon "$lexicon"
        --kenlm-model "$lm" --lm-weight 2 --mode "$mode")
+if [[ ! "$resume_dir" ]]; then
 wait_stage "$python" -m btt25.train_v2 "${flags[@]}" --output "$run/pilot" --pilot-seconds 900 --max-seconds 1320
 "$python" - "$run/pilot" "$mode" "$registration" <<'PY'
 import hashlib
@@ -67,8 +75,27 @@ PY
 read -r updates resume < <("$python" -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p["admitted_updates"],int(p["resume_pilot"]))' "$run/pilot/admission.json")
 checkpoint=()
 if [[ "$resume" = 1 ]]; then checkpoint=(--resume "$run/pilot/checkpoints/last.pt"); fi
+admission="$run/pilot/admission.json"
+else
+    admission="$previous/pilot/admission.json"
+    updates=$("$python" - "$admission" "$previous/train/run_manifest.json" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1]) as stream:
+    admission = json.load(stream)
+with open(sys.argv[2]) as stream:
+    prior = json.load(stream)
+if prior["status"] != "budget_stopped" or not 0 < prior["updates"] < admission["admitted_updates"]:
+    raise ValueError("Expected a budget-stopped run below its registered endpoint")
+print(admission["admitted_updates"])
+PY
+)
+    checkpoint=(--resume "$previous/train/checkpoints/last.pt")
+    printf '%s\n' "$resume_dir" > "$run/resumed-job-id.txt"
+fi
 wait_stage "$python" -m btt25.train_v2 "${flags[@]}" --output "$run/train" --pilot-seconds 0 --max-seconds 5100 \
-    --updates "$updates" --admission "$run/pilot/admission.json" "${checkpoint[@]}"
+    --updates "$updates" --admission "$admission" "${checkpoint[@]}"
 wait_stage "$decoder" "$new/scripts/decode_worker.py" --manifest assets/local/data_manifest.json \
     --logit-run "$run/train/inference" --lexicon "$lexicon" --output-dir "$run/decode" \
     --kenlm-model "$lm" --lm-weight 2 --nbest 50 --beam 50 --max-seconds 480 > "$run/decode.log" 2>&1

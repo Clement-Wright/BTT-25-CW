@@ -2,6 +2,49 @@
 
 The frozen v1 analysis remains available at its [release revision](https://github.com/Clement-Wright/BTT-25-CW/blob/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb/reports/results.md). Its every-trial DistilGPT2 condition scored 17.67% WER on the 500-trial `dev_report` selection and 18.21% on full validation. Those results informed this continuation. V2 development uses the same 926-trial `dev_tune` partition. Any v2 report score on the existing benchmark will be exploratory.
 
+## Frozen v2 results
+
+The tuning rule selected repaired beam-250 Flashlight followed by pinned DistilGPT2 reranking of up to 25 saved candidates. It made **505 / 3,412 word edits (14.80% WER)** on the 500-trial `dev_report` benchmark and **1,307 / 9,445 (13.84%)** on all 1,426 validation trials. These results are exploratory because v1 reporting results informed v2. The selection and artifact hashes were sealed before v2 opened reporting references. The freeze is `db4bae4fbcd3783cbdd55b50bfb5569002db7eeef5ded7c51db54cc867fef9b8`.
+
+| Condition | `dev_tune` WER | Exploratory `dev_report` WER | Exploratory full-validation WER |
+| --- | ---: | ---: | ---: |
+| Original compact beam 50 | 20.45% | 19.87% | 20.24% |
+| Repaired compact beam 250 | 15.80% | 16.74% | 16.14% |
+| Repaired + DistilGPT2, tuning-selected | 13.29% | 14.80% | 13.84% |
+| Repaired + Qwen3-1.7B-Base | 13.49% | 15.01% | 14.04% |
+| Repaired + Qwen3-4B-Base | 13.41% | 14.74% | 13.89% |
+| Monophone control, original compact beam 50 | 20.60% | 19.93% | 20.36% |
+| Joint diphone adaptation, original compact beam 50 | 23.39% | 22.63% | 23.11% |
+
+All frozen conditions covered all 1,426 validation trials with zero failed predictions. The official GRU’s report PER stayed at 10.54% across decoder conditions. The selected system cut 173 report edits versus original compact, a change of −5.07 percentage points with a paired session-block bootstrap interval of −6.26 to −3.94 points. It improved 153 trials and worsened 30. Reaching 10% requires 164 more edits removed on `dev_report`, or 363 on full validation. The sealed package includes edit types, paired intervals, session/corpus totals, and fixed examples. Reference-bearing examples stay with the private run. [Aggregate evidence](continuation.json)
+
+### Fixed-candidate scoring
+
+All three neural models scored the same candidates with Flashlight’s acoustic component and a teacher-forced language prior. Each chose weight 1.25 on tuning, the largest registered value. The Qwen 4B arm had the lowest observed exploratory `dev_report` WER by two edits over DistilGPT2. DistilGPT2 led on tuning and on full validation. Qwen 4B versus Qwen 1.7B changed `dev_report` WER by −0.26 points, with a paired session-block interval of −0.76 to +0.20 points. Qwen 4B saved nine Switchboard edits versus Qwen 1.7B and added two on OpenWebText. The reporting split contains no random-word corpus. On the 200 random-word tuning tokens, repaired compact made 76 errors, versus 82 with DistilGPT2, 78 with Qwen 1.7B, and 81 with Qwen 4B.
+
+Across full-validation candidate scoring, cached-candidate p95 was 34 ms for DistilGPT2, 150 ms for Qwen 1.7B, and 188 ms for Qwen 4B. These are incremental scoring times. The first two shared one Slurm allocation. Qwen 4B used a separate allocation with the same requested resources and scored the identical candidate file. The two jobs peaked at 5.66 and 10.08 GB device-wide, respectively. The observed scores offer little reason to move to an 8B reranker on these lists.
+
+### Matched end-to-end timing after the freeze
+
+One PCIe A100 40 GB allocation with four CPUs completed 1,152 feature-to-text requests over three interleaved warm passes, with zero failures or timeouts. Every row used the same 96 trials. The real-time factor uses the original input duration.
+
+| System | p50 | p90 | p95 | p99 | Max | Real-time factor |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original compact beam 50 | 59.3 ms | 91.6 ms | 103.9 ms | 128.7 ms | 157.1 ms | 0.00352 |
+| Repaired compact beam 250 | 110.6 ms | 228.7 ms | 250.4 ms | 285.5 ms | 333.6 ms | 0.00707 |
+| Repaired + DistilGPT2 | 140.6 ms | 260.3 ms | 284.7 ms | 355.2 ms | 783.6 ms | 0.00863 |
+| Monophone control | 58.7 ms | 91.3 ms | 102.3 ms | 125.7 ms | 166.2 ms | 0.00349 |
+
+![Exploratory WER and complete-pipeline latency on one A100](figures/v2_accuracy_latency.png)
+
+The tuning-selected system completed 6.33 requests per second of request time. Its measured cold DistilGPT2 setup took 61.71 s and native decoder readiness took 2.79 s. The shared benchmark harness peaked at 2.57 GB cgroup memory, 2.29 GB process-tree RSS, 2.21 GB process-tree PSS, and 1.95 GB device-wide GPU memory. These peaks cover all resident workers. Streaming latency is unsupported. [Timing distributions and accounting](continuation.json)
+
+### Alternative encoder objectives
+
+The matched 1,024-update frozen-GRU experiment found that the joint diphone head worsened report WER by 2.70 points versus the monophone control. The paired session-block interval was +1.90 to +3.40 points. It improved 49 trials and worsened 121. Report PER rose from 10.66% to 11.72%. Both arms kept the same original compact decoder. This tests a T15 objective adaptation, while the published DCoND-LIFT system used T12 with additional stages.
+
+The scratch-trained Transformer passed its 901-second pilot with 21,466 updates. Its first training continuation stopped at update 24,987 with a valid checkpoint when cgroup charge reached 12.014 GB. Process-tree RSS peaked at 1.54 GB. A new allocation resumes the same checkpoint and the registered 40,000-update endpoint under the same host limits. The first v2 freeze excludes the stopped attempt.
+
 ## Candidate coverage
 
 The first comparison holds the official GRU emissions, decoder thresholds, lexicon, and training-only KenLM weights fixed. Each new arm saved all 1,426 validation hypotheses before scoring the tuning slice. Oracle cells use rankings from the actual distinct candidates returned. A failed or empty hypothesis would contribute its full word deletions to the corpus count.
@@ -24,7 +67,7 @@ The native trie audit found that a six-label terminal cap dropped 224 pronunciat
 
 At beam 250, the largest change came from Switchboard with 130 fewer errors over 4,569 words. Random-word trials tied at 76 errors over 200 words. Harvard sentences had three additional errors over 201 words. These corpus slices share the 926-trial tuning scope and the same neural logits. [Corpus and session counts](continuation.json)
 
-The external four-gram downloaded and decompressed in seven seconds. Direct KenLM membership checks matched the publisher’s companion vocabulary across all 125,924 decoder dictionary words, with 69,843 shared words. The original beam-100 four-gram pilot stopped after 8,384 successful requests when one request exceeded the 30-second deadline. The same trial had previously completed 87 times, with a maximum of 0.181 s. The cgroup peaked at 0.74 GB and recorded no OOM event. The failed pilot did not produce an admitted tuning WER. The repaired beam-250 arm has a separate pilot.
+The external four-gram downloaded and decompressed in seven seconds. Direct KenLM membership checks matched the publisher’s companion vocabulary across all 125,924 decoder dictionary words, with 69,843 shared words. The original beam-100 and repaired beam-250 four-gram pilots stopped after 8,384 and 4,867 successful requests. In each run, one native request stalled for 30 seconds after about ten warm minutes. The timed-out trials differed and had previously completed 87 and 50 times, with maximum times of 181 and 154 ms. Cgroup peaks were 0.74 and 0.91 GB, with zero OOM events. Neither run met sustained admission or produced a tuning WER. A future reproduction needs native service liveness and IPC tracing around the ten-minute mark. [Partial timing and scheduler receipts](continuation.json)
 
 ## Complete requests on the laptop
 
