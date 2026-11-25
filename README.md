@@ -23,6 +23,12 @@ flowchart LR
 
 The v2 system selected on `dev_tune` combines the official GRU, repaired beam-250 Flashlight search, and DistilGPT2 reranking. It scored **14.80% WER on `dev_report`** and **13.84% on full validation**, with **285 ms p95** from released features to final text on one A100. These scores are exploratory because v1 reporting results informed v2. The repaired candidate list reached a 9.38% tuning oracle at up to 50 candidates. [V2 results, timing, and LightBeam comparison](reports/continuation.md)
 
+![Exploratory accuracy and matched full-pipeline timing](reports/figures/v2_accuracy_latency.png)
+
+The v2 hidden-test export contains 1,450 predictions in official order. Test labels remain unavailable. The [continuation runbook](docs/CONTINUATION.md) explains how to reproduce the export and the comparison runs.
+
+### Archived v1 results
+
 Both the laptop and A100 runs saved phonemes for all 1,426 validation trials. Their decoded phone sequences and frame counts agreed on every trial. The laptop took 132.5 seconds for inference. Its separate CPU lexicon-only fallback took 67.5 seconds and scored 75.78% WER on `dev_tune`. The train-only KenLM decoder selected on the A100 run scored 20.45% WER on that same split. [Development evidence](reports/development.json)
 
 The 15-minute laptop calibration pilot peaked at 2.39 GB process-tree RSS and 3.13 GB total GPU memory in use. Available system RAM stayed above 4.40 GB. [Laptop measurements](reports/laptop_baseline.json) · [Gilbreth setup and pilots](reports/gilbreth_setup.json)

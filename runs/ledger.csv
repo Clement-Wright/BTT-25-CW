@@ -60,5 +60,6 @@ v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.
 12523756,v2_qwen4_setup,complete,v2/runs/v2-qwen4-setup-12523756,138,,,,Official three-shard Qwen3-4B-Base acquired and verified
 12523757,v2_fixed_qwen4,complete,v2/runs/v2-fixed-4b-12523757,1287,1426,,,Same candidate packet as the smaller models and measured sustained admission
 12523758,v2_frozen_report,complete,v2/runs/v2-report-12523758,318,1426,,0.13838009528851244,Exploratory full-validation selected WER; four systems completed 1152 matched warm timing requests
-12527227,v2_transformer_resume,submitted,v2/runs/v2-e1-transformer-12527227,,,,,Same 40000-update endpoint and 12 GB target from checksummed update 24987
-12527230,v2_transformer_addendum,submitted,v2/runs/v2-report-12527230,,,,,Separate exploratory freeze and matched timing after successful Transformer resume
+12527227,v2_transformer_resume,complete,v2/runs/v2-e1-transformer-12527227,1307,1426,,,Reached 40000 updates and full coverage; 11.76 GB peak cgroup charge after scoped cache advice
+12527230,v2_transformer_addendum,complete,v2/runs/v2-report-12527230,285,1426,,0.5857067231339333,Exploratory Transformer full-validation WER; four systems completed 1152 matched warm timing requests
+12527243,v2_hidden_test_export,complete,v2/runs/v2-test-12527243,306,1450,,,Verified official traversal and 1450 nonempty predictions; hidden labels unavailable

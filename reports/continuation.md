@@ -43,7 +43,11 @@ The tuning-selected system completed 6.33 requests per second of request time. I
 
 The matched 1,024-update frozen-GRU experiment found that the joint diphone head worsened report WER by 2.70 points versus the monophone control. The paired session-block interval was +1.90 to +3.40 points. It improved 49 trials and worsened 121. Report PER rose from 10.66% to 11.72%. Both arms kept the same original compact decoder. This tests a T15 objective adaptation, while the published DCoND-LIFT system used T12 with additional stages.
 
-The scratch-trained Transformer passed its 901-second pilot with 21,466 updates. Its first training continuation stopped at update 24,987 with a valid checkpoint when cgroup charge reached 12.014 GB. Process-tree RSS peaked at 1.54 GB. A new allocation resumes the same checkpoint and the registered 40,000-update endpoint under the same host limits. The first v2 freeze excludes the stopped attempt.
+The scratch-trained Transformer passed its 901-second pilot with 21,466 updates. Its first continuation stopped at update 24,987 with a valid checkpoint when cgroup charge reached 12.014 GB. Process-tree RSS peaked at 1.54 GB. A fresh allocation resumed to the registered 40,000-update endpoint and decoded all 1,426 validation trials. Scoped cache advice for the 45 private training HDF5 files first reduced live cgroup charge from 11.64 GB to 3.57 GB in 2.98 s. Anonymous memory stayed near 1.41 GB. The resumed training phase peaked at 11.76 GB of cgroup charge, 1.67 GB process-tree RSS, and 0.89 GB device-wide GPU use. The first v2 freeze excludes the stopped attempt.
+
+The completed 9.73-million-parameter Transformer scored 59.97% on `dev_tune` with the same beam-50 three-gram decoder as the official GRU. Its oracle at up to 50 was 49.64%, compared with 15.61% for the original GRU under the same decoder. The low candidate coverage places most of the gap before final reranking. The comparison covers a bounded scratch-trained Transformer and a mature pretrained GRU.
+
+The separate addendum sealed `38b64da860fce6a1369136adbf6c2b9e5878bdaab83952e4b171baa4b6cf2e0a`. The Transformer endpoint and decoder were registered before the first v2 reporting pass. The resume and addendum ran after that report was available, so the new comparison is also exploratory. The Transformer made **1,914 / 3,412 report edits (56.10%)**, with 29.15% PER, and **5,532 / 9,445 full-validation edits (58.57%)**. It added 36.23 WER points over the unchanged GRU with the same decoder, with a 95% paired session-block interval of +31.01 to +41.38 points. Both covered all trials. On the addendum’s second set of three interleaved warm passes, Transformer p95 was 109.8 ms versus 109.3 ms for the official GRU with the same decoder. The smaller encoder gave similar whole-pipeline latency at substantially worse accuracy. [Addendum and its matched timing](continuation.json)
 
 ## Candidate coverage
 
@@ -111,3 +115,19 @@ The pinned LightBeam run decoded a fixed length-stratified subset of 24 `dev_tun
 Periodic fusion had nine fewer deletions and two more substitutions than final-only scoring. Three trials improved and one worsened. Repaired compact made 21 substitutions and two insertions. Periodic LightBeam made 20 substitutions and three deletions. The subset result does not establish a broader WER improvement.
 
 The periodic arm scored 527,000 target tokens across the timing passes, compared with 50,220 for final-only. Its cached-logit p95 was about 1.98 s, versus 0.79 s for final-only. The job used an SXM4 A100 40 GB and peaked at 2.77 GB of cgroup charge, 4.12 GB of summed process RSS and 4.81 GB of device-wide GPU use. Shared memory can appear more than once in RSS. Cold initialization took 121.75 s. The periodic arm matched the simpler repaired search on this common subset, so this configuration remains a feasibility study. [LightBeam measurements](continuation.json)
+
+The LightBeam paper reports 5.77% and 6.47% on T15 public and private test partitions. Its adapted LM used train and validation text. Those are published results with different hardware and assets. BEST reports 1.62% on T15 test with a five-gram and 320 GiB of memory in its results table. This project reproduced neither external result. [LightBeam paper](https://arxiv.org/html/2603.14002v1) · [BEST paper](https://arxiv.org/html/2610.23175v1)
+
+## Resource accounting
+
+![Job cgroup, process RSS, and device-wide GPU peaks](figures/v2_memory_accounting.png)
+
+These memory peaks describe whole jobs or benchmark harnesses. The jobs include different stages and resident workers. Host accounting and device-wide GPU memory are separate measurements.
+
+## Hidden-test coverage
+
+The original v2 tuning-selected system produced 1,450 phoneme sequences and 1,450 nonempty text predictions. An independent check matched every export row to the official test traversal and verified the `id,text` header and sequential IDs. Job `12527243` finished in 306 scheduler seconds and peaked at 4.17 GB of host cgroup charge and 1.86 GB of device-wide GPU memory. The private CSV has SHA-256 `f26567ba22c44716128f681d1cb0c5de91f653e0ef30dfcf83296cc460f05876`. Hidden test labels were unavailable. [Coverage and resource receipt](continuation.json)
+
+## Remaining gap
+
+On tuning, DistilGPT2 made 802 edits and the shared 25-candidate oracle made 603. Reaching 10% within those lists would require avoiding all 199 errors in that ranking gap. Even with the wider 50-candidate packet, the oracle leaves just 37 edits of room below 10%. That makes first-pass coverage and ranking the current bottlenecks. The next justified test is a first-pass search that adds candidate diversity and survives sustained warm operation, judged by oracle coverage and random-word behavior before spending on larger rescoring models.

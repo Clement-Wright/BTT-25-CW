@@ -91,3 +91,26 @@ The `hpc/gilbreth_v2_*.sh` scripts use new job-specific output directories. A tr
 ```
 
 The reporting job seals exact candidate, prediction, configuration, and resource hashes before reading reporting labels. It performs three interleaved warm timing passes across the selected complete systems, then writes exploratory `dev_report` and `official_val` scores. Each timing request starts with opening the released feature and ends with final text selection. Cold measurements start fresh processes and leave filesystem caches intact. Streaming latency is unsupported.
+
+For a budget-stopped Transformer with a valid checkpoint and pilot admission, pass the stopped job ID as the second argument. A new allocation preserves the earlier artifact directory and checks the checkpoint and registered update count.
+
+```bash
+sbatch "${slurm[@]}" --job-name=btt-v2-transformer-resume --time=01:40:00 \
+  "$p/v2/hpc/gilbreth_v2_encoder.sh" transformer "$stopped_transformer_job"
+```
+
+If cgroup charge approaches the target while process memory stays low, inspect `memory.stat` before intervening. The following optional Linux advice targets the manifest's private training HDF5 files. It records memory before and after, and leaves dataset contents and Slurm limits in place.
+
+```bash
+srun --jobid="$transformer_job" --overlap --ntasks=1 --cpus-per-task=1 \
+  env PYTHONPATH="$p/v2/src" "$p/environments/baseline/bin/python" -m btt25.cache_advice \
+  --manifest "$p/workspace/assets/local/data_manifest.json" \
+  --output "$p/v2/runs/v2-e1-transformer-$transformer_job/cache-advice.json"
+```
+
+The optional test export uses the original v2 tuning-selected DistilGPT2 condition. It verifies the freeze and manifest, saves phones and text for the released test features, and writes `submission.csv` in official `id,text` order. Use the same repaired Flashlight build and verified models as the v2 report. The output is private and evaluation is limited to coverage and order.
+
+```bash
+sbatch "${slurm[@]}" --job-name=btt-v2-test --time=00:29:00 \
+  "$p/v2/hpc/gilbreth_v2_test.sh" "$original_v2_report_job" "$repaired"
+```

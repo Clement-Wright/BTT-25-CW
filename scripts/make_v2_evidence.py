@@ -62,7 +62,8 @@ def condition(spec):
 def report_results(directory):
     selected = ("wer", "per", "word", "phoneme", "prediction_coverage", "evaluated_count", "failed_count")
     freeze = read(directory / "freeze.json")
-    result = {"freeze": freeze["manifest_hash"], "selection": freeze["selected_condition"], "splits": {}}
+    result = {"freeze": freeze["manifest_hash"], "selection": freeze["selected_condition"],
+              "evaluation_status": freeze["evaluation_status"], "splits": {}}
     for name in ("dev_report", "official_val"):
         data = read(directory / name / "metrics.json")
         if data["freeze_manifest_hash"] != result["freeze"] or data["evaluation_status"] != "exploratory_after_v1_report_exposure":
@@ -133,7 +134,7 @@ def lightbeam(path):
 
 def encoder_study(path):
     summary = {}
-    metrics = ("status", "updates", "sustained_seconds", "trials", "wer", "per", "excluded_infeasible",
+    metrics = ("status", "updates", "sustained_seconds", "trials", "wer", "per", "word_errors", "reference_words", "excluded_infeasible",
                "trainable_parameters", "total_parameters", "checkpoint_sha256")
     for stage in ("pilot", "train"):
         directory = path / stage
@@ -145,6 +146,10 @@ def encoder_study(path):
     if admission.is_file():
         summary["admission"] = fields(read(admission), ("forecast_seconds", "admitted_updates", "resume_pilot",
                                                        "registration_sha256"))
+    advice = sorted(path.glob("cache-advice*.json"))
+    if advice:
+        summary["file_cache_advice"] = [fields(read(receipt), ("method", "files", "elapsed_seconds", "before", "after"))
+                                        for receipt in advice]
     return summary
 
 
@@ -180,8 +185,10 @@ def figures(evidence, output):
         points = [(k, v) for k, v in evidence["matched_timing"]["conditions"].items() if k in report and v["successes"]]
         if points:
             fig, ax = plt.subplots(figsize=(8.6, 4), layout="constrained")
+            labels = {"v2-s1-original-50": "Original compact beam 50", "v2-s6-repaired-250": "Repaired compact beam 250",
+                      "v2-f1-distilgpt2": "Repaired + DistilGPT2", "v2-e2-monophone": "Monophone control"}
             for name, row in points:
-                ax.scatter(row["latency_seconds"]["p95"] * 1000, report[name]["wer"] * 100, s=80, label=name[3:])
+                ax.scatter(row["latency_seconds"]["p95"] * 1000, report[name]["wer"] * 100, s=80, label=labels.get(name, name))
             ax.set(xlabel="Feature-to-text latency p95 (ms)", ylabel="Exploratory dev_report WER (%)")
             ax.set_title("Measured accuracy and complete-pipeline latency", loc="left", weight="bold")
             ax.legend()
@@ -204,6 +211,32 @@ def figures(evidence, output):
         ax.spines[["top", "right"]].set_visible(False)
         fig.savefig(output / "v2_search_latency.png", dpi=160)
         plt.close(fig)
+    fixed = evidence.get("fixed_candidate_studies", {})
+    resume = evidence.get("transformer_resume", {}).get("train", {})
+    data = (("Full feature benchmark", evidence.get("matched_timing", {}).get("resources")),
+            ("DistilGPT2 + Qwen 1.7B scoring job", fixed.get("12523725", {}).get("resources")),
+            ("Qwen 4B scoring job", fixed.get("12523757", {}).get("resources")),
+            ("LightBeam pilot", evidence.get("lightbeam", {}).get("resources")),
+            ("Transformer resume", resume.get("resources")))
+    resources = {name: row for name, row in data if row and row.get("peak_cgroup_bytes") is not None
+                 and row.get("peak_tree_rss_bytes") is not None and row.get("peak_device_used_bytes") is not None}
+    if len(resources) >= 2:
+        fig, (host, gpu) = plt.subplots(1, 2, sharey=True, figsize=(10, 4), layout="constrained")
+        y = list(range(len(resources)))
+        for offset, key, label, color in ((-.16, "peak_cgroup_bytes", "Job cgroup", "#1c778b"),
+                                          (.16, "peak_tree_rss_bytes", "Process-tree RSS", "#e59b34")):
+            host.barh([i + offset for i in y], [x[key] / 1e9 for x in resources.values()],
+                      height=.28, label=label, color=color)
+        host.axvline(12, color="#99595a", ls="--", label="12 GB target")
+        host.set_yticks(y, list(resources))
+        host.invert_yaxis()
+        host.legend(loc="best", fontsize=8)
+        host.set_xlabel("Peak host memory (decimal GB)")
+        gpu.barh(y, [x["peak_device_used_bytes"] / 1e9 for x in resources.values()], height=.45, color="#487ba3")
+        gpu.set_xlabel("Peak device-wide GPU memory (decimal GB)")
+        fig.suptitle("Observed memory peaks across measured Gilbreth jobs", x=.01, ha="left", weight="bold")
+        fig.savefig(output / "v2_memory_accounting.png", dpi=160)
+        plt.close(fig)
 
 
 def main():
@@ -217,6 +250,9 @@ def main():
     parser.add_argument("--search-pilot", action="append", default=[], metavar="JOB_ID=DIRECTORY")
     parser.add_argument("--encoder-run", action="append", default=[], metavar="CONDITION=DIRECTORY")
     parser.add_argument("--fixed-run", action="append", default=[], metavar="JOB_ID=DIRECTORY")
+    parser.add_argument("--transformer-addendum", type=Path)
+    parser.add_argument("--transformer-resume", type=Path)
+    parser.add_argument("--test-export", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     evidence = {"tuning": dict(map(condition, args.tune))}
@@ -250,6 +286,20 @@ def main():
         if not re.fullmatch(r"[0-9]+", job):
             raise ValueError("Expected a Slurm job ID for the fixed-candidate study")
         evidence.setdefault("fixed_candidate_studies", {})[job] = fixed_study(Path(directory))
+    if args.transformer_addendum:
+        path = args.transformer_addendum
+        evidence["transformer_addendum"] = {"report": report_results(path),
+                                             "matched_timing": latency(path / "feature-benchmark"),
+                                             "prior_v2_report_already_opened": True}
+    if args.transformer_resume:
+        evidence["transformer_resume"] = encoder_study(args.transformer_resume)
+    if args.test_export:
+        path = args.test_export
+        result = fields(read(path / "metrics.json"), ("state", "expected_trials", "saved_trials", "successful_trials",
+                       "references_loaded", "hidden_test_score", "submission_sha256", "cold_setup_s", "timing"))
+        if result["hidden_test_score"] is not None or result["references_loaded"] is not False:
+            raise ValueError("Hidden test evidence may describe coverage only")
+        evidence["hidden_test_export"] = {**result, "resources": resource_summary(path / "resources.json")}
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "continuation.json").write_text(json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     figures(evidence, args.output / "figures")

@@ -18,10 +18,12 @@ esac
 run="$new/runs/$id-${SLURM_JOB_ID:?}"
 resume_dir=${2:-}
 if [[ "$resume_dir" ]]; then
-    [[ "$mode" = transformer && "$resume_dir" =~ ^[0-9]+$ ]]
+    admission_job=${3:-$resume_dir}
+    [[ "$mode" = transformer && "$resume_dir" =~ ^[0-9]+$ && "$admission_job" =~ ^[0-9]+$ ]]
     previous="$new/runs/$id-$resume_dir"
+    original_admission="$new/runs/$id-$admission_job/pilot/admission.json"
     test -s "$previous/train/checkpoints/last.pt.sha256.json"
-    test -s "$previous/pilot/admission.json"
+    test -s "$original_admission"
 fi
 mkdir -p "$run"
 cd "$old"
@@ -44,8 +46,8 @@ lm="$old/runs/compact-a100/lm/train-3gram.binary"
 flags=(--config configs/local.yaml --decoder-python "$decoder" --lexicon "$lexicon"
        --kenlm-model "$lm" --lm-weight 2 --mode "$mode")
 if [[ ! "$resume_dir" ]]; then
-wait_stage "$python" -m btt25.train_v2 "${flags[@]}" --output "$run/pilot" --pilot-seconds 900 --max-seconds 1320
-"$python" - "$run/pilot" "$mode" "$registration" <<'PY'
+    wait_stage "$python" -m btt25.train_v2 "${flags[@]}" --output "$run/pilot" --pilot-seconds 900 --max-seconds 1320
+    "$python" - "$run/pilot" "$mode" "$registration" <<'PY'
 import hashlib
 import json
 from pathlib import Path
@@ -72,12 +74,12 @@ if forecast > 5100:
     'admitted_updates': updates, 'resume_pilot': resume,
     'registration_sha256': hashlib.sha256(Path(sys.argv[3]).read_bytes()).hexdigest()}, indent=2))
 PY
-read -r updates resume < <("$python" -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p["admitted_updates"],int(p["resume_pilot"]))' "$run/pilot/admission.json")
-checkpoint=()
-if [[ "$resume" = 1 ]]; then checkpoint=(--resume "$run/pilot/checkpoints/last.pt"); fi
-admission="$run/pilot/admission.json"
+    read -r updates resume < <("$python" -c 'import json,sys; p=json.load(open(sys.argv[1])); print(p["admitted_updates"],int(p["resume_pilot"]))' "$run/pilot/admission.json")
+    checkpoint=()
+    if [[ "$resume" = 1 ]]; then checkpoint=(--resume "$run/pilot/checkpoints/last.pt"); fi
+    admission="$run/pilot/admission.json"
 else
-    admission="$previous/pilot/admission.json"
+    admission="$original_admission"
     updates=$("$python" - "$admission" "$previous/train/run_manifest.json" <<'PY'
 import json
 import sys
@@ -93,6 +95,8 @@ PY
 )
     checkpoint=(--resume "$previous/train/checkpoints/last.pt")
     printf '%s\n' "$resume_dir" > "$run/resumed-job-id.txt"
+    mkdir "$run/pilot"
+    cp "$admission" "$run/pilot/admission.json"
 fi
 wait_stage "$python" -m btt25.train_v2 "${flags[@]}" --output "$run/train" --pilot-seconds 0 --max-seconds 5100 \
     --updates "$updates" --admission "$admission" "${checkpoint[@]}"
