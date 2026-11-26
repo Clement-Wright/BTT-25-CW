@@ -1,10 +1,10 @@
 # Measured results
 
-Aggregate export from completed study artifacts. All registered conditions are retained.
+WER on the held-back `dev_report` selection was 19.87% for the compact baseline, 17.67% when rescoring every trial, and 18.05% with the confidence gate. The tables retain every registered condition.
 
 Joint freeze: `c7b12685c9552344144b0f089a0a3c4d7dc6bec88e6df513e52947e926ba7b56`.
 
-Rates use summed edit counts divided by summed reference lengths, including failed and missing outputs. `dev_report` is the held-back study selection; `official_val` also includes tuning trials. The original checkpoint was selected using validation. These results cover one participant.
+Rates divide summed edit counts by summed reference lengths; failed and missing outputs remain in the denominator. The `official_val` aggregate includes tuning trials. The original checkpoint was selected using validation, and these results cover one participant.
 
 Cluster compact decoder: `kenlm_3gram`; natural-log LM weight 2.00.
 
@@ -31,13 +31,13 @@ Cluster compact decoder: `kenlm_3gram`; natural-log LM weight 2.00.
 
 ## Laptop lexicon-only fallback
 
-The Windows laptop fallback used no KenLM. Its separate `dev_tune` evaluation covers 926 trials: 4572 / 6033 word edits (75.78% WER) and 2669 / 26680 phone edits (10.00% PER). It is separate from the cluster compact decoder and the held-back study selection.
+On 926 `dev_tune` trials, the Windows laptop fallback made 4572 / 6033 word edits (75.78% WER) and 2669 / 26680 phone edits (10.00% PER). It used no KenLM. This evaluation uses a different decoder and selection from the cluster study.
 
-Laptop/A100 greedy phones agree on 1426 / 1426 validation trials. Trial order and frame lengths match: true. This checks decoded phone IDs and lengths without references; it does not establish bitwise logit equality.
+Greedy phone sequences agree between the laptop and A100 on 1426 / 1426 validation trials. Trial order and frame lengths match: true. The check uses no references; agreement in decoded phone IDs and lengths does not establish bitwise logit equality.
 
 ## Paired changes
 
-Changes are B minus A in percentage points; negative values mean fewer errors. The table shows session cluster 95% intervals. JSON and the figure also retain paired trial and session/block intervals. Intervals describe resampling of this participant and dataset.
+On `dev_report`, negative B-minus-A changes mean fewer errors. Changes are in percentage points, with session cluster 95% intervals in the table. The figure shows the same session intervals; JSON also retains paired trial and session/block intervals. These intervals describe resampling within this participant's dataset.
 
 ![Paired changes](figures/paired_changes.png)
 
@@ -55,7 +55,7 @@ Changes are B minus A in percentage points; negative values mean fewer errors. T
 
 ## Additional LM calls
 
-Call counts cover full validation, including tuning trials. Savings use the every-trial policy as the denominator. Latencies measure live incremental calls; shared compact decoding and scorer setup are separate.
+Call and candidate counts cover full validation, including tuning trials. The saved fraction compares each policy with rescoring every trial. Latencies time live additional LM calls; shared compact decoding and scorer setup are measured separately. The figure plots `dev_report` WER against `official_val` LM calls; call latency appears in the table.
 
 ![Rescoring cost](figures/rescoring_cost.png)
 
@@ -72,7 +72,7 @@ Scorer setup: 41.02 seconds. Sum of cached compact trial decoding times: 32.64 s
 
 ## Unusual and random corpora
 
-Only corpus aggregates are included. Group aliases omit source labels; individual OOV words and examples are excluded.
+The public table reports corpus aggregates under group aliases. Source labels, individual OOV words, and examples are excluded.
 
 | Selection | Condition | Group | Trials | Word edits / words | WER |
 |---|---|---|---:|---:|---:|
@@ -96,7 +96,7 @@ Only corpus aggregates are included. Group aliases omit source labels; individua
 
 ## Measured resources
 
-Memory is decimal GB. Process/tree RSS, total device usage, and framework allocations are distinct counters. Calibration rows cover sequential training, inference, decoding and evaluation stages; stage counters remain in JSON. Rows retain failed or budget-stopped outcomes when supplied.
+Calibration rows include sequential training, inference, decoding and evaluation; JSON retains the measurements for each stage. Memory is reported in decimal GB. Process/tree RSS, total device usage, and framework allocations measure different quantities. Failed or budget-stopped outcomes remain in the table when supplied.
 
 ![Resource footprint](figures/resource_footprint.png)
 
@@ -116,12 +116,12 @@ Memory is decimal GB. Process/tree RSS, total device usage, and framework alloca
 
 ## Optional test exports
 
-Test labels are unavailable. These checks establish file coverage and ordering only.
+These export checks verify file coverage and ordering. Test labels are unavailable, so they provide no test accuracy result.
 
 | Condition | Rows | Expected | Empty text | Sequential IDs |
 |---|---:|---:|---:|---|
 | A0 | 1450 | 1450 | 0 | verified |
 
-[Saved model predictions](model_predictions.json) retain 5 predeclared examples for the five primary conditions. Only model text and status are included; references and phone labels are excluded.
+[Saved model predictions](model_predictions.json) contain 5 predeclared examples for the five primary conditions, with model text and status. References and phone labels are excluded.
 
-Machine-readable aggregates, every interval, resource counters, and input hashes are in [results.json](results.json). Each chart also has an SVG version in `figures`.
+[results.json](results.json) contains the aggregate counts, every interval, resource counters, and input hashes. SVG versions of the charts are in `figures`.

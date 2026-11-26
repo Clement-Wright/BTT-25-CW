@@ -1,12 +1,12 @@
-# Accuracy and efficiency continuation
+# Reproduce the v2 comparisons
 
-The [v1 release report](https://github.com/Clement-Wright/BTT-25-CW/blob/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb/reports/results.md) and the [v1 development results](https://github.com/Clement-Wright/BTT-25-CW/blob/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb/reports/development.json) are archived at the original public revision. V1's freeze and private artifact registry stay in its workspace. Stage v2 code separately and refer to v1 assets by their existing paths.
+Keep the v2 checkout separate from `workspace`. The original validation logits, decoder assets, private artifact registry, and v1 freeze stay in `workspace`. [V1 release report](https://github.com/Clement-Wright/BTT-25-CW/blob/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb/reports/results.md) · [V1 development results](https://github.com/Clement-Wright/BTT-25-CW/blob/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb/reports/development.json)
 
-The [initial search registration](../configs/search_v2.json) holds the GRU emissions and training-only three-gram fixed. It compares three beam widths and pairs each width with the same lexicon under a repaired terminal-label implementation. Oracle cutoffs use the returned distinct candidates up to each limit. Missing or failed outputs contribute empty hypotheses, and every selected reference contributes to the denominator.
+The first experiment uses the same GRU emissions, training-only three-gram, and lexicon throughout. At each of three beam widths it compares the original Flashlight trie with the terminal-label repair. Oracles use the distinct candidates actually returned, up to the requested cutoff. An empty or failed hypothesis still contributes its reference words to the corpus denominator. [Search registration](../configs/search_v2.json)
 
-Use the original `dev_tune` allowlist for diagnostics. A separate v2 artifact freeze is required before a report score. The existing report benchmark was exposed in v1, so v2 results on it will be exploratory. The archived checkpoint has prior official-validation exposure.
+Use the original `dev_tune` allowlist for diagnostics and seal the v2 artifacts before scoring the reporting partition. V1 already used the reporting benchmark, and the archived checkpoint had prior official-validation exposure. V2 reporting scores are exploratory.
 
-Real language-model inference belongs in Gilbreth allocations. Use at most one heavy job and record the requested allocation and actual process/cgroup limits. Report attempt history and scheduler accounting alongside warm measurements. Keep caches, private inventories and per-trial evidence outside Git.
+Run language-model inference inside a Gilbreth allocation, with one heavy job at a time. Save the requested resources, effective process and cgroup limits, and scheduler receipts for every attempt alongside the warm timings. Keep caches, inventories, and trial-level evidence out of Git.
 
 ## Decoder and encoder comparisons
 
@@ -16,7 +16,7 @@ Real language-model inference belongs in Gilbreth allocations. Use at most one h
 - The [LightBeam registration](../configs/lightbeam_v2.json) compares the same pinned backend in three modes on a fixed tuning subset. The periodic condition refreshes the neural prior every ten emission frames and applies final scoring with the same scorer as final-only scoring. The checkout does not supply the paper’s adapted model weights. Upstream code stays separate from this source tree. Paper results on the T15 public and private test segments used a different machine and model setup. [LightBeam paper](https://arxiv.org/html/2603.14002v1) · [BrainAudio source revision](https://github.com/ebrahimfeghhi/brainaudio/tree/90e0ac086d4dee643be154f446a6c374600575d7)
 - The [encoder registration](../configs/encoders_v2.json) compares an offline causal Transformer trained from scratch with the official GRU under the compact decoder. It uses the published 384-wide, five-layer, six-head starting point and the T15 80 ms patch rate. The implementation operates directly on the signed standardized feature bins and has causal, bounded-context attention. It has no streaming request interface. The diphone branch adapts the published objective to T15 with a frozen GRU and a matched monophone control. The 40-by-40 joint head and separate blank preserve the official initial monophone probabilities. [Time-masked Transformer paper](https://papers.nips.cc/paper_files/paper/2025/file/85e351d89eee3f33d3d1356f38590bb6-Paper-Conference.pdf) · [DCoND paper](https://arxiv.org/html/2411.10657v1)
 
-BEST reports hierarchical phone, character and audio-compatible representations. Its 1.62% T15 test result uses a five-gram and reports 320 GiB in the main results table. The paper’s implementation appendix permits an architectural comparison. We did not verify runnable released weights or reproduce its benchmark. [BEST paper](https://arxiv.org/html/2610.23175v1)
+BEST uses hierarchical phone, character, and audio-compatible representations. The paper reports 1.62% on T15 test with a five-gram and lists 320 GiB in its main table. Our comparison covers the architecture in the paper’s implementation appendix. Runnable weights remain unverified, and the benchmark remains unreproduced here. [BEST paper](https://arxiv.org/html/2610.23175v1)
 
 ## Run and resume
 
@@ -62,7 +62,7 @@ sbatch "${slurm[@]}" --job-name=btt-v2-fixed-4b --time=01:32:00 \
   "$p/v2/hpc/gilbreth_v2_fixed.sh" "${sources[@]}"
 ```
 
-The current campaign has these scheduler receipts.
+Retrieve the original campaign's scheduler receipts by job ID.
 
 ```bash
 p="$RCAC_SCRATCH/btt-25-cw"
@@ -71,7 +71,7 @@ sacct -j 12523531,12523569,12523580,12523585,12523601,12523602,12523724,12523725
 squeue --me
 ```
 
-Save the scheduler's job and step receipts after each stage finishes. The aggregate exporter accepts this exact column order.
+Save one receipt per job and step after each stage. The aggregate exporter reads the columns in the order below.
 
 ```bash
 sacct -P -j "$completed_job_ids" \
@@ -79,7 +79,7 @@ sacct -P -j "$completed_job_ids" \
   > "$receipts_dir/scheduler.psv"
 ```
 
-The `hpc/gilbreth_v2_*.sh` scripts use new job-specific output directories. A training resume needs the checkpoint, its SHA-256 sidecar, and the exact arm’s measured `pilot/admission.json`. Run from `workspace` with the v2 `src` on `PYTHONPATH` and supply the original effective LM and lexicon.
+The v2 launchers write to a new directory for each job. To resume training directly, run from `workspace` with the v2 `src` on `PYTHONPATH`. Supply the checkpoint and its SHA-256 sidecar, the same condition's `pilot/admission.json`, and the original LM and lexicon.
 
 ```bash
 "$p/environments/baseline/bin/python" -m btt25.train_v2 \
@@ -90,7 +90,7 @@ The `hpc/gilbreth_v2_*.sh` scripts use new job-specific output directories. A tr
   --output "$resume_dir" --max-seconds 5100
 ```
 
-The reporting job seals exact candidate, prediction, configuration, and resource hashes before reading reporting labels. It performs three interleaved warm timing passes across the selected complete systems, then writes exploratory `dev_report` and `official_val` scores. Each timing request starts with opening the released feature and ends with final text selection. Cold measurements start fresh processes and leave filesystem caches intact. Streaming latency is unsupported.
+The reporting job seals the candidate, prediction, configuration, and resource hashes before opening reporting labels. It times the selected systems in three interleaved warm passes, then scores `dev_report` and `official_val`. A timed request runs from opening the released features through final text selection. Cold timing starts fresh processes with filesystem caches intact. The pipeline runs offline, so there is no streaming-latency measurement.
 
 For a budget-stopped Transformer with a valid checkpoint and pilot admission, pass the stopped job ID as the second argument. A new allocation preserves the earlier artifact directory and checks the checkpoint and registered update count.
 
@@ -99,7 +99,7 @@ sbatch "${slurm[@]}" --job-name=btt-v2-transformer-resume --time=01:40:00 \
   "$p/v2/hpc/gilbreth_v2_encoder.sh" transformer "$stopped_transformer_job"
 ```
 
-If cgroup charge approaches the target while process memory stays low, inspect `memory.stat` before intervening. The following optional Linux advice targets the manifest's private training HDF5 files. It records memory before and after, and leaves dataset contents and Slurm limits in place.
+If cgroup charge approaches the target while process memory remains low, check `memory.stat` for file-cache charge. The optional Linux command advises the kernel on cache pages for the manifest's private training HDF5 files. It records memory before and after the call and leaves the data and Slurm limits intact.
 
 ```bash
 srun --jobid="$transformer_job" --overlap --ntasks=1 --cpus-per-task=1 \
@@ -108,7 +108,7 @@ srun --jobid="$transformer_job" --overlap --ntasks=1 --cpus-per-task=1 \
   --output "$p/v2/runs/v2-e1-transformer-$transformer_job/cache-advice.json"
 ```
 
-The optional test export uses the original v2 tuning-selected DistilGPT2 condition. It verifies the freeze and manifest, saves phones and text for the released test features, and writes `submission.csv` in official `id,text` order. Use the same repaired Flashlight build and verified models as the v2 report. The output is private and evaluation is limited to coverage and order.
+For a hidden-test export, use the original v2 tuning-selected DistilGPT2 system with the same repaired Flashlight build and verified models. The launcher verifies the freeze and manifest, writes phonemes and text from the released features, then saves `submission.csv` in official `id,text` order. Keep the files private. Only coverage and order can be checked.
 
 ```bash
 sbatch "${slurm[@]}" --job-name=btt-v2-test --time=00:29:00 \

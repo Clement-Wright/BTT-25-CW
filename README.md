@@ -1,64 +1,26 @@
 # BTT-25-CW
 
-An offline brain-to-text pipeline for the [T15 Brain-to-Text ’25 release](https://datadryad.org/dataset/doi:10.5061/dryad.dncjsxm85). It recovers the organizers’ pretrained GRU, saves phoneme and word predictions by trial, and measures which decoding and calibration changes are worth their compute.
+BTT-25-CW decodes attempted speech from the released T15 intracortical recordings. It runs the authors’ pretrained GRU on 20 ms feature bins, saves the phoneme logits, and uses those logits to compare word decoders without rerunning the encoder. The recordings come from one participant. [Dataset and terms](docs/DATA_CARD.md)
 
-```mermaid
-flowchart LR
-    A["T15 HDF5<br/>512 features every 20 ms"] --> B["Official GRU<br/>9-bin smoothing · 14-bin patches"]
-    B --> C[("Saved CTC logits")]
-    C --> D["Greedy phonemes"]
-    C --> E["Flashlight CTC · CMUdict<br/>Training-only KenLM"]
-    E --> F["Word candidates"]
-    F --> G["Optional DistilGPT2<br/>fixed or confidence-gated"]
-    D --> H["Corpus PER / WER<br/>frozen split"]
-    F --> H
-    G --> H
-    classDef stage fill:#E8F3F9,stroke:#167283,color:#123244;
-    classDef evidence fill:#F9F0D9,stroke:#AD6E15,color:#473212;
-    class A,B,D,E,F,G stage
-    class C,H evidence
-```
+## How well it works
 
-## Measured results
+| System | Word errors on `dev_report` | WER | Feature-to-text p95 |
+| --- | ---: | ---: | ---: |
+| Original compact decoder | 678 / 3,412 | 19.87% | 104 ms |
+| Repaired beam-250 search | 571 / 3,412 | 16.74% | 250 ms |
+| Repaired search + DistilGPT2 | 505 / 3,412 | **14.80%** | 285 ms |
 
-The v2 system selected on `dev_tune` combines the official GRU, repaired beam-250 Flashlight search, and DistilGPT2 reranking. It scored **14.80% WER on `dev_report`** and **13.84% on full validation**, with **285 ms p95** from released features to final text on one A100. These scores are exploratory because v1 reporting results informed v2. The repaired candidate list reached a 9.38% tuning oracle at up to 50 candidates. [V2 results, timing, and LightBeam comparison](reports/continuation.md)
+![Three decoder configurations and one encoder control, with report error rates on the left and matched latency percentiles on the right](reports/figures/v2_accuracy_latency.png)
 
-![Exploratory accuracy and matched full-pipeline timing](reports/figures/v2_accuracy_latency.png)
+DistilGPT2 had the lowest WER on tuning and on full validation, where it reached **13.84% WER** (1,307 errors in 9,445 words). Qwen3-4B made two fewer errors on `dev_report`. Treat both v2 scores as exploratory. We had already seen the v1 report when we planned these runs. Latency comes from three interleaved passes over the same 96 requests per system on one A100. [V2 report and measurements](reports/continuation.md)
 
-The v2 hidden-test export contains 1,450 predictions in official order. Test labels remain unavailable. The [continuation runbook](docs/CONTINUATION.md) explains how to reproduce the export and the comparison runs.
+The largest gain came from search. Flashlight’s six-label terminal limit made 208 dictionary words unreachable. After removing it and widening the beam, the best available candidate per trial would score **9.38% WER** on tuning. The decoder still often ranks a worse candidate first. [Candidate coverage](reports/continuation.md#candidate-coverage)
 
-### Archived v1 results
+The hidden-test export has 1,450 ordered predictions. The release withholds test labels, so we can report coverage only. [Export instructions](docs/CONTINUATION.md)
 
-Both the laptop and A100 runs saved phonemes for all 1,426 validation trials. Their decoded phone sequences and frame counts agreed on every trial. The laptop took 132.5 seconds for inference. Its separate CPU lexicon-only fallback took 67.5 seconds and scored 75.78% WER on `dev_tune`. The train-only KenLM decoder selected on the A100 run scored 20.45% WER on that same split. [Development evidence](reports/development.json)
+## Run it
 
-The 15-minute laptop calibration pilot peaked at 2.39 GB process-tree RSS and 3.13 GB total GPU memory in use. Available system RAM stayed above 4.40 GB. [Laptop measurements](reports/laptop_baseline.json) · [Gilbreth setup and pilots](reports/gilbreth_setup.json)
-
-The frozen `dev_report` subset covers 500 trials and 3,412 reference words. The compact baseline scored 10.54% PER.
-
-| Condition | Word edits | WER |
-| --- | ---: | ---: |
-| Unchanged GRU + compact KenLM | 678 | 19.87% |
-| DistilGPT2 on every trial | 603 | 17.67% |
-| Confidence-gated DistilGPT2 | 616 | 18.05% |
-| Matched random gates (three seeds) | 639–647 | 18.73–18.96% |
-| Head-only calibration | 682 | 19.99% |
-| Head + session-bias calibration | 682 | 19.99% |
-
-The confidence gate used 687 of 1,426 full-validation additional LM calls. Its 0.38-point WER cost relative to scoring every trial exceeded the 0.2-point target (95% session interval +0.15 to +0.65 points). It beat all three matched random gates on the held-back split. On the 39 random-word trials in full validation, WER rose from 40.50% to 43.00% with gating and to 44.50% with every-trial rescoring. Those trials were in the tuning slice.
-
-Head-only and session-bias calibration tied on held-back word and phoneme edits. Both used 720 updates on the same official-training trials. Their WER difference from the unchanged checkpoint was +0.12 points (95% session interval −0.07 to +0.30 points).
-
-![Word error rate across frozen study conditions](reports/figures/error_rates.png)
-
-[Full results, paired intervals, subgroup findings and resource plots](reports/results.md) · [Machine-readable evidence](reports/results.json)
-
-The official-order test export contains 1,450 rows. Test references are hidden, so the release reports coverage only.
-
-The project uses the checkpoint’s fixed day map, phone order, and valid Gaussian smoothing. Audio or raw neural signal preprocessing is outside the scope of these released features. Validation was used to select the original checkpoint. The local report split measures the two new comparisons on held-back trial groups within that benchmark.
-
-## Reproduce
-
-Obtain the expanded dataset from Dryad and use the checksum-pinned assets. Follow [setup and complete commands](docs/REPRODUCE.md) for inference, word decoding, evaluation, calibration, and test export. The [Gilbreth runbook](docs/GILBRETH.md) covers the scratch layout and bounded Slurm jobs used on A100 GPUs.
+Get the authorized T15 release and verify its hashes. Use [the setup guide](docs/REPRODUCE.md) to prepare `configs/local.yaml`, then run:
 
 ```bash
 python -m btt25.cli infer --config configs/local.yaml --split val --run-dir runs/baseline-val
@@ -67,10 +29,11 @@ python -m btt25.cli evaluate --config configs/local.yaml \
   --output-dir runs/baseline-phones-tune --phoneme-only
 ```
 
-Each scoring command defaults to `dev_tune`. A joint freeze binds both study configurations, weights, and artifact hashes before `dev_report` or `official_val` can be scored. Failed and empty hypotheses stay in the edit counts. Full logs, weights, neural recordings, and external assets live outside Git.
+The second command scores phonemes on `dev_tune` by default. For word decoding, checkpoints, or reproduction on an A100, follow the [Gilbreth instructions](docs/GILBRETH.md) and [v2 commands](docs/CONTINUATION.md). Keep data, weights, and reference-bearing outputs outside Git.
 
-- [Dataset card](docs/DATA_CARD.md) and [model card](docs/MODEL_CARD.md)
-- [Source provenance and licenses](docs/PROVENANCE.md) and [recovery audit](docs/RECOVERY_AUDIT.md)
-- [Research context](docs/RESEARCH_CONTEXT.md) and [project state](docs/STATE.md)
+## Reports and reference
 
-This is research on one participant using released, preprocessed trials. See the dataset terms and [third-party notices](THIRD_PARTY_NOTICES.md) before reusing external assets.
+- Beam search, Qwen, LightBeam, the Transformer, and the diphone comparison. [V2 report](reports/continuation.md)
+- Confidence gating and session calibration. [V1 report](reports/results.md) · [Archived v1 revision](https://github.com/Clement-Wright/BTT-25-CW/tree/fe5fb4081f2ce256b41ba2a91f104a6a64a53deb)
+- Weights, preprocessing, and licenses. [Model card](docs/MODEL_CARD.md) · [Provenance](docs/PROVENANCE.md) · [Third-party terms](THIRD_PARTY_NOTICES.md)
+- Why we chose these comparisons and where work stopped. [Research context](docs/RESEARCH_CONTEXT.md) · [Recovery audit](docs/RECOVERY_AUDIT.md) · [Project state](docs/STATE.md)

@@ -406,12 +406,15 @@ def decimal(value):
 
 
 def markdown_report(result):
+    held_back = result['results']['dev_report']
     lines = ['# Measured results', '',
-             'Aggregate export from completed study artifacts. All registered conditions are retained.', '',
+             f"WER on the held-back `dev_report` selection was {percent(held_back['A0']['wer'])} for the compact baseline, "
+             f"{percent(held_back['A1']['wer'])} when rescoring every trial, and {percent(held_back['A2']['wer'])} with the confidence gate. "
+             'The tables retain every registered condition.', '',
              f"Joint freeze: `{result['provenance']['freeze_manifest_hash']}`.", '',
-             'Rates use summed edit counts divided by summed reference lengths, including failed and missing outputs. '
-             '`dev_report` is the held-back study selection; `official_val` also includes tuning trials. '
-             'The original checkpoint was selected using validation. These results cover one participant.', '',
+             'Rates divide summed edit counts by summed reference lengths; failed and missing outputs remain in the denominator. '
+             'The `official_val` aggregate includes tuning trials. The original checkpoint was selected using validation, '
+             'and these results cover one participant.', '',
              f"Cluster compact decoder: `{result['compact_decoder']['mode']}`; natural-log LM weight {decimal(result['compact_decoder']['lm_weight'])}.", '',
              '![Word error rates](figures/error_rates.png)', '',
              '| Selection | Condition | Trials | Word edits / words | WER | Phone edits / phones | PER | Failed |',
@@ -422,18 +425,19 @@ def markdown_report(result):
     if 'laptop_baseline' in result:
         row = result['laptop_baseline']
         lines += ['', '## Laptop lexicon-only fallback', '',
-                  f"The Windows laptop fallback used no KenLM. Its separate `dev_tune` evaluation covers {row['evaluated_count']} trials: "
+                  f"On {row['evaluated_count']} `dev_tune` trials, the Windows laptop fallback made "
                   f"{row['word']['errors']} / {row['word']['reference_length']} word edits ({percent(row['wer'])} WER) and "
                   f"{row['phoneme']['errors']} / {row['phoneme']['reference_length']} phone edits ({percent(row['per'])} PER). "
-                  'It is separate from the cluster compact decoder and the held-back study selection.']
+                  'It used no KenLM. This evaluation uses a different decoder and selection from the cluster study.']
     if 'encoder_parity' in result:
         parity = result['encoder_parity']
-        lines += ['', f"Laptop/A100 greedy phones agree on {parity['exact_greedy_phoneme_agreement']} / {parity['trials']} validation trials. "
+        lines += ['', f"Greedy phone sequences agree between the laptop and A100 on {parity['exact_greedy_phoneme_agreement']} / {parity['trials']} validation trials. "
                   f"Trial order and frame lengths match: {str(parity['trial_order_and_frame_lengths_match']).lower()}. "
-                  'This checks decoded phone IDs and lengths without references; it does not establish bitwise logit equality.']
-    lines += ['', '## Paired changes', '', 'Changes are B minus A in percentage points; negative values mean fewer errors. '
-              'The table shows session cluster 95% intervals. JSON and the figure also retain paired trial and session/block intervals. '
-              'Intervals describe resampling of this participant and dataset.', '', '![Paired changes](figures/paired_changes.png)', '',
+                  'The check uses no references; agreement in decoded phone IDs and lengths does not establish bitwise logit equality.']
+    lines += ['', '## Paired changes', '', 'On `dev_report`, negative B-minus-A changes mean fewer errors. '
+              'Changes are in percentage points, with session cluster 95% intervals in the table. '
+              'The figure shows the same session intervals; JSON also retains paired trial and session/block intervals. '
+              'These intervals describe resampling within this participant\'s dataset.', '', '![Paired changes](figures/paired_changes.png)', '',
               '| B minus A | WER change | Session 95% interval | PER change | Fewer / more / unchanged word edits |',
               '|---|---:|---:|---:|---:|']
     for name, pair in result['comparisons'].items():
@@ -443,17 +447,19 @@ def markdown_report(result):
         delta = '—' if wer.get('delta_b_minus_a') is None else f"{wer['delta_b_minus_a'] * 100:+.2f}"
         phone = '—' if per.get('delta_b_minus_a') is None else f"{per['delta_b_minus_a'] * 100:+.2f}"
         lines.append(f"| {name} | {delta} | {bounds} | {phone} | {wer.get('rescue_count', '—')} / {wer.get('harm_count', '—')} / {wer.get('unchanged_count', '—')} |")
-    lines += ['', '## Additional LM calls', '', 'Call counts cover full validation, including tuning trials. '
-              'Savings use the every-trial policy as the denominator. Latencies measure live incremental calls; '
-              'shared compact decoding and scorer setup are separate.', '', '![Rescoring cost](figures/rescoring_cost.png)', '',
+    lines += ['', '## Additional LM calls', '', 'Call and candidate counts cover full validation, including tuning trials. '
+              'The saved fraction compares each policy with rescoring every trial. Latencies time live additional LM calls; '
+              'shared compact decoding and scorer setup are measured separately. '
+              'The figure plots `dev_report` WER against `official_val` LM calls; call latency appears in the table.', '',
+              '![Rescoring cost](figures/rescoring_cost.png)', '',
               '| Condition | Calls | Candidates | Failures | Calls saved | Saved fraction | Called p95 seconds |',
               '|---|---:|---:|---:|---:|---:|---:|']
     for name, row in result['confidence']['conditions'].items():
         lines.append(f"| {condition_label(name)} | {row['lm_calls']} | {row['lm_candidates']} | {row['lm_failures']} | {row['lm_calls_saved_vs_every_trial']} | {percent(row['lm_call_savings_fraction'])} | {decimal(row.get('called_latency_p95_seconds'))} |")
     lines += ['', f"Scorer setup: {decimal(result['confidence']['scorer_setup_seconds'])} seconds. "
               f"Sum of cached compact trial decoding times: {decimal(result['confidence']['shared_compact_decode']['sum_trial_decode_seconds'])} seconds.", '',
-              '## Unusual and random corpora', '', 'Only corpus aggregates are included. Group aliases omit source labels; '
-              'individual OOV words and examples are excluded.', '',
+              '## Unusual and random corpora', '', 'The public table reports corpus aggregates under group aliases. '
+              'Source labels, individual OOV words, and examples are excluded.', '',
               '| Selection | Condition | Group | Trials | Word edits / words | WER |', '|---|---|---|---:|---:|---:|']
     for split, conditions in result['results'].items():
         for name, row in conditions.items():
@@ -465,9 +471,10 @@ def markdown_report(result):
             value = conditions['A0'].get(key)
             if value:
                 lines.append(f"| {split} | {label} | {value.get('oov_token_count', '—')} | {value.get('oov_type_count', '—')} | {percent(value.get('oov_token_rate'))} |")
-    lines += ['', '## Measured resources', '', 'Memory is decimal GB. Process/tree RSS, total device usage, and framework allocations are distinct counters. '
-              'Calibration rows cover sequential training, inference, decoding and evaluation stages; stage counters remain in JSON. '
-              'Rows retain failed or budget-stopped outcomes when supplied.', '', '![Resource footprint](figures/resource_footprint.png)', '',
+    lines += ['', '## Measured resources', '', 'Calibration rows include sequential training, inference, decoding and evaluation; '
+              'JSON retains the measurements for each stage. Memory is reported in decimal GB. Process/tree RSS, '
+              'total device usage, and framework allocations measure different quantities. '
+              'Failed or budget-stopped outcomes remain in the table when supplied.', '', '![Resource footprint](figures/resource_footprint.png)', '',
               '| Context | Condition / stage | Seconds | Host RSS GB | Device used GB | CUDA allocated GB | Outcome |', '|---|---|---:|---:|---:|---:|---|']
     for context, resources in result['resources'].items():
         for name, row in resources.items():
@@ -477,134 +484,26 @@ def markdown_report(result):
             lines.append(f"| {context} | {label} | {decimal(row.get('elapsed_seconds'))} | {gb(host)} | {gb(row.get('peak_device_used_bytes'))} | {gb(row.get('peak_cuda_allocated_bytes'))} | {row.get('outcome', 'stage summaries')} |")
     lines += ['', '## Optional test exports', '']
     if result['test_submissions']['state'] == 'not_supplied':
-        lines.append('No test submission evidence was supplied to this export. Test accuracy is unavailable.')
+        lines.append('This export has no test submission evidence. Test accuracy is unavailable.')
     else:
-        lines += ['Test labels are unavailable. These checks establish file coverage and ordering only.', '',
+        lines += ['These export checks verify file coverage and ordering. Test labels are unavailable, so they provide no test accuracy result.', '',
                   '| Condition | Rows | Expected | Empty text | Sequential IDs |', '|---|---:|---:|---:|---|']
         for name, row in result['test_submissions']['conditions'].items():
             lines.append(f"| {name} | {row['row_count']} | {row['expected_count']} | {row['empty_text_count']} | verified |")
     if result['model_predictions']['state'] == 'included':
-        lines += ['', f"[Saved model predictions](model_predictions.json) retain {result['model_predictions']['example_count']} predeclared examples "
-                  'for the five primary conditions. Only model text and status are included; references and phone labels are excluded.']
-    lines += ['', 'Machine-readable aggregates, every interval, resource counters, and input hashes are in [results.json](results.json). '
-              'Each chart also has an SVG version in `figures`.', '']
+        lines += ['', f"[Saved model predictions](model_predictions.json) contain {result['model_predictions']['example_count']} predeclared examples "
+                  'for the five primary conditions, with model text and status. References and phone labels are excluded.']
+    lines += ['', '[results.json](results.json) contains the aggregate counts, every interval, resource counters, and input hashes. '
+              'SVG versions of the charts are in `figures`.', '']
     return '\n'.join(lines)
 
 
 def render_figures(result, output):
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-    from matplotlib.ticker import MaxNLocator
-
-    output = Path(output)
-    output.mkdir(parents=True, exist_ok=True)
-    palette = {'A0': '#4D606B', 'A1': '#287D8E', 'A2': '#B26824', 'B1': '#69559A', 'B2': '#327765'}
-
-    def color(name):
-        return palette.get(name, '#879BA1')
-
-    def decorate(axis):
-        axis.spines[['top', 'right']].set_visible(False)
-        axis.grid(axis='x', color='#DBE2E7', linewidth=.65)
-        axis.set_axisbelow(True)
-
-    def save(figure, name):
-        figure.savefig(output / f'{name}.png', dpi=220, bbox_inches='tight', facecolor='white', metadata={'Software': 'BTT-25-CW aggregate exporter'})
-        svg_path = output / f'{name}.svg'
-        figure.savefig(svg_path, bbox_inches='tight', facecolor='white', metadata={'Date': None, 'Creator': 'BTT-25-CW aggregate exporter'})
-        svg = svg_path.read_text(encoding='utf-8')
-        svg_path.write_text('\n'.join(line.rstrip() for line in svg.splitlines()) + '\n', encoding='utf-8', newline='\n')
-        plt.close(figure)
-
-    style = {'font.family': 'DejaVu Sans', 'font.size': 10, 'axes.titlesize': 12, 'svg.hashsalt': 'BTT-25-CW',
-             'axes.labelsize': 10, 'axes.edgecolor': '#B5C1C9', 'text.color': '#213642',
-             'axes.labelcolor': '#213642', 'xtick.color': '#465E6B', 'ytick.color': '#213642'}
-    with plt.rc_context(style):
-        names = list(result['results']['dev_report'])
-        figure, axes = plt.subplots(1, 2, figsize=(12, max(4.2, len(names) * .48)), sharey=True, layout='constrained')
-        for axis, split in zip(axes, SPLITS):
-            values = [result['results'][split][name]['wer'] for name in names]
-            axis.barh(range(len(names)), [value * 100 if value is not None else 0 for value in values],
-                      color=[color(name) for name in names], height=.62)
-            axis.set_yticks(range(len(names)), [condition_label(name) for name in names])
-            for index, value in enumerate(values):
-                axis.annotate(percent(value), (value * 100 if value is not None else 0, index), xytext=(5, 0),
-                              textcoords='offset points', va='center', fontsize=9)
-            axis.set_xlim(0, max((value * 100 for value in values if value is not None), default=1) * 1.2 + 1)
-            axis.set_title(f"{'Held-back study selection' if split == 'dev_report' else 'Full validation (includes tuning)'}\n{result['results'][split]['A0']['evaluated_count']:,} trials", loc='left')
-            axis.set_xlabel('Word error rate (%)')
-            decorate(axis)
-        axes[0].invert_yaxis()
-        figure.suptitle('Word errors across all fixed conditions', fontsize=15, fontweight='bold')
-        save(figure, 'error_rates')
-
-        pairs = list(result['comparisons'])
-        figure, axes = plt.subplots(1, 2, figsize=(12, max(4.5, len(pairs) * .5)), sharey=True, layout='constrained')
-        for axis, rate in zip(axes, ('wer', 'per')):
-            for index, name in enumerate(pairs):
-                value = result['comparisons'][name][rate]
-                if not value.get('measured') or value['delta_b_minus_a'] is None:
-                    continue
-                for interval_name, offset, line_color, width in (
-                    ('bootstrap', -.12, '#C1CCD2', 1.2),
-                    ('session_block_cluster_bootstrap', .12, '#7D939E', 1.6),
-                    ('session_cluster_bootstrap', 0, '#287D8E', 2.6),
-                ):
-                    interval = value[interval_name]
-                    if interval['lower'] is not None:
-                        axis.hlines(index + offset, interval['lower'] * 100, interval['upper'] * 100, color=line_color, linewidth=width)
-                axis.scatter(value['delta_b_minus_a'] * 100, index, color='#213642', s=25, zorder=3)
-            axis.axvline(0, color='#B26824', linestyle='--', linewidth=1)
-            axis.set_yticks(range(len(pairs)), [name.replace('-minus-', ' − ') for name in pairs])
-            axis.set_xlabel(f'{rate.upper()} change (percentage points)')
-            axis.set_title(rate.upper(), loc='left')
-            decorate(axis)
-        axes[0].invert_yaxis()
-        figure.suptitle('Paired changes on the held-back study selection', fontsize=15, fontweight='bold')
-        figure.supxlabel('Negative means fewer errors · 95% intervals: teal = session, grey = session/block, light = trial', fontsize=9)
-        save(figure, 'paired_changes')
-
-        policies = result['confidence']['conditions']
-        names = list(policies)
-        figure, axes = plt.subplots(1, 2, figsize=(11.5, max(3.8, len(names) * .5)), sharey=True, layout='constrained')
-        for axis, key, label in ((axes[0], 'lm_calls', 'Additional LM calls on full validation'),
-                                 (axes[1], 'called_latency_p95_seconds', 'p95 latency per called trial (seconds)')):
-            values = [policies[name].get(key) for name in names]
-            axis.barh(range(len(names)), [value if value is not None else 0 for value in values], color=[color(name) for name in names], height=.62)
-            axis.set_yticks(range(len(names)), [condition_label(name) for name in names])
-            for index, value in enumerate(values):
-                text = 'not called' if value is None else f'{int(value):,}' if key == 'lm_calls' else f'{value:.3f}'
-                axis.annotate(text, (value or 0, index), xytext=(5, 0), textcoords='offset points', va='center', fontsize=9)
-            axis.set_xlim(0, max((value for value in values if value is not None), default=1) * 1.3 + .001)
-            axis.set_xlabel(label)
-            decorate(axis)
-        axes[0].xaxis.set_major_locator(MaxNLocator(integer=True))
-        axes[0].invert_yaxis()
-        figure.suptitle('Measured cost of fixed rescoring policies', fontsize=15, fontweight='bold')
-        figure.supxlabel('Shared compact decoding and first scorer setup are measured separately', fontsize=9)
-        save(figure, 'rescoring_cost')
-
-        rows = [(f"{LAPTOP_LABELS[name]}", value) for name, value in result['resources']['laptop'].items()]
-        if 'encoder_parity' in result:
-            rows.append(('A100 encoder', result['encoder_parity']['resources']))
-        rows += [(f'Study · {name}', value) for name, value in result['resources']['study'].items()]
-        figure, axes = plt.subplots(1, 2, figsize=(12, max(4, len(rows) * .46)), sharey=True, layout='constrained')
-        for axis, device in zip(axes, (False, True)):
-            values = [(value.get('peak_device_used_bytes') if device else value.get('peak_tree_rss_bytes', value.get('peak_rss_bytes'))) for _, value in rows]
-            axis.barh(range(len(rows)), [value / 1e9 if value is not None else 0 for value in values], color='#69559A' if device else '#287D8E', height=.62)
-            axis.set_yticks(range(len(rows)), [label for label, _ in rows])
-            for index, value in enumerate(values):
-                axis.annotate('not measured' if value is None else f'{value / 1e9:.2f}',
-                              (value / 1e9 if value is not None else 0, index), xytext=(5, 0), textcoords='offset points', va='center', fontsize=9)
-            axis.set_xlim(0, max((value / 1e9 for value in values if value is not None), default=1) * 1.25 + .1)
-            axis.set_xlabel('Total device memory used (GB)' if device else 'Process / process-tree RSS (GB)')
-            axis.set_title('Device usage' if device else 'Host memory', loc='left')
-            decorate(axis)
-        axes[0].invert_yaxis()
-        figure.suptitle('Measured resource footprint by execution context', fontsize=15, fontweight='bold')
-        figure.supxlabel('Decimal GB · Stage coverage and allocation counters are retained in results.json', fontsize=9)
-        save(figure, 'resource_footprint')
+    if __name__ == '__main__':
+        from render_public_figures import render_v1
+    else:
+        from scripts.render_public_figures import render_v1
+    render_v1(result, output)
 
 
 def make_public_evidence(study_dir, output_dir, **kwargs):

@@ -1,16 +1,16 @@
-# Reproduce the pipeline
+# Reproduce the archived v1 pipeline
 
-For the v2 search repair, LightBeam comparison, and complete-request benchmarks, use the [continuation runbook](CONTINUATION.md) and [measured results](../reports/continuation.md). The commands below reproduce the archived v1 pipeline.
+Use the separate v2 guide for the search repair, LightBeam, and feature-to-text latency experiments. [V2 runbook](CONTINUATION.md) · [V2 results](../reports/continuation.md)
 
-Run commands at the repository root. This guide describes executable stages; a command's presence does not establish that its study has finished. Keep downloaded assets, reference text, resolved machine paths and run artifacts outside the public source tree's tracked files.
+Run the commands from the repository root. Keep downloaded assets, references, resolved machine paths, and run artifacts out of tracked files. Check the stage manifests for run status.
 
-Read [DATA_CARD.md](DATA_CARD.md) and [MODEL_CARD.md](MODEL_CARD.md) before interpreting scores. The official checkpoint already used the known sessions and official validation during its original development. The project's frozen `dev_report` split protects new choices within this project; it does not establish unseen-day generalization.
+The official checkpoint was developed using the known sessions and official validation. This project reserved `dev_report` references until the v1 freeze. The partition cannot show unseen-day generalization. [Data card](DATA_CARD.md) · [Model card](MODEL_CARD.md)
 
 ## Native Windows environments
 
 Use 64-bit Windows, `uv`, and a CUDA-capable NVIDIA driver for GPU execution. The baseline dependency snapshot comes from CPython 3.13.5 with PyTorch 2.8.0+cu126. Flashlight uses a separate CPython 3.12 environment because its pinned Windows wheel does not support Python 3.13.
 
-In PowerShell, create the baseline environment once:
+Create the baseline environment in PowerShell.
 
 ```powershell
 New-Item -ItemType Directory -Force assets/local | Out-Null
@@ -24,7 +24,7 @@ $env:PYTHONPATH = Join-Path (Get-Location) 'src'
 & $Py -c "import torch; assert torch.cuda.is_available(); print(torch.__version__, torch.version.cuda)"
 ```
 
-The decoder setup reuses a suitable interpreter or obtains a project-local one, installs wheels only, and checks native imports:
+Set up the decoder next. The script finds a suitable interpreter or installs one under the project, installs wheels, and checks native imports.
 
 ```powershell
 & ./scripts/setup_decoder.ps1
@@ -38,13 +38,13 @@ The core Windows Flashlight route supports lexicon search through `ZeroLM`. A mi
 
 Obtain access under the [Dryad release's terms](https://datadryad.org/dataset/doi:10.5061/dryad.dncjsxm85). The source repository includes acquisition metadata and checksums, not the neural data or pretrained weights. [assets/manifest.json](../assets/manifest.json) records the canonical source and the pinned independent mirror.
 
-Download the model with the checked acquisition command:
+Download and verify the model.
 
 ```powershell
 & $Py -m btt25.cli acquire-model
 ```
 
-For the neural-data archive, either place your authorized Dryad download at the path below or fetch the pinned mirror. Verify the complete archive before extraction:
+Place your authorized Dryad archive at the path below or fetch the pinned mirror. The archive hash must match before extraction.
 
 ```powershell
 $Archive = 'assets/local/t15_copyTask_neuralData.zip'
@@ -67,7 +67,7 @@ if ((Get-FileHash -Algorithm SHA256 -LiteralPath $Archive).Hash.ToLowerInvariant
 
 Extraction and verification compare released filenames, sizes and file hashes without opening reference datasets. Existing mismatching files produce errors. If you already have an expanded authorized release, point `--data-root` at its `hdf5_data_final` directory and run verification there.
 
-Acquire the pinned dictionary and corpus metadata before preparation, so the generated config includes the metadata path:
+Acquire the pinned dictionary and corpus metadata first so preparation can include the metadata path in the generated config.
 
 ```powershell
 & $Py scripts/acquire_extras.py
@@ -79,16 +79,16 @@ Preparation checks the model ZIP, extracted checkpoint and argument hashes. It w
 
 ## Baseline inference and explicit word fallback
 
-Full validation inference reads features only, saves FP32 logits and preserves trial order. Score tuning phonemes separately:
+Run feature-only inference to save FP32 logits in validation trial order. Then score phonemes on the tuning partition.
 
 ```powershell
 & $Py -m btt25.cli infer --config configs/local.yaml --split val --run-dir runs/baseline-val
 & $Py -m btt25.cli evaluate --config configs/local.yaml --predictions runs/baseline-val/predictions.jsonl --output-dir runs/baseline-tune-phones --score-split dev_tune --phoneme-only
 ```
 
-`--limit` creates a diagnostic partial run; omit it for a completed condition. Phoneme-only metrics do not measure WER.
+Use `--limit` for a partial diagnostic and omit it for full coverage. The phoneme-only command reports PER.
 
-For the Windows word baseline, request the named lexicon-only route:
+On Windows, request the lexicon-only word baseline.
 
 ```powershell
 & $Py scripts/run_studies.py compact --config configs/local.yaml --decoder-python $Decoder --logit-run runs/baseline-val --lexicon assets/local/lexicon.txt --lexicon-only --run-dir runs/compact
@@ -100,7 +100,7 @@ On Linux, replace `--lexicon-only` with `--kenlm-bin` pointing at the installed 
 
 ## Run the studies before reporting
 
-Install the optional scorer stack into the baseline environment and acquire its pinned assets before a timed scientific job:
+Install the scorer in the baseline environment and fetch its pinned assets before starting a timed run.
 
 ```powershell
 uv pip install --python $Py --no-deps -r configs/requirements-lm.txt
@@ -113,7 +113,7 @@ The confidence study rescores existing word candidates with teacher-forced Disti
 & $Py scripts/run_studies.py confidence-tune --config configs/local.yaml --decoder-python $Decoder --selection runs/compact/selection.json --scorer-dir assets/local/distilgpt2 --run-dir runs/confidence-tune
 ```
 
-Measure a successful sustained pilot for each calibration mode on the same device, source checkpoint and input manifests:
+Run a sustained pilot for each calibration mode on the same device, checkpoint, and input manifests you will use for training.
 
 ```powershell
 & $Py -m btt25.cli profile --config configs/local.yaml --minutes 15 --mode head --run-dir runs/profile-head
@@ -127,11 +127,11 @@ Admission requires at least 15 sustained minutes, host memory headroom, 20% devi
 & $Py scripts/run_studies.py calibration --config configs/local.yaml --decoder-python $Decoder --selection runs/compact/selection.json --mode session_bias --profile-dir runs/profile-bias --run-dir runs/calibration-bias
 ```
 
-The calibration wrapper merges [calibration.yaml](../configs/calibration.yaml) and invokes one supervised pipeline per condition: training, full validation inference, the fixed compact decoder, then `dev_tune` evaluation. Its current command sets a 3,600-second target and a 3,720-second watchdog. It rejects a measured forecast that exceeds this budget. Inspect `pipeline_manifest.json`, stage manifests and resource receipts rather than treating an exit code alone as scientific completion.
+The calibration wrapper reads the shared settings and supervises training, full validation inference, fixed compact decoding, and `dev_tune` evaluation in order. It sets a 3,600-second target and a 3,720-second watchdog, and rejects forecasts over budget. Verify completion in `pipeline_manifest.json`, the stage manifests, and the resource receipts. [Calibration settings](../configs/calibration.yaml)
 
 ## Freeze, then open reporting labels
 
-Finish compact selection, confidence tuning and both matched calibration pipelines first. Use the same arguments for all reporting phases:
+Finish compact selection, confidence tuning, and both calibration pipelines before sealing. Reuse the same arguments through reporting.
 
 ```powershell
 & $Decoder scripts/audit_trie.py --lexicon assets/local/lexicon.txt --output-dir runs/trie-audit
@@ -156,7 +156,7 @@ Manual `evaluate --score-split dev_report` or `official_val` also requires `--fr
 
 ## Export hidden-test predictions and figures
 
-Once the compact selection is fixed, infer and decode the released test features with that selection:
+Decode the released test features using the fixed compact selection.
 
 ```powershell
 & $Py scripts/run_studies.py test --config configs/local.yaml --decoder-python $Decoder --selection runs/compact/selection.json --run-dir runs/test
@@ -171,6 +171,14 @@ uv pip install --python $Py 'matplotlib==3.10.6'
 & $Py scripts/make_public_evidence.py --study-dir runs/locked --output-dir runs/public-evidence --submission A0=runs/test/submission.csv --expected-test-count 1450
 ```
 
+## Redraw the figures
+
+The checked-in aggregate results are enough to redraw all eight figures. With Matplotlib 3.10.6 installed, run this from the repository root.
+
+```bash
+python scripts/render_public_figures.py --reports reports
+```
+
 ## Resume and inspect failures
 
 Repeat an interrupted inference command with the same config and output directory. Repeat the decoder command stored in its run or pipeline manifest for interrupted word decoding. Their cache checks reject changed checkpoints, inputs, source hashes, vocabulary assets or trial identities. Preserve a rejected cache and use a new run directory when changing a condition; do not delete evidence to force a match.
@@ -181,7 +189,7 @@ For calibration, repeat the same `run_studies.py calibration` command. The pipel
 & $Py -m btt25.pipeline --config runs/calibration-head/calibration.resolved.yaml --decoder-python $Decoder --lexicon assets/local/lexicon.txt --mode head --profile-dir runs/profile-head --updates 720 --run-dir runs/calibration-head --target-seconds 3600 --hard-seconds 3720 --dry-run
 ```
 
-The direct training resume command, when working outside the pipeline, is:
+To resume training outside the pipeline, use the same resolved calibration config and pilot.
 
 ```powershell
 & $Py -m btt25.cli resume --config runs/calibration-head/calibration.resolved.yaml --run-dir runs/calibration-head/train --mode head --updates 720 --profile-dir runs/profile-head --max-hours 1
@@ -191,7 +199,7 @@ Use a new directory for a failed sustained pilot. Compact tuning refuses another
 
 The pipeline checks a cooperative `BTT_STOP_FILE` between stages; training and decoding check at safe work boundaries. Host resources use a 12 GB operating target, a 16 GB ceiling and at least 2 GB available to the OS. Native decoding cannot interrupt a C++ call mid-trial, so retain an external watchdog. [GILBRETH.md](GILBRETH.md) explains the scheduler boundary.
 
-Run the source tests and isolated decoder contracts after setup:
+After setup, run the source tests and the decoder tests in their respective environments.
 
 ```powershell
 & $Py -m pytest

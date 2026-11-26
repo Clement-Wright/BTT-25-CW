@@ -1,16 +1,16 @@
 # Run on Gilbreth
 
-The accuracy and efficiency continuation uses a separate scratch checkout and new conditions. See the [v2 registration and resume commands](CONTINUATION.md) and the [current job ledger](../runs/ledger.csv). This page preserves the workflow used to reproduce the original release.
+Set up the cluster environments here before running the original release. The v2 comparisons use a separate scratch checkout and run directories. [V2 runbook](CONTINUATION.md) · [Job ledger](../runs/ledger.csv)
 
-The checked-in `hpc/` scripts use CPython 3.12 from `anaconda/2024.10-py312`, `uv/0.8.0`, and PyTorch 2.8.0+cu126. Baseline/scorer and native-decoder packages live in separate scratch environments. These instructions launch bounded stages; they do not claim a completed study or a cluster-wide performance result.
+The `hpc/` scripts use `anaconda/2024.10-py312` for CPython 3.12, `uv/0.8.0`, and PyTorch 2.8.0+cu126. The baseline and scorer share one scratch environment. The native decoder has its own.
 
-Use your existing Gilbreth access and normal host-key/MFA procedure. Discover your allowed account and partition with `slist`, `sinfo` and the current RCAC documentation. Set `ACCOUNT` and `PARTITION` in your shell from that discovery. Gilbreth requires an account and partition; `standby` is a QOS with a four-hour limit and access to idle resources. See [RCAC's account, partition and QOS rules](https://docs.rcac.purdue.edu/userguides/gilbreth/run_jobs/queues/).
+Connect with your normal Gilbreth host-key and MFA procedure. Check `slist` and `sinfo`, then set `ACCOUNT` and `PARTITION` to an account and partition you can use. Both are required. The `standby` QOS gives access to idle resources for up to four hours. [RCAC queue rules](https://docs.rcac.purdue.edu/userguides/gilbreth/run_jobs/queues/)
 
 Run setup, downloads, archive hashing, model work and tests inside Slurm allocations. The login shell only prepares source paths and submits or inspects jobs.
 
 ## Scratch layout and source
 
-All scripts derive the project root from `$RCAC_SCRATCH`; don't substitute a backing filesystem path. Scratch is temporary and has no backup. Export verified results and restart checkpoints to durable storage before removing any scratch copy. See [RCAC scratch guidance](https://docs.rcac.purdue.edu/userguides/gilbreth/storage/scratch_space/).
+The scripts resolve the project under `$RCAC_SCRATCH`. Scratch is temporary and has no backup. Copy verified results and restart checkpoints to durable storage before removing scratch copies. [RCAC scratch guidance](https://docs.rcac.purdue.edu/userguides/gilbreth/storage/scratch_space/)
 
 ```bash
 umask 077
@@ -24,7 +24,7 @@ cd "$project/workspace"
 
 For an existing source checkout, use its `workspace` directory instead of cloning again. Transfer only the public source and required authorized assets; keep credentials, unrelated checkout files and machine inventories out of the transfer. Do not copy Windows virtual environments or reuse a Windows `configs/local.yaml` on Linux. The preparation stage generates cluster-local paths and the same frozen membership from the verified release.
 
-The layout created by the scripts is:
+The setup scripts use this scratch layout.
 
 ```text
 $RCAC_SCRATCH/btt-25-cw/
@@ -61,11 +61,11 @@ printf '%s\n' "$setup_id" "$data_id" "$prepare_id" "$kenlm_id"
 
 `gilbreth_kenlm.sh` verifies the KenLM 0.3.0 source archive and builds the estimator and shared libraries under `environments/kenlm`. It uses Anaconda's Boost libraries and expects CMake on the allocated node. The script records tool/library hashes and dependency output. A successful build must provide `bin/lmplz`, `bin/build_binary` and loadable KenLM shared libraries; no system installation or administrator access is needed.
 
-The dependency chain stops after a failed prerequisite. Inspect the failed job and its receipts before submitting a successor. Slurm dependency IDs schedule jobs; they do not certify scientific completion.
+The dependency chain stops when a prerequisite fails. Read its receipts before submitting a successor. For successful exits, use the stage manifests to verify that the expected scientific outputs are complete.
 
 ## Submit the measured stages
 
-Use the wrapper for every scientific stage. It fixes the working directory and cache locations, enables offline scorer loading, sets CPU thread counts, and handles scheduler stop signals. The helper below only submits a finite command; it does not retry or resubmit itself.
+Use the wrapper for each scientific stage. It sets the working directory, caches, CPU thread counts, and offline scoring mode, and handles scheduler stop signals. The helper submits each command once.
 
 ```bash
 decoder="$project/environments/decoder/bin/python"
@@ -94,7 +94,7 @@ The compact command first checks the real native KenLM import and tiny decoder c
 
 To use the declared fallback instead, omit `--kenlm-bin` and add `--lexicon-only` in a separate run directory. Keep its label in all comparisons. Do not substitute it midway through a frozen KenLM condition.
 
-Continue only after the successful pilots and complete compact selection exist:
+Start confidence tuning and calibration after both pilots have passed and the compact selection is complete.
 
 ```bash
 confidence_id=$(submit_stage btt-confidence 01:00:00 "$compact_id" \
@@ -142,14 +142,14 @@ These commands open `dev_report` only after the joint freeze. Keep the resulting
 
 ## Monitor, stop and resume
 
-Inspect recorded job IDs with lightweight scheduler commands:
+Check the scheduler state for the job IDs you recorded.
 
 ```bash
 squeue -j "$baseline_id,$head_pilot_id,$bias_pilot_id,$compact_id"
 sacct -j "$summary_id" --format=JobID,State,Elapsed,MaxRSS,ExitCode
 ```
 
-Read the corresponding `slurm/` log and the stage's `run_manifest.json` or `pipeline_manifest.json`. An allocation ending successfully does not turn `diagnostic_partial` or `budget_stopped` into a completed condition. Preserve preemption, timeout and OOM receipts.
+Read the corresponding `slurm/` log and stage `run_manifest.json` or `pipeline_manifest.json`. If the stage says `diagnostic_partial` or `budget_stopped`, report that status even after a successful Slurm exit. Keep the receipts for preemption, timeouts, and OOMs.
 
 The scheduler warning reaches `gilbreth_run.sh`, which writes its job-specific `BTT_STOP_FILE`. A nested pipeline supervisor mirrors an outer stop request to the child's stop file. Training saves at a completed update, and decoding stops between trials. Abrupt preemption can bypass that warning; atomic checkpoints and validated caches remain necessary. A native decoder call cannot stop midway through a trial.
 

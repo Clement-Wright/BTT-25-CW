@@ -163,80 +163,11 @@ def fixed_study(path):
 
 
 def figures(evidence, output):
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    output.mkdir(exist_ok=True)
-    rows = {k: v for k, v in evidence["tuning"].items() if k.startswith("v2-s")}
-    if rows:
-        fig, ax = plt.subplots(figsize=(9, max(3, len(rows) * .45 + 1.2)), layout="constrained")
-        names = [key[3:] for key in rows]
-        ax.barh(names, [100 * v["selected_wer"] for v in rows.values()], color="#1c778b", alpha=.9, label="Selected")
-        ax.scatter([100 * v["oracle"]["50"]["wer"] for v in rows.values()], names, color="#f3aa3c", zorder=3, label="Oracle at up to 50")
-        ax.axvline(10, color="#99595a", ls="--", label="10% target")
-        ax.invert_yaxis()
-        ax.set_xlabel("Corpus word error rate (%)")
-        ax.set_title("Search coverage on the 926-trial tuning partition", loc="left", weight="bold")
-        ax.legend(loc="best")
-        fig.savefig(output / "v2_candidate_coverage.png", dpi=160)
-        plt.close(fig)
-    if evidence.get("reports") and evidence.get("matched_timing"):
-        report = evidence["reports"]["splits"]["dev_report"]["conditions"]
-        points = [(k, v) for k, v in evidence["matched_timing"]["conditions"].items() if k in report and v["successes"]]
-        if points:
-            fig, ax = plt.subplots(figsize=(8.6, 4), layout="constrained")
-            labels = {"v2-s1-original-50": "Original compact beam 50", "v2-s6-repaired-250": "Repaired compact beam 250",
-                      "v2-f1-distilgpt2": "Repaired + DistilGPT2", "v2-e2-monophone": "Monophone control"}
-            for name, row in points:
-                ax.scatter(row["latency_seconds"]["p95"] * 1000, report[name]["wer"] * 100, s=80, label=labels.get(name, name))
-            ax.set(xlabel="Feature-to-text latency p95 (ms)", ylabel="Exploratory dev_report WER (%)")
-            ax.set_title("Measured accuracy and complete-pipeline latency", loc="left", weight="bold")
-            ax.legend()
-            fig.savefig(output / "v2_accuracy_latency.png", dpi=160)
-            plt.close(fig)
-    if evidence.get("gilbreth_search_timing"):
-        timing = evidence["gilbreth_search_timing"]["conditions"]
-        labels = {"v2-s0-archived": "Original beam 50", "v2-s3-original-250": "Original beam 250",
-                  "v2-s6-repaired-250": "Repaired beam 250"}
-        fig, ax = plt.subplots(figsize=(8.3, 3.4), layout="constrained")
-        for key, row in timing.items():
-            ms = {name: 1000 * val for name, val in row["latency_seconds"].items()}
-            y = labels.get(key, key)
-            ax.plot([ms["p50"], ms["p99"]], [y, y], color="#86b1bd", linewidth=4, solid_capstyle="round")
-            ax.scatter(ms["p95"], y, color="#1c778b", s=65, zorder=3)
-            ax.text(ms["p95"], y, f"{ms['p95']:.0f}", ha="center", va="bottom", fontsize=9)
-        ax.invert_yaxis()
-        ax.set_xlabel("Batch-one response time in milliseconds · p50 to p99, dot at p95")
-        ax.set_title("Complete feature-to-text requests on one A100", loc="left", weight="bold")
-        ax.spines[["top", "right"]].set_visible(False)
-        fig.savefig(output / "v2_search_latency.png", dpi=160)
-        plt.close(fig)
-    fixed = evidence.get("fixed_candidate_studies", {})
-    resume = evidence.get("transformer_resume", {}).get("train", {})
-    data = (("Full feature benchmark", evidence.get("matched_timing", {}).get("resources")),
-            ("DistilGPT2 + Qwen 1.7B scoring job", fixed.get("12523725", {}).get("resources")),
-            ("Qwen 4B scoring job", fixed.get("12523757", {}).get("resources")),
-            ("LightBeam pilot", evidence.get("lightbeam", {}).get("resources")),
-            ("Transformer resume", resume.get("resources")))
-    resources = {name: row for name, row in data if row and row.get("peak_cgroup_bytes") is not None
-                 and row.get("peak_tree_rss_bytes") is not None and row.get("peak_device_used_bytes") is not None}
-    if len(resources) >= 2:
-        fig, (host, gpu) = plt.subplots(1, 2, sharey=True, figsize=(10, 4), layout="constrained")
-        y = list(range(len(resources)))
-        for offset, key, label, color in ((-.16, "peak_cgroup_bytes", "Job cgroup", "#1c778b"),
-                                          (.16, "peak_tree_rss_bytes", "Process-tree RSS", "#e59b34")):
-            host.barh([i + offset for i in y], [x[key] / 1e9 for x in resources.values()],
-                      height=.28, label=label, color=color)
-        host.axvline(12, color="#99595a", ls="--", label="12 GB target")
-        host.set_yticks(y, list(resources))
-        host.invert_yaxis()
-        host.legend(loc="best", fontsize=8)
-        host.set_xlabel("Peak host memory (decimal GB)")
-        gpu.barh(y, [x["peak_device_used_bytes"] / 1e9 for x in resources.values()], height=.45, color="#487ba3")
-        gpu.set_xlabel("Peak device-wide GPU memory (decimal GB)")
-        fig.suptitle("Observed memory peaks across measured Gilbreth jobs", x=.01, ha="left", weight="bold")
-        fig.savefig(output / "v2_memory_accounting.png", dpi=160)
-        plt.close(fig)
+    if __name__ == "__main__":
+        from render_public_figures import render_v2
+    else:
+        from scripts.render_public_figures import render_v2
+    render_v2(evidence, output)
 
 
 def main():
