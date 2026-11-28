@@ -1,0 +1,18 @@
+{
+  "condition": "v4-phone-edit-candidates",
+  "split": "dev_tune",
+  "inputs": ["neural", "reference_spikes"],
+  "maximum_phone_edits_per_word": 1,
+  "sil_id": 40,
+  "word_alternatives": 16,
+  "beam_width": 32,
+  "new_sentence_limit": 25,
+  "proposal_edit_penalty_nats": 4.0,
+  "voicing_substitution_cost": 0.5,
+  "other_edit_cost": 1.0,
+  "lm_weight_nats": 2.0,
+  "native_candidate_limit": 50,
+  "selection": "For each text use the highest exact retained-phone CTC alignment sum plus the weighted train-only 3-gram. Report top-1 and oracle on the original list and the union.",
+  "stop_rule": "One locked run across the tuning membership. No weight search.",
+  "source_restriction": "Use released lexicon, train-only ARPA and training unigram counts. No reporting references."
+}

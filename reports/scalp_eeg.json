@@ -1,0 +1,213 @@
+{
+  "status": "complete",
+  "sessions": {
+    "1": {
+      "trials": 80,
+      "complete_records": 1832,
+      "header_records": 1832,
+      "incomplete_trailing_bytes": 0
+    },
+    "2": {
+      "trials": 80,
+      "complete_records": 1670,
+      "header_records": 1670,
+      "incomplete_trailing_bytes": 0
+    },
+    "3": {
+      "trials": 40,
+      "complete_records": 969,
+      "header_records": 970,
+      "incomplete_trailing_bytes": 419061
+    }
+  },
+  "conditions": {
+    "action": {
+      "correct": 9,
+      "total": 40,
+      "accuracy": 0.225,
+      "confusion_true_by_predicted": [
+        [
+          2,
+          2,
+          4,
+          2
+        ],
+        [
+          3,
+          2,
+          4,
+          1
+        ],
+        [
+          4,
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          5,
+          1,
+          3
+        ]
+      ],
+      "labels": [
+        "arriba",
+        "abajo",
+        "derecha",
+        "izquierda"
+      ],
+      "uniform_chance": 0.25,
+      "wilson95": [
+        0.12316091323540745,
+        0.37503096742310016
+      ],
+      "warm_requests": 120,
+      "timing_s": {
+        "p50": 0.011317356955260038,
+        "p90": 0.012332939123734833,
+        "p95": 0.012889575399458408,
+        "p99": 0.018514638203196234,
+        "max": 0.021070185117423534
+      },
+      "checkpoint_sha256": "e5fb3209537782ef99398a3dd9b2d89e3ead76ea565639f6a4c2ea6165f90820"
+    },
+    "precue": {
+      "correct": 11,
+      "total": 40,
+      "accuracy": 0.275,
+      "confusion_true_by_predicted": [
+        [
+          4,
+          3,
+          2,
+          1
+        ],
+        [
+          2,
+          3,
+          2,
+          3
+        ],
+        [
+          5,
+          1,
+          3,
+          1
+        ],
+        [
+          4,
+          2,
+          3,
+          1
+        ]
+      ],
+      "labels": [
+        "arriba",
+        "abajo",
+        "derecha",
+        "izquierda"
+      ],
+      "uniform_chance": 0.25,
+      "wilson95": [
+        0.16108016247667334,
+        0.4283495580621056
+      ],
+      "warm_requests": 120,
+      "timing_s": {
+        "p50": 0.01121714012697339,
+        "p90": 0.012361706467345357,
+        "p95": 0.013195347087457777,
+        "p99": 0.021493066186085347,
+        "max": 0.04006910277530551
+      },
+      "checkpoint_sha256": "7fd79b7c05296cec48720947b0188d2b75f1378559699475d4b41e5cabf47f1a"
+    }
+  },
+  "raw_header_and_event_index_s": 0.2597454288043082,
+  "fit_both_seconds": 0.16627130704000592,
+  "jobs": {
+    "setup": 12625905,
+    "classifier": 12625913,
+    "failed_setup": 12625827
+  },
+  "acquisition": {
+    "status": "complete",
+    "tree": "0c394b1a8b7aaf9d5e3a94ff17b7c10eb41df07f",
+    "license": "CC0",
+    "dataset": "OpenNeuro ds003626 version 2.0.0",
+    "files": [
+      {
+        "file": "sub-01_ses-01_task-innerspeech_eeg.bdf",
+        "size": 771058176,
+        "upstream_md5": "99304b3e9f43792d625ad36cf4153f3e",
+        "sha256": "cc2b6dd1c309d2bd63bd3908ed68d6a90f7e0798c54aaee651bbfc28848974c7",
+        "downloaded": true,
+        "seconds": 13.661841955035925,
+        "url": "https://s3.amazonaws.com/openneuro.org/ds003626/sub-01/ses-01/eeg/sub-01_ses-01_task-innerspeech_eeg.bdf"
+      },
+      {
+        "file": "sub-01_ses-02_task-innerspeech_eeg.bdf",
+        "size": 702878208,
+        "upstream_md5": "e0ba741cc1f219f8a11c5ef183e6efc2",
+        "sha256": "c29367c0129ecca529d0192fee89f93e41daca4d742b41c4a1fb3200a61461a7",
+        "downloaded": true,
+        "seconds": 12.50394235085696,
+        "url": "https://s3.amazonaws.com/openneuro.org/ds003626/sub-01/ses-02/eeg/sub-01_ses-02_task-innerspeech_eeg.bdf"
+      },
+      {
+        "file": "sub-01_ses-03_task-innerspeech_eeg.bdf",
+        "size": 408271605,
+        "upstream_md5": "4de9738d5fcc3fa13d2f522715bc9221",
+        "sha256": "d679a69ae554379e6cd970aa2be653d042f7ab7a8fc7c8cf354220b0ab5a2913",
+        "downloaded": true,
+        "seconds": 7.9594599502161145,
+        "url": "https://s3.amazonaws.com/openneuro.org/ds003626/sub-01/ses-03/eeg/sub-01_ses-03_task-innerspeech_eeg.bdf"
+      }
+    ],
+    "elapsed_seconds": 34.12660520710051,
+    "total_bytes": 1882207989
+  },
+  "compute": {
+    "elapsed_seconds": 15.259256458375603,
+    "peak_accounted_host_bytes": 404373504,
+    "peak_cgroup_bytes": 421777408,
+    "peak_tree_rss_bytes": 650743808,
+    "peak_tree_pss_bytes": 643381248,
+    "peak_cuda_allocated_bytes": 0,
+    "host_ceiling_bytes": 9437184000,
+    "method": "job cgroup memory charge including page cache",
+    "cpu_busy_cores_average": 1.0308135714759057
+  },
+  "evaluation": "Held-out session 03 of participant sub-01, trained on sessions 01 and 02. Four closed-set commands.",
+  "slurm": {
+    "fields": "sacct batch-step wall and TotalCPU, MaxRSS in Slurm K units; memory request in Slurm M units",
+    "failed_setup": {
+      "id": 12625827,
+      "state": "FAILED",
+      "elapsed_seconds": 8,
+      "exit_code": "1:0",
+      "requested_memory_M": 4000,
+      "max_rss_K": 1440,
+      "total_cpu_seconds": 0.007
+    },
+    "setup": {
+      "id": 12625905,
+      "state": "COMPLETED",
+      "elapsed_seconds": 42,
+      "exit_code": "0:0",
+      "requested_memory_M": 4000,
+      "max_rss_K": 37820,
+      "total_cpu_seconds": 16.248
+    },
+    "classification": {
+      "id": 12625913,
+      "state": "COMPLETED",
+      "elapsed_seconds": 40,
+      "exit_code": "0:0",
+      "requested_memory_M": 9000,
+      "max_rss_K": 563872,
+      "total_cpu_seconds": 20.828
+    }
+  }
+}

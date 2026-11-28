@@ -1,0 +1,11 @@
+# Decoding at two emission rates
+
+Apply the previously frozen v2 beam-250 and DistilGPT2 settings to all three primary trained arms as a second word-decoder control. Save first-pass, rescored and candidate-oracle edit counts. Neither retrain the text model nor select a new fusion weight in this comparison. The original official-checkpoint rows already exist.
+
+For the two trained 40 ms routes, also decode the cached emissions with three fixed changes. Halve the acoustic logit differences, average each neighboring pair of posteriors, or average only within pairs that agree on their most likely class. The third option retains both frames when one predicts a blank and the other predicts a phone. Compare with the unchanged word search on the same trials. This separates a possible benefit from finer observations from the cost of searching twice as many frames.
+
+## Why test two clocks?
+
+Overlapping observations share most of their input. Running a pretrained recurrent cell on each new overlap also advances its learned state. A separate midpoint head can read fresh changes while carrying forward the longer context that distinguishes similar sounds across word boundaries. Human cortical recordings show that the same phoneme can involve different articulatory movements depending on its neighbors. That motivates conditioning the midpoint on both the local change and the prior state. This dataset supplies phoneme sequences without measured articulator trajectories or phoneme onset times. [Chartier et al., articulatory trajectories](https://pubmed.ncbi.nlm.nih.gov/29779940/)
+
+The T15 release supplies threshold crossings and spike-band power from 256 implanted electrodes, already aggregated into 20 ms bins. A recent multi-participant speech-decoding study also treats temporal patching as a modeling choice. We can change what a model retains from those bins and how often it emits a phone distribution. Measuring true sub-bin detail would require the underlying events or features exported at a finer native resolution for the same trials. [T15 dataset](https://datadryad.org/dataset/doi%3A10.5061/dryad.dncjsxm85) · [Generalizable speech neuroprosthesis, 2026 preprint](https://www.biorxiv.org/content/10.64898/2026.07.23.739430v1.full)

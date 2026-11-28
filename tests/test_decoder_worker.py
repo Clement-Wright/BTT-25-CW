@@ -16,6 +16,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts import decode_worker as worker
+from btt25.host_accounting import HostAccounting
 
 
 def native_available():
@@ -244,6 +245,11 @@ class LexiconTests(unittest.TestCase):
 class ProcessMonitorTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(mock.patch.dict(os.environ, {'SLURM_JOB_ID': '', 'SLURM_MEM_PER_NODE': ''}))
+        # These task-limit cases simulate a host with no tighter kernel constraint.
+        # tests/test_resources.py exercises smaller cgroup limits separately.
+        root = Path(self.enterContext(tempfile.TemporaryDirectory()))
+        self.enterContext(mock.patch.object(worker, 'HostAccounting', side_effect=lambda: HostAccounting(
+            proc=root / 'proc', cgroup_root=root / 'cgroup')))
 
     def test_slurm_allocation_cannot_raise_task_cap(self):
         with mock.patch.dict(os.environ, {'SLURM_JOB_ID': '1', 'SLURM_MEM_PER_NODE': '20480'}):

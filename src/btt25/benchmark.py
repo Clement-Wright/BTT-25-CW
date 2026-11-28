@@ -64,11 +64,13 @@ def native_decoder(args, beam, log):
         try:
             started_service = _receive(queue, started + args.start_timeout)
 
-            def decode(trial_id, array):
+            def decode(trial_id, array, stream_action=None):
                 deadline = perf_counter() + args.request_timeout
                 payload = b64encode(np.asarray(array, dtype="<f4", order="C").tobytes()).decode("ascii")
-                proc.stdin.write(json.dumps({"trial_id": trial_id, "output_length": len(array),
-                                             "logits": payload}) + "\n")
+                message = {"trial_id": trial_id, "output_length": len(array), "logits": payload}
+                if stream_action is not None:
+                    message["stream_action"] = stream_action
+                proc.stdin.write(json.dumps(message) + "\n")
                 proc.stdin.flush()
                 reply = _receive(queue, deadline)
                 if reply["trial_id"] != trial_id:

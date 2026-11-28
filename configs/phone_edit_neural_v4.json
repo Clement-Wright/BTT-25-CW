@@ -1,0 +1,18 @@
+{
+  "condition": "v4-exact-ctc-distilgpt2-with-phone-proposals",
+  "split": "dev_tune",
+  "cells": ["original_path", "original_alignment", "expanded_path", "expanded_alignment"],
+  "native_limit": 25,
+  "proposal_limit": 25,
+  "maximum_expanded_unique_texts": 50,
+  "ranker": "Original texts retain their native path scores. New pronunciation paths use their exact Viterbi CTC alignment for the path condition. The alignment condition sums CTC alignments. If a text has multiple proposed pronunciations, keep its highest acoustic score. Both add 1.25 times the same teacher-forced DistilGPT2 log likelihood.",
+  "reference_policy": "Use the completed proposed texts and existing likelihoods. Resolve the tuning allowlist before reading any references. No new calibration or weight sweep.",
+  "model_revision": "2290a62682d06624634c1f46a6ad5be0f47f38aa",
+  "batch_size": 8,
+  "weight": 1.25,
+  "precision": "BF16 on an allocated CUDA GPU; FP32 token-logprob accumulation",
+  "scoring": "Reuse frozen trial-level top-25 scores and score only texts missing from each trial cache. Preserve original acoustic scores and deterministic candidate order.",
+  "control_edits": 775,
+  "control_path_edits": 802,
+  "control_denominator": 6033
+}

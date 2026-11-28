@@ -63,3 +63,85 @@ v2-bench-laptop-zerolm,features_to_text,complete,runs/v2-bench-laptop-zerolm,57.
 12527227,v2_transformer_resume,complete,v2/runs/v2-e1-transformer-12527227,1307,1426,,,Reached 40000 updates and full coverage; 11.76 GB peak cgroup charge after scoped cache advice
 12527230,v2_transformer_addendum,complete,v2/runs/v2-report-12527230,285,1426,,0.5857067231339333,Exploratory Transformer full-validation WER; four systems completed 1152 matched warm timing requests
 12527243,v2_hidden_test_export,complete,v2/runs/v2-test-12527243,306,1450,,,Verified official traversal and 1450 nonempty predictions; hidden labels unavailable
+v3-refphone-exact-lexicon,dev_tune,diagnostic_complete,runs/v3-refphone-exact-lexicon,,926,0.10003748125937031,0.02685231228244654,Exact CMU pronunciation lookup with reference SIL; native injection path failed
+v3-smoothing-12618760,dev_tune,complete,v3-smoothing-20261127/runs/smoothing-12618760,396,3704,,,Four frozen smoothing comparisons with 926 predictions per condition
+v3-sampling-12618761,dev_tune,complete,v3-smoothing-20261127/runs/sampling-12618761,387,3704,,,Four frozen bin and stride comparisons with 926 predictions per condition
+12618901,v3_reference_phone_dwell,diagnostic_complete,v3-smoothing-20261127/runs/reference-12618901,106,926,,,Repaired KenLM preserved zero sustained reference paths
+12618902,v3_frontier_setup,failed,v3-smoothing-20261127/runs/frontier-setup-12618902,8,,,,Cluster module initialization referenced unset ROOTSAFE
+12619000,v3_qwen38,cancelled,v3-smoothing-20261127/logs/Qwen3.8-27B.job,0,,,,Prerequisite setup failed
+12619001,v3_qwen36,cancelled,v3-smoothing-20261127/logs/Qwen3.6-35B-A3B.job,0,,,,Prerequisite setup failed
+12619071,v3_frontier_setup,complete,v3-smoothing-20261127/runs/frontier-setup-12619071,1117,,,,Pinned CUDA runtime built and both Q4_K_M weights verified
+12619072,v3_qwen38,failed,v3-smoothing-20261127/logs/btt-Qwen3.8-27B-12619072.log,9,,,,Scorer link used the incorrect library name
+12619073,v3_qwen36,failed,v3-smoothing-20261127/logs/btt-Qwen3.6-35B-A3B-12619073.log,9,,,,Scorer link used the incorrect library name
+12619117,v3_temporal_head_control,pilot_complete,v3-smoothing-20261127/runs/pilot-control-12619117,1084,926,0.10007496251874062,0.17868390518813193,Matched 256-update endpoint; sustained endpoint was 0.1839880656389856 WER
+12619118,v3_temporal_channel_fusion,pilot_complete,v3-smoothing-20261127/runs/pilot-fusion-12619118,1242,926,0.10018740629685158,0.17951268025857783,Matched 256-update endpoint; sustained endpoint was 0.18199966848997183 WER
+12619119,v3_temporal_dense_fusion,pilot_complete,v3-smoothing-20261127/runs/pilot-dense-12619119,1093,926,0.09977511244377811,0.17851815017404277,Matched 256-update endpoint; sustained endpoint was 0.18315929056854036 WER
+12619225,v3_reference_phone_spike,diagnostic_complete,v3-smoothing-20261127/runs/reference-spike-12619225,148,926,,0.023371456986573844,Reference-derived inputs; same decoder scored 0.1579645284269849 WER on real emissions
+12619721,v3_qwen38,failed,v3-smoothing-20261127/runs/frontier-Qwen3.8-27B-12619721,99,,,,Python context manager startup error
+12619722,v3_qwen36,failed,v3-smoothing-20261127/runs/frontier-Qwen3.6-35B-A3B-12619722,20,,,,Python context manager startup error
+12620640,v3_qwen38,failed,v3-smoothing-20261127/runs/frontier-Qwen3.8-27B-12620640,49,,,,Serial and batched scoring missed fixture tolerance
+12620647,v3_qwen36,failed,v3-smoothing-20261127/runs/frontier-Qwen3.6-35B-A3B-12620647,45,,,,Serial and batched scoring missed fixture tolerance
+12620737,v3_qwen38,budget_stopped,v3-smoothing-20261127/runs/frontier-Qwen3.8-27B-12620737,1001,24,,0.11538461538461539,Completed pilot only; conservative forecast exceeded initial allocation
+12620738,v3_qwen36,complete,v3-smoothing-20261127/runs/frontier-Qwen3.6-35B-A3B-12620738,2560,926,,0.139234211834908,All tuning predictions; cached-candidate p95 2.93 s on A100 PCIe
+12620905,v3_qwen38_resume,failed,v3-smoothing-20261127/runs/frontier-Qwen3.8-27B-12620905,62,,,,Rejected freshly linked executable hash before scoring
+12621131,v3_qwen38_resume,complete,v3-smoothing-20261127/runs/frontier-Qwen3.8-27B-12621131,4005,926,,0.14022874191944307,Reused pilot scores after replay; cached-candidate p95 7.55 s on A100 SXM4
+12621644,v3_frontier_matched_timing,complete,v3-smoothing-20261127/runs/frontier-matched-timing-12621644,682,144,,,Matched p95 2.66 s for Qwen3.6 and 6.98 s for Qwen3.8 on one A100-SXM4
+v4-bench-12625888,dev_tune,complete,gilbreth:v4-rate-20261127/runs/bench-all-12625888,410,1008,,,Three warm passes over 24 duration-stratified utterances for each of 14 systems on one A100-40GB
+v4-decoder-12625302,dev_tune,failed,gilbreth:v4-rate-20261127/runs/phone-robustness-12625302,8,0,,,Missing RCAC_SCRATCH in nonlogin batch environment; no predictions
+v4-decoder-12625406,dev_tune,failed,gilbreth:v4-rate-20261127/runs/phone-robustness-12625406,80,1096,,,Strict replay check stopped after 274 complete four-input trials
+v4-priors-12625435,dev_tune,cancelled,gilbreth:v4-rate-20261127/runs/phone-robustness-12625435,0,0,,,Dependent job cancelled before allocation after predecessor failed
+v4-decoder-12625458,dev_tune,complete,gilbreth:v4-rate-20261127/runs/phone-robustness-12625458,530,3704,0.10003748125937031,0.1579645284269849,Four matched phone inputs on 926 trials; PER/WER columns are original GRU/native; perfect-phone WER 141/6033
+v4-priors-12625459,dev_tune,complete,gilbreth:v4-rate-20261127/runs/phone-priors-12625459,40,11112,,0.12846013591911154,Three cached neural priors and four ranking rules; WER column is exact CTC plus DistilGPT2; explicit compact rows stored separately
+v4-proposals-12625561,dev_tune,complete,gilbreth:v4-rate-20261127/runs/phone-edits-12625561,47,1852,,0.15365489806066635,Normal and perfect-phone inputs on 926 trials; WER column is normal union; real candidate oracle 540/6033
+v4-kenlm-audit-12625838,verification,complete,gilbreth:v4-rate-20261127/runs/phone-edits-12625561/kenlm-audit.json,15,,,,Checked 47416 distinct sentence scores against KenLM query; max ARPA difference 0.000048 weighted nats
+v4-expanded-priors-12626054,dev_tune,complete,gilbreth:v4-rate-20261127/runs/phone-expanded-priors-12626054,82,926,,0.12663683076413063,Four matched decisions per trial. Reused 18645 scored texts and scored 14279 new texts; 764 errors = expanded alignment rule.
+v4-expanded-timing-12626142,dev_tune,failed,gilbreth:v4-rate-20261127/runs/phone-expanded-timing-12626142,28,0,,,Worker missing from isolated source snapshot; failed at native startup before the first request.
+v4-expanded-timing-12626215,dev_tune,complete,gilbreth:v4-rate-20261127/runs/phone-expanded-timing-12626215,229,144,,,"Matched original and expanded alignment+DistilGPU requests; expanded p50 129.6 ms, p95 308.8 ms, pooled RTF 0.00846. Excludes two warmup requests."
+v4-expanded-test-12626394,official_test,complete,gilbreth:v4-rate-20261127/runs/phone-expanded-export-12626394,299,1450,,,"Ordered id,text verified: 1450 nonempty predictions, no hidden labels. Submission SHA-256 746812ba2b8f0bf2a40ffff25626b43518270ee8f3629b3a8f6e992db80a4da4"
+v4-cpu-pilot,pilot,failed,runs/v4-cpu-pilot,,0,,,YAML serialization failed before inference. Corrected in pilot r2.
+v4-cpu-pilot-r2,pilot,complete,runs/v4-cpu-pilot-r2,906.823,5184,,,Sustained paired CPU pilot on 12 length-stratified tuning trials. Counts include repeated requests.
+v4-laptop-windows-score-fp32,dev_tune,complete,runs/v4-laptop-campaign/score-fp32,196.645,926,0.10003748125937031,0.7556771092325543,CPU fp32 with Windows ZeroLM.
+v4-laptop-windows-score-int8,dev_tune,complete,runs/v4-laptop-campaign/score-int8,114.028,926,0.1,0.7521962539366815,CPU int8 with Windows ZeroLM.
+v4-laptop-windows-timing,dev_tune,complete,runs/v4-laptop-campaign/timing,94.618,576,,,"3 interleaved passes on 96 trials per precision, from HDF5 read through final text."
+v4-laptop-windows-replay-fp32-r2,dev_tune,complete,runs/v4-laptop-campaign/replay-fp32-r2,162.952,8,0.07239819004524888,0.7843137254901961,"T15 recorded 20 ms bin replay at wall-clock arrival times, known trial end."
+v4-laptop-windows-replay-int8,dev_tune,complete,runs/v4-laptop-campaign/replay-int8,162.018,8,0.07692307692307693,0.7450980392156863,"T15 recorded 20 ms bin replay at wall-clock arrival times, known trial end."
+v4-laptop-kenlm-pilot,pilot,complete,runs/v4-laptop-kenlm-pilot,911.95,6240,,,Sustained paired CPU pilot on 12 length-stratified tuning trials. Counts include repeated requests.
+v4-laptop-wsl-score-fp32,dev_tune,complete,runs/v4-laptop-kenlm/score-fp32,176.019,926,0.10003748125937031,0.17702635504724018,CPU fp32 with WSL repaired beam-50 KenLM.
+v4-laptop-wsl-score-int8,dev_tune,complete,runs/v4-laptop-kenlm/score-int8,98.96,926,0.1,0.17636333499088347,CPU int8 with WSL repaired beam-50 KenLM.
+v4-laptop-wsl-timing,dev_tune,complete,runs/v4-laptop-kenlm/timing,117.797,576,,,"3 interleaved passes on 96 trials per precision, from HDF5 read through final text."
+v4-laptop-wsl-replay-fp32,dev_tune,complete,runs/v4-laptop-kenlm/replay-fp32,166.067,8,0.07239819004524888,0.11764705882352941,"T15 recorded 20 ms bin replay at wall-clock arrival times, known trial end."
+v4-laptop-wsl-replay-int8,dev_tune,complete,runs/v4-laptop-kenlm/replay-int8,163.867,8,0.07692307692307693,0.11764705882352941,"T15 recorded 20 ms bin replay at wall-clock arrival times, known trial end."
+v4-laptop-windows-replay-fp32,dev_tune,failed,runs/v4-laptop-campaign/replay-fp32,9.374,0,,,ZeroLM batch and incremental final texts disagreed. Retried with score and repeatability diagnostics.
+v4-laptop-wsl-two-rate-replay,dev_tune,complete,runs/v4-laptop-kenlm-two-rate-replay,169.831,8,0.10407239819004525,0.2549019607843137,"Eight length-stratified tuning trials, trained FP32 40 ms head at 80 ms GRU updates; subset accuracy."
+v4-laptop-delta-12626740,setup,failed,gilbreth:v4-rate-20261127/runs/laptop-delta-12626740.log,8,0,,,Scratch variable missing in Slurm environment.
+v4-laptop-delta-12626784,setup,complete,gilbreth:v4-rate-20261127/runs/laptop-delta-12626784.log,14,0,,,Verified export retained excess shared storage. No transfer.
+v4-laptop-delta-12626836,setup,complete,gilbreth:v4-rate-20261127/runs/laptop-delta-12626836.log,22,0,,,"Tensor-only export, 28,987,917 bytes. SHA-256 verified on laptop."
+v4-clock-12625303,dev_tune,complete,gilbreth:v4-rate-20261127/runs/clock-12625303,384,926,,,Four paired views; 3704 word and phone outputs
+v4-primary-12625365,training-array,complete,gilbreth:v4-rate-20261127/runs/.,,,,,Five completed matched 2048-update arms
+v4-input-12625366,training-array,complete,gilbreth:v4-rate-20261127/runs/.,,,,,Seven completed 2048-update standby arms
+v4-bench-12625501,dev_tune,cancelled-before-start,gilbreth:v4-rate-20261127/runs/.,0,0,,,Replaced by 12625888 to include trained 20ms control
+v4-strong-12625552,dev_tune,complete,gilbreth:v4-rate-20261127/runs/strong-12625552,1352,2778,,,926 trials for each of three trained conditions; v2 frozen prior plus explicit alignment rows
+v4-align-time-12625829,benchmark,complete,gilbreth:v4-rate-20261127/runs/alignment-benchmark-12625829,93,144,,,Three warm passes on original GRU with path or alignment scoring
+v4-cadence-12625509,setup,failed,gilbreth:v4-rate-20261127/runs/cadence-12625509.out,9,0,,,Missing scratch variable in non-login environment
+v4-cadence-12625921,official_val,inference-complete-score-failed,gilbreth:v4-rate-20261127/runs/cadence-12625921,1430,11408,,,Strict archived top-text equality stopped scoring; blind outputs retained
+v4-cadence-score-12627501,dev_tune,complete,gilbreth:v4-rate-20261127/runs/cadence-score-12627501,50,0,,,Scored 7408 previously saved tuning rows from eight conditions after verifying input hashes and auditing native replay disagreements
+v4-phone-edits-12625521,setup,failed,gilbreth:v4-rate-20261127/runs/rate-edits-12625521.out,8,0,,,Missing scratch variable
+v4-phone-edits-12625922,dev_tune,complete,gilbreth:v4-rate-20261127/runs/rate-edits-12625922,176,11112,,,Audited twelve trained endpoints and learned transforms
+v4-phone-edits-12626246,dev_tune,complete,gilbreth:v4-rate-20261127/runs/rate-edits-12626246,35,1852,,,Matched learned 20ms vs 80ms cadence audit
+v4-eeg-setup-12625827,setup,failed,gilbreth:v4-rate-20261127/runs/eeg-setup-12625827.out,8,0,,,Scratch variable absent before any download
+v4-eeg-setup-12625905,setup,complete,gilbreth:v4-rate-20261127/runs/eeg-setup-12625905,42,,,,Verified 1882207989 raw BDF bytes
+v4-eeg-12625913,scalp-eeg,complete,gilbreth:v4-rate-20261127/runs/eeg-four-12625913,40,80,,,Two conditions on 40 held-session inner-speech trials; action 9 correct and control 11
+v4-encoder-activation_only-12625933,dev_tune,complete,gilbreth:v4-rate-20261127/runs/activation_only-12625933,1154,926,0.1348575712143928,0.24482015580971325,2048 updates; matched train order and beam 50
+v4-encoder-adaptive_filter-12625889,dev_tune,complete,gilbreth:v4-rate-20261127/runs/adaptive_filter-12625889,1189,926,0.1346326836581709,0.249295541190121,2048 updates; matched train order and beam 50
+v4-encoder-bin10_hold-12625932,dev_tune,complete,gilbreth:v4-rate-20261127/runs/bin10_hold-12625932,1202,926,0.13706896551724138,0.2502900712746561,2048 updates; matched train order and beam 50
+v4-encoder-bin40-12625483,dev_tune,complete,gilbreth:v4-rate-20261127/runs/bin40-12625483,1197,926,0.13530734632683658,0.2595723520636499,2048 updates; matched train order and beam 50
+v4-encoder-causal_conv-12625365,dev_tune,complete,gilbreth:v4-rate-20261127/runs/causal_conv-12625365,1152,926,0.4929535232383808,0.7876678269517653,2048 updates; matched train order and beam 50
+v4-encoder-gru20-12625871,dev_tune,complete,gilbreth:v4-rate-20261127/runs/gru20-12625871,1302,926,0.2230134932533733,0.35703630034808553,2048 updates; matched train order and beam 50
+v4-encoder-gru40-12625873,dev_tune,complete,gilbreth:v4-rate-20261127/runs/gru40-12625873,1222,926,0.1355697151424288,0.24962705121829937,2048 updates; matched train order and beam 50
+v4-encoder-gru80-12625434,dev_tune,complete,gilbreth:v4-rate-20261127/runs/gru80-12625434,1097,926,0.10389805097451274,0.17918117023039948,2048 updates; matched train order and beam 50
+v4-encoder-input_transform-12625366,dev_tune,complete,gilbreth:v4-rate-20261127/runs/input_transform-12625366,1162,926,0.12293853073463268,0.2207856787667827,2048 updates; matched train order and beam 50
+v4-encoder-patch10-12625368,dev_tune,complete,gilbreth:v4-rate-20261127/runs/patch10-12625368,1313,926,0.13905547226386808,0.2527763964859937,2048 updates; matched train order and beam 50
+v4-encoder-patch20-12625369,dev_tune,complete,gilbreth:v4-rate-20261127/runs/patch20-12625369,1323,926,0.1305097451274363,0.2241007790485662,2048 updates; matched train order and beam 50
+v4-encoder-transform_only-12626016,dev_tune,complete,gilbreth:v4-rate-20261127/runs/transform_only-12626016,1156,926,0.12743628185907047,0.23984750538703795,2048 updates; matched train order and beam 50
+v4-encoder-two_rate-12625370,dev_tune,complete,gilbreth:v4-rate-20261127/runs/two_rate-12625370,1235,926,0.11900299850074962,0.2852643792474722,2048 updates; matched train order and beam 50
+v4-two-rate-expanded-12627738,dev_tune,complete,gilbreth:v4-rate-20261127/runs/two-rate-expanded-12627738/study,355,926,0.11900299850074962,0.15150008287750705,Unmerged and agreement-merged expanded alignment + DistilGPT2 on 926 paired trials; 1152 vs 914 edits; 144 matched feature-to-text timing requests

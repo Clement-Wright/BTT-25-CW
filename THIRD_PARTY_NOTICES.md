@@ -14,3 +14,5 @@ This project's [LICENSE](LICENSE) covers its original implementation. External d
 - **Other installed dependencies.** PyTorch, NumPy, SciPy, h5py, psutil, PyYAML, Transformers and plotting libraries are governed by their own published licenses.
 
 [PROVENANCE.md](docs/PROVENANCE.md) records source revisions and acquisition history. The project's license does not replace any of these external notices.
+
+The separate scalp EEG experiment uses participant 01 of the CC0 Inner Speech dataset by Nicolas Nieto, Victoria Peterson, Hugo Rufiner, Juan Kamienkowski and Ruben Spies. Version 2.0.0 contains the raw BioSemi recordings used for the four-command check. The repository distributes acquisition instructions and aggregate results. [Dataset description and license](https://github.com/OpenNeuroDatasets/ds003626/blob/2.0.0/dataset_description.json) · [Dataset paper](https://www.nature.com/articles/s41597-022-01147-2)

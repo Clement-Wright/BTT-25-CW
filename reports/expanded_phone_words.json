@@ -1,0 +1,2089 @@
+{
+  "evaluation": {
+    "status": "complete",
+    "scope": "dev_tune",
+    "overall": {
+      "original_path": {
+        "substitutions": 721,
+        "deletions": 13,
+        "insertions": 68,
+        "reference_length": 6033,
+        "errors": 802,
+        "oracle_edits": 603,
+        "trials": 926,
+        "empty": 0,
+        "candidates": 18645,
+        "improved_trials": 0,
+        "harmed_trials": 0,
+        "paired95_vs_original_path": [
+          0.0,
+          0.0
+        ]
+      },
+      "original_alignment": {
+        "substitutions": 694,
+        "deletions": 13,
+        "insertions": 68,
+        "reference_length": 6033,
+        "errors": 775,
+        "oracle_edits": 603,
+        "trials": 926,
+        "empty": 0,
+        "candidates": 18645,
+        "improved_trials": 0,
+        "harmed_trials": 0,
+        "paired95_vs_original_alignment": [
+          0.0,
+          0.0
+        ]
+      },
+      "expanded_path": {
+        "substitutions": 794,
+        "deletions": 10,
+        "insertions": 56,
+        "reference_length": 6033,
+        "errors": 860,
+        "oracle_edits": 574,
+        "trials": 926,
+        "empty": 0,
+        "candidates": 32924,
+        "improved_trials": 53,
+        "harmed_trials": 94,
+        "paired95_vs_original_path": [
+          0.004728354709558203,
+          0.014811380839212868
+        ]
+      },
+      "expanded_alignment": {
+        "substitutions": 687,
+        "deletions": 12,
+        "insertions": 65,
+        "reference_length": 6033,
+        "errors": 764,
+        "oracle_edits": 574,
+        "trials": 926,
+        "empty": 0,
+        "candidates": 32924,
+        "improved_trials": 17,
+        "harmed_trials": 6,
+        "paired95_vs_original_alignment": [
+          -0.003628148177536112,
+          -0.0003281364721739561
+        ]
+      }
+    },
+    "corpus": {
+      "Switchboard": {
+        "original_path": {
+          "substitutions": 481,
+          "deletions": 12,
+          "insertions": 51,
+          "reference_length": 4569,
+          "errors": 544,
+          "oracle_edits": 397,
+          "trials": 715,
+          "empty": 0,
+          "candidates": 14238
+        },
+        "original_alignment": {
+          "substitutions": 456,
+          "deletions": 12,
+          "insertions": 52,
+          "reference_length": 4569,
+          "errors": 520,
+          "oracle_edits": 397,
+          "trials": 715,
+          "empty": 0,
+          "candidates": 14238
+        },
+        "expanded_path": {
+          "substitutions": 541,
+          "deletions": 10,
+          "insertions": 39,
+          "reference_length": 4569,
+          "errors": 590,
+          "oracle_edits": 375,
+          "trials": 715,
+          "empty": 0,
+          "candidates": 25547
+        },
+        "expanded_alignment": {
+          "substitutions": 452,
+          "deletions": 11,
+          "insertions": 50,
+          "reference_length": 4569,
+          "errors": 513,
+          "oracle_edits": 375,
+          "trials": 715,
+          "empty": 0,
+          "candidates": 25547
+        }
+      },
+      "Openwebtext": {
+        "original_path": {
+          "substitutions": 86,
+          "deletions": 0,
+          "insertions": 6,
+          "reference_length": 411,
+          "errors": 92,
+          "oracle_edits": 82,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1090
+        },
+        "original_alignment": {
+          "substitutions": 85,
+          "deletions": 0,
+          "insertions": 5,
+          "reference_length": 411,
+          "errors": 90,
+          "oracle_edits": 82,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1090
+        },
+        "expanded_path": {
+          "substitutions": 90,
+          "deletions": 0,
+          "insertions": 5,
+          "reference_length": 411,
+          "errors": 95,
+          "oracle_edits": 79,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1490
+        },
+        "expanded_alignment": {
+          "substitutions": 85,
+          "deletions": 0,
+          "insertions": 5,
+          "reference_length": 411,
+          "errors": 90,
+          "oracle_edits": 79,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1490
+        }
+      },
+      "Random": {
+        "original_path": {
+          "substitutions": 75,
+          "deletions": 0,
+          "insertions": 7,
+          "reference_length": 200,
+          "errors": 82,
+          "oracle_edits": 57,
+          "trials": 39,
+          "empty": 0,
+          "candidates": 975
+        },
+        "original_alignment": {
+          "substitutions": 76,
+          "deletions": 0,
+          "insertions": 7,
+          "reference_length": 200,
+          "errors": 83,
+          "oracle_edits": 57,
+          "trials": 39,
+          "empty": 0,
+          "candidates": 975
+        },
+        "expanded_path": {
+          "substitutions": 74,
+          "deletions": 0,
+          "insertions": 7,
+          "reference_length": 200,
+          "errors": 81,
+          "oracle_edits": 56,
+          "trials": 39,
+          "empty": 0,
+          "candidates": 1414
+        },
+        "expanded_alignment": {
+          "substitutions": 75,
+          "deletions": 0,
+          "insertions": 6,
+          "reference_length": 200,
+          "errors": 81,
+          "oracle_edits": 56,
+          "trials": 39,
+          "empty": 0,
+          "candidates": 1414
+        }
+      },
+      "Harvard": {
+        "original_path": {
+          "substitutions": 68,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 69,
+          "oracle_edits": 60,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 624
+        },
+        "original_alignment": {
+          "substitutions": 66,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 67,
+          "oracle_edits": 60,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 624
+        },
+        "expanded_path": {
+          "substitutions": 73,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 201,
+          "errors": 74,
+          "oracle_edits": 58,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 1060
+        },
+        "expanded_alignment": {
+          "substitutions": 65,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 66,
+          "oracle_edits": 58,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 1060
+        }
+      },
+      "Freq words": {
+        "original_path": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 652,
+          "errors": 15,
+          "oracle_edits": 7,
+          "trials": 100,
+          "empty": 0,
+          "candidates": 1718
+        },
+        "original_alignment": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 652,
+          "errors": 15,
+          "oracle_edits": 7,
+          "trials": 100,
+          "empty": 0,
+          "candidates": 1718
+        },
+        "expanded_path": {
+          "substitutions": 16,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 652,
+          "errors": 20,
+          "oracle_edits": 6,
+          "trials": 100,
+          "empty": 0,
+          "candidates": 3413
+        },
+        "expanded_alignment": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 652,
+          "errors": 14,
+          "oracle_edits": 6,
+          "trials": 100,
+          "empty": 0,
+          "candidates": 3413
+        }
+      }
+    },
+    "sessions": {
+      "t15.2023.08.13": {
+        "original_path": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 230,
+          "errors": 16,
+          "oracle_edits": 14,
+          "trials": 35,
+          "empty": 0,
+          "candidates": 750
+        },
+        "original_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 230,
+          "errors": 17,
+          "oracle_edits": 14,
+          "trials": 35,
+          "empty": 0,
+          "candidates": 750
+        },
+        "expanded_path": {
+          "substitutions": 20,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 230,
+          "errors": 22,
+          "oracle_edits": 13,
+          "trials": 35,
+          "empty": 0,
+          "candidates": 1250
+        },
+        "expanded_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 230,
+          "errors": 17,
+          "oracle_edits": 13,
+          "trials": 35,
+          "empty": 0,
+          "candidates": 1250
+        }
+      },
+      "t15.2023.08.18": {
+        "original_path": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 277,
+          "errors": 19,
+          "oracle_edits": 13,
+          "trials": 49,
+          "empty": 0,
+          "candidates": 1017
+        },
+        "original_alignment": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 277,
+          "errors": 19,
+          "oracle_edits": 13,
+          "trials": 49,
+          "empty": 0,
+          "candidates": 1017
+        },
+        "expanded_path": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 277,
+          "errors": 22,
+          "oracle_edits": 13,
+          "trials": 49,
+          "empty": 0,
+          "candidates": 1780
+        },
+        "expanded_alignment": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 277,
+          "errors": 19,
+          "oracle_edits": 13,
+          "trials": 49,
+          "empty": 0,
+          "candidates": 1780
+        }
+      },
+      "t15.2023.08.20": {
+        "original_path": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 292,
+          "errors": 21,
+          "oracle_edits": 14,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 918
+        },
+        "original_alignment": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 292,
+          "errors": 17,
+          "oracle_edits": 14,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 918
+        },
+        "expanded_path": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 292,
+          "errors": 18,
+          "oracle_edits": 13,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1758
+        },
+        "expanded_alignment": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 292,
+          "errors": 17,
+          "oracle_edits": 13,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1758
+        }
+      },
+      "t15.2023.08.25": {
+        "original_path": {
+          "substitutions": 13,
+          "deletions": 3,
+          "insertions": 0,
+          "reference_length": 159,
+          "errors": 16,
+          "oracle_edits": 8,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 496
+        },
+        "original_alignment": {
+          "substitutions": 11,
+          "deletions": 2,
+          "insertions": 1,
+          "reference_length": 159,
+          "errors": 14,
+          "oracle_edits": 8,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 496
+        },
+        "expanded_path": {
+          "substitutions": 14,
+          "deletions": 3,
+          "insertions": 0,
+          "reference_length": 159,
+          "errors": 17,
+          "oracle_edits": 6,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 936
+        },
+        "expanded_alignment": {
+          "substitutions": 10,
+          "deletions": 2,
+          "insertions": 1,
+          "reference_length": 159,
+          "errors": 13,
+          "oracle_edits": 6,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 936
+        }
+      },
+      "t15.2023.09.01": {
+        "original_path": {
+          "substitutions": 6,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 146,
+          "errors": 8,
+          "oracle_edits": 4,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 526
+        },
+        "original_alignment": {
+          "substitutions": 4,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 146,
+          "errors": 6,
+          "oracle_edits": 4,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 526
+        },
+        "expanded_path": {
+          "substitutions": 7,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 146,
+          "errors": 9,
+          "oracle_edits": 4,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 890
+        },
+        "expanded_alignment": {
+          "substitutions": 4,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 146,
+          "errors": 6,
+          "oracle_edits": 4,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 890
+        }
+      },
+      "t15.2023.09.03": {
+        "original_path": {
+          "substitutions": 16,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 139,
+          "errors": 19,
+          "oracle_edits": 14,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 537
+        },
+        "original_alignment": {
+          "substitutions": 16,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 139,
+          "errors": 19,
+          "oracle_edits": 14,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 537
+        },
+        "expanded_path": {
+          "substitutions": 17,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 139,
+          "errors": 20,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 809
+        },
+        "expanded_alignment": {
+          "substitutions": 15,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 139,
+          "errors": 18,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 809
+        }
+      },
+      "t15.2023.09.24": {
+        "original_path": {
+          "substitutions": 5,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 56,
+          "errors": 8,
+          "oracle_edits": 5,
+          "trials": 10,
+          "empty": 0,
+          "candidates": 188
+        },
+        "original_alignment": {
+          "substitutions": 5,
+          "deletions": 1,
+          "insertions": 3,
+          "reference_length": 56,
+          "errors": 9,
+          "oracle_edits": 5,
+          "trials": 10,
+          "empty": 0,
+          "candidates": 188
+        },
+        "expanded_path": {
+          "substitutions": 5,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 56,
+          "errors": 8,
+          "oracle_edits": 5,
+          "trials": 10,
+          "empty": 0,
+          "candidates": 367
+        },
+        "expanded_alignment": {
+          "substitutions": 5,
+          "deletions": 1,
+          "insertions": 3,
+          "reference_length": 56,
+          "errors": 9,
+          "oracle_edits": 5,
+          "trials": 10,
+          "empty": 0,
+          "candidates": 367
+        }
+      },
+      "t15.2023.09.29": {
+        "original_path": {
+          "substitutions": 12,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 139,
+          "errors": 15,
+          "oracle_edits": 10,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 445
+        },
+        "original_alignment": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 139,
+          "errors": 14,
+          "oracle_edits": 10,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 445
+        },
+        "expanded_path": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 139,
+          "errors": 13,
+          "oracle_edits": 9,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 745
+        },
+        "expanded_alignment": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 139,
+          "errors": 13,
+          "oracle_edits": 9,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 745
+        }
+      },
+      "t15.2023.10.01": {
+        "original_path": {
+          "substitutions": 47,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 313,
+          "errors": 51,
+          "oracle_edits": 43,
+          "trials": 44,
+          "empty": 0,
+          "candidates": 992
+        },
+        "original_alignment": {
+          "substitutions": 46,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 313,
+          "errors": 49,
+          "oracle_edits": 43,
+          "trials": 44,
+          "empty": 0,
+          "candidates": 992
+        },
+        "expanded_path": {
+          "substitutions": 48,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 313,
+          "errors": 52,
+          "oracle_edits": 42,
+          "trials": 44,
+          "empty": 0,
+          "candidates": 1512
+        },
+        "expanded_alignment": {
+          "substitutions": 45,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 313,
+          "errors": 48,
+          "oracle_edits": 42,
+          "trials": 44,
+          "empty": 0,
+          "candidates": 1512
+        }
+      },
+      "t15.2023.10.06": {
+        "original_path": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 222,
+          "errors": 16,
+          "oracle_edits": 13,
+          "trials": 36,
+          "empty": 0,
+          "candidates": 718
+        },
+        "original_alignment": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 222,
+          "errors": 16,
+          "oracle_edits": 13,
+          "trials": 36,
+          "empty": 0,
+          "candidates": 718
+        },
+        "expanded_path": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 222,
+          "errors": 22,
+          "oracle_edits": 11,
+          "trials": 36,
+          "empty": 0,
+          "candidates": 1316
+        },
+        "expanded_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 222,
+          "errors": 15,
+          "oracle_edits": 11,
+          "trials": 36,
+          "empty": 0,
+          "candidates": 1316
+        }
+      },
+      "t15.2023.10.08": {
+        "original_path": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 63,
+          "errors": 15,
+          "oracle_edits": 13,
+          "trials": 7,
+          "empty": 0,
+          "candidates": 174
+        },
+        "original_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 63,
+          "errors": 14,
+          "oracle_edits": 13,
+          "trials": 7,
+          "empty": 0,
+          "candidates": 174
+        },
+        "expanded_path": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 63,
+          "errors": 15,
+          "oracle_edits": 13,
+          "trials": 7,
+          "empty": 0,
+          "candidates": 244
+        },
+        "expanded_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 63,
+          "errors": 14,
+          "oracle_edits": 13,
+          "trials": 7,
+          "empty": 0,
+          "candidates": 244
+        }
+      },
+      "t15.2023.10.13": {
+        "original_path": {
+          "substitutions": 54,
+          "deletions": 0,
+          "insertions": 5,
+          "reference_length": 101,
+          "errors": 59,
+          "oracle_edits": 46,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 500
+        },
+        "original_alignment": {
+          "substitutions": 54,
+          "deletions": 0,
+          "insertions": 5,
+          "reference_length": 101,
+          "errors": 59,
+          "oracle_edits": 46,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 500
+        },
+        "expanded_path": {
+          "substitutions": 54,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 101,
+          "errors": 58,
+          "oracle_edits": 45,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 657
+        },
+        "expanded_alignment": {
+          "substitutions": 53,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 101,
+          "errors": 57,
+          "oracle_edits": 45,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 657
+        }
+      },
+      "t15.2023.10.15": {
+        "original_path": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 176,
+          "errors": 37,
+          "oracle_edits": 36,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 437
+        },
+        "original_alignment": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 176,
+          "errors": 37,
+          "oracle_edits": 36,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 437
+        },
+        "expanded_path": {
+          "substitutions": 37,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 176,
+          "errors": 39,
+          "oracle_edits": 33,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 647
+        },
+        "expanded_alignment": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 176,
+          "errors": 37,
+          "oracle_edits": 33,
+          "trials": 20,
+          "empty": 0,
+          "candidates": 647
+        }
+      },
+      "t15.2023.10.22": {
+        "original_path": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 125,
+          "errors": 11,
+          "oracle_edits": 5,
+          "trials": 22,
+          "empty": 0,
+          "candidates": 456
+        },
+        "original_alignment": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 125,
+          "errors": 11,
+          "oracle_edits": 5,
+          "trials": 22,
+          "empty": 0,
+          "candidates": 456
+        },
+        "expanded_path": {
+          "substitutions": 13,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 125,
+          "errors": 13,
+          "oracle_edits": 5,
+          "trials": 22,
+          "empty": 0,
+          "candidates": 830
+        },
+        "expanded_alignment": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 125,
+          "errors": 11,
+          "oracle_edits": 5,
+          "trials": 22,
+          "empty": 0,
+          "candidates": 830
+        }
+      },
+      "t15.2023.11.03": {
+        "original_path": {
+          "substitutions": 68,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 69,
+          "oracle_edits": 60,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 624
+        },
+        "original_alignment": {
+          "substitutions": 66,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 67,
+          "oracle_edits": 60,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 624
+        },
+        "expanded_path": {
+          "substitutions": 73,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 201,
+          "errors": 74,
+          "oracle_edits": 58,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 1060
+        },
+        "expanded_alignment": {
+          "substitutions": 65,
+          "deletions": 1,
+          "insertions": 0,
+          "reference_length": 201,
+          "errors": 66,
+          "oracle_edits": 58,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 1060
+        }
+      },
+      "t15.2023.11.04": {
+        "original_path": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 80,
+          "errors": 0,
+          "oracle_edits": 0,
+          "trials": 15,
+          "empty": 0,
+          "candidates": 170
+        },
+        "original_alignment": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 80,
+          "errors": 0,
+          "oracle_edits": 0,
+          "trials": 15,
+          "empty": 0,
+          "candidates": 170
+        },
+        "expanded_path": {
+          "substitutions": 1,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 80,
+          "errors": 1,
+          "oracle_edits": 0,
+          "trials": 15,
+          "empty": 0,
+          "candidates": 437
+        },
+        "expanded_alignment": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 80,
+          "errors": 0,
+          "oracle_edits": 0,
+          "trials": 15,
+          "empty": 0,
+          "candidates": 437
+        }
+      },
+      "t15.2023.11.26": {
+        "original_path": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 99,
+          "errors": 23,
+          "oracle_edits": 11,
+          "trials": 19,
+          "empty": 0,
+          "candidates": 475
+        },
+        "original_alignment": {
+          "substitutions": 22,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 99,
+          "errors": 24,
+          "oracle_edits": 11,
+          "trials": 19,
+          "empty": 0,
+          "candidates": 475
+        },
+        "expanded_path": {
+          "substitutions": 20,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 99,
+          "errors": 23,
+          "oracle_edits": 11,
+          "trials": 19,
+          "empty": 0,
+          "candidates": 757
+        },
+        "expanded_alignment": {
+          "substitutions": 22,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 99,
+          "errors": 24,
+          "oracle_edits": 11,
+          "trials": 19,
+          "empty": 0,
+          "candidates": 757
+        }
+      },
+      "t15.2023.12.03": {
+        "original_path": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 212,
+          "errors": 16,
+          "oracle_edits": 12,
+          "trials": 34,
+          "empty": 0,
+          "candidates": 677
+        },
+        "original_alignment": {
+          "substitutions": 13,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 212,
+          "errors": 15,
+          "oracle_edits": 12,
+          "trials": 34,
+          "empty": 0,
+          "candidates": 677
+        },
+        "expanded_path": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 212,
+          "errors": 17,
+          "oracle_edits": 12,
+          "trials": 34,
+          "empty": 0,
+          "candidates": 1268
+        },
+        "expanded_alignment": {
+          "substitutions": 13,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 212,
+          "errors": 15,
+          "oracle_edits": 12,
+          "trials": 34,
+          "empty": 0,
+          "candidates": 1268
+        }
+      },
+      "t15.2023.12.08": {
+        "original_path": {
+          "substitutions": 8,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 333,
+          "errors": 12,
+          "oracle_edits": 4,
+          "trials": 50,
+          "empty": 0,
+          "candidates": 910
+        },
+        "original_alignment": {
+          "substitutions": 8,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 333,
+          "errors": 12,
+          "oracle_edits": 4,
+          "trials": 50,
+          "empty": 0,
+          "candidates": 910
+        },
+        "expanded_path": {
+          "substitutions": 9,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 333,
+          "errors": 13,
+          "oracle_edits": 3,
+          "trials": 50,
+          "empty": 0,
+          "candidates": 1732
+        },
+        "expanded_alignment": {
+          "substitutions": 7,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 333,
+          "errors": 11,
+          "oracle_edits": 3,
+          "trials": 50,
+          "empty": 0,
+          "candidates": 1732
+        }
+      },
+      "t15.2023.12.10": {
+        "original_path": {
+          "substitutions": 1,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 168,
+          "errors": 1,
+          "oracle_edits": 1,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 435
+        },
+        "original_alignment": {
+          "substitutions": 1,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 168,
+          "errors": 1,
+          "oracle_edits": 1,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 435
+        },
+        "expanded_path": {
+          "substitutions": 4,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 168,
+          "errors": 4,
+          "oracle_edits": 1,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 864
+        },
+        "expanded_alignment": {
+          "substitutions": 1,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 168,
+          "errors": 1,
+          "oracle_edits": 1,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 864
+        }
+      },
+      "t15.2023.12.29": {
+        "original_path": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 145,
+          "errors": 20,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 546
+        },
+        "original_alignment": {
+          "substitutions": 17,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 145,
+          "errors": 19,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 546
+        },
+        "expanded_path": {
+          "substitutions": 19,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 145,
+          "errors": 21,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 984
+        },
+        "expanded_alignment": {
+          "substitutions": 17,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 145,
+          "errors": 19,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 984
+        }
+      },
+      "t15.2024.02.25": {
+        "original_path": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 164,
+          "errors": 12,
+          "oracle_edits": 9,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 478
+        },
+        "original_alignment": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 164,
+          "errors": 12,
+          "oracle_edits": 9,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 478
+        },
+        "expanded_path": {
+          "substitutions": 15,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 164,
+          "errors": 16,
+          "oracle_edits": 8,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 855
+        },
+        "expanded_alignment": {
+          "substitutions": 10,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 164,
+          "errors": 12,
+          "oracle_edits": 8,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 855
+        }
+      },
+      "t15.2024.03.08": {
+        "original_path": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 161,
+          "errors": 37,
+          "oracle_edits": 35,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 551
+        },
+        "original_alignment": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 161,
+          "errors": 36,
+          "oracle_edits": 35,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 551
+        },
+        "expanded_path": {
+          "substitutions": 36,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 161,
+          "errors": 39,
+          "oracle_edits": 35,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 888
+        },
+        "expanded_alignment": {
+          "substitutions": 34,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 161,
+          "errors": 36,
+          "oracle_edits": 35,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 888
+        }
+      },
+      "t15.2024.03.15": {
+        "original_path": {
+          "substitutions": 76,
+          "deletions": 4,
+          "insertions": 4,
+          "reference_length": 362,
+          "errors": 84,
+          "oracle_edits": 69,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1054
+        },
+        "original_alignment": {
+          "substitutions": 76,
+          "deletions": 5,
+          "insertions": 3,
+          "reference_length": 362,
+          "errors": 84,
+          "oracle_edits": 69,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1054
+        },
+        "expanded_path": {
+          "substitutions": 77,
+          "deletions": 4,
+          "insertions": 1,
+          "reference_length": 362,
+          "errors": 82,
+          "oracle_edits": 66,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1789
+        },
+        "expanded_alignment": {
+          "substitutions": 76,
+          "deletions": 5,
+          "insertions": 3,
+          "reference_length": 362,
+          "errors": 84,
+          "oracle_edits": 66,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1789
+        }
+      },
+      "t15.2024.03.17": {
+        "original_path": {
+          "substitutions": 18,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 176,
+          "errors": 20,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 337
+        },
+        "original_alignment": {
+          "substitutions": 14,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 176,
+          "errors": 17,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 337
+        },
+        "expanded_path": {
+          "substitutions": 24,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 176,
+          "errors": 26,
+          "oracle_edits": 12,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 795
+        },
+        "expanded_alignment": {
+          "substitutions": 16,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 176,
+          "errors": 19,
+          "oracle_edits": 12,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 795
+        }
+      },
+      "t15.2024.05.10": {
+        "original_path": {
+          "substitutions": 17,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 156,
+          "errors": 20,
+          "oracle_edits": 11,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 461
+        },
+        "original_alignment": {
+          "substitutions": 13,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 156,
+          "errors": 15,
+          "oracle_edits": 11,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 461
+        },
+        "expanded_path": {
+          "substitutions": 16,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 156,
+          "errors": 18,
+          "oracle_edits": 8,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 839
+        },
+        "expanded_alignment": {
+          "substitutions": 11,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 156,
+          "errors": 12,
+          "oracle_edits": 8,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 839
+        }
+      },
+      "t15.2024.06.14": {
+        "original_path": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 151,
+          "errors": 21,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 535
+        },
+        "original_alignment": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 151,
+          "errors": 21,
+          "oracle_edits": 13,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 535
+        },
+        "expanded_path": {
+          "substitutions": 23,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 151,
+          "errors": 23,
+          "oracle_edits": 12,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 973
+        },
+        "expanded_alignment": {
+          "substitutions": 20,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 151,
+          "errors": 20,
+          "oracle_edits": 12,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 973
+        }
+      },
+      "t15.2024.07.19": {
+        "original_path": {
+          "substitutions": 56,
+          "deletions": 3,
+          "insertions": 7,
+          "reference_length": 350,
+          "errors": 66,
+          "oracle_edits": 54,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1121
+        },
+        "original_alignment": {
+          "substitutions": 55,
+          "deletions": 3,
+          "insertions": 7,
+          "reference_length": 350,
+          "errors": 65,
+          "oracle_edits": 54,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1121
+        },
+        "expanded_path": {
+          "substitutions": 61,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 350,
+          "errors": 65,
+          "oracle_edits": 52,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1866
+        },
+        "expanded_alignment": {
+          "substitutions": 55,
+          "deletions": 2,
+          "insertions": 7,
+          "reference_length": 350,
+          "errors": 64,
+          "oracle_edits": 52,
+          "trials": 48,
+          "empty": 0,
+          "candidates": 1866
+        }
+      },
+      "t15.2024.07.21": {
+        "original_path": {
+          "substitutions": 1,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 165,
+          "errors": 1,
+          "oracle_edits": 0,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 380
+        },
+        "original_alignment": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 165,
+          "errors": 0,
+          "oracle_edits": 0,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 380
+        },
+        "expanded_path": {
+          "substitutions": 6,
+          "deletions": 0,
+          "insertions": 1,
+          "reference_length": 165,
+          "errors": 7,
+          "oracle_edits": 0,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 782
+        },
+        "expanded_alignment": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 165,
+          "errors": 0,
+          "oracle_edits": 0,
+          "trials": 23,
+          "empty": 0,
+          "candidates": 782
+        }
+      },
+      "t15.2025.01.12": {
+        "original_path": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 298,
+          "errors": 24,
+          "oracle_edits": 15,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 640
+        },
+        "original_alignment": {
+          "substitutions": 21,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 298,
+          "errors": 24,
+          "oracle_edits": 15,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 640
+        },
+        "expanded_path": {
+          "substitutions": 29,
+          "deletions": 1,
+          "insertions": 2,
+          "reference_length": 298,
+          "errors": 32,
+          "oracle_edits": 13,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1476
+        },
+        "expanded_alignment": {
+          "substitutions": 20,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 298,
+          "errors": 23,
+          "oracle_edits": 13,
+          "trials": 47,
+          "empty": 0,
+          "candidates": 1476
+        }
+      },
+      "t15.2025.03.16": {
+        "original_path": {
+          "substitutions": 20,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 172,
+          "errors": 23,
+          "oracle_edits": 12,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 381
+        },
+        "original_alignment": {
+          "substitutions": 17,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 172,
+          "errors": 20,
+          "oracle_edits": 12,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 381
+        },
+        "expanded_path": {
+          "substitutions": 26,
+          "deletions": 0,
+          "insertions": 2,
+          "reference_length": 172,
+          "errors": 28,
+          "oracle_edits": 12,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 736
+        },
+        "expanded_alignment": {
+          "substitutions": 19,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 172,
+          "errors": 22,
+          "oracle_edits": 12,
+          "trials": 24,
+          "empty": 0,
+          "candidates": 736
+        }
+      },
+      "t15.2025.03.30": {
+        "original_path": {
+          "substitutions": 2,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 43,
+          "errors": 2,
+          "oracle_edits": 0,
+          "trials": 6,
+          "empty": 0,
+          "candidates": 140
+        },
+        "original_alignment": {
+          "substitutions": 2,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 43,
+          "errors": 2,
+          "oracle_edits": 0,
+          "trials": 6,
+          "empty": 0,
+          "candidates": 140
+        },
+        "expanded_path": {
+          "substitutions": 2,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 43,
+          "errors": 2,
+          "oracle_edits": 0,
+          "trials": 6,
+          "empty": 0,
+          "candidates": 225
+        },
+        "expanded_alignment": {
+          "substitutions": 2,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 43,
+          "errors": 2,
+          "oracle_edits": 0,
+          "trials": 6,
+          "empty": 0,
+          "candidates": 225
+        }
+      },
+      "t15.2025.04.13": {
+        "original_path": {
+          "substitutions": 37,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 159,
+          "errors": 40,
+          "oracle_edits": 33,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 576
+        },
+        "original_alignment": {
+          "substitutions": 36,
+          "deletions": 0,
+          "insertions": 4,
+          "reference_length": 159,
+          "errors": 40,
+          "oracle_edits": 33,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 576
+        },
+        "expanded_path": {
+          "substitutions": 38,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 159,
+          "errors": 41,
+          "oracle_edits": 33,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 857
+        },
+        "expanded_alignment": {
+          "substitutions": 37,
+          "deletions": 0,
+          "insertions": 3,
+          "reference_length": 159,
+          "errors": 40,
+          "oracle_edits": 33,
+          "trials": 25,
+          "empty": 0,
+          "candidates": 857
+        }
+      }
+    },
+    "score_work": {
+      "reused_likelihoods": 18645,
+      "new_likelihoods": 14279,
+      "new_tokens": 120533
+    }
+  },
+  "deployment": {
+    "status": "complete",
+    "timing": {
+      "expanded_alignment": {
+        "requests": 72,
+        "p": {
+          "p50": 0.1295944405719638,
+          "p90": 0.26508852834813296,
+          "p95": 0.3088200466707349,
+          "p99": 0.3773682089848457,
+          "max": 0.5227840882726014
+        },
+        "rtf": {
+          "p50": 0.007962513853030984,
+          "p90": 0.012439994544825684,
+          "p95": 0.013418560465289614,
+          "p99": 0.023372432655521233,
+          "max": 0.044990024808313364
+        },
+        "pooled_rtf": 0.008461290237010586,
+        "requests_per_second": 6.356610742027522,
+        "length_edges_s": [
+          13.705,
+          17.61,
+          21.495
+        ],
+        "length_quartiles": [
+          {
+            "p50": 0.08687393693253398,
+            "p90": 0.14073302126489584,
+            "p95": 0.2413396148476745,
+            "p99": 0.46649519358761554,
+            "max": 0.5227840882726014
+          },
+          {
+            "p50": 0.14526789262890816,
+            "p90": 0.19000322953797877,
+            "p95": 0.19110690883826464,
+            "p99": 0.19147872680332512,
+            "max": 0.19157168129459023
+          },
+          {
+            "p50": 0.21605778252705932,
+            "p90": 0.254404468415305,
+            "p95": 0.26396969410125165,
+            "p99": 0.264984103818424,
+            "max": 0.26523770624771714
+          },
+          {
+            "p50": 0.1502319083083421,
+            "p90": 0.3157068538479507,
+            "p95": 0.31609150264412167,
+            "p99": 0.3175966930761933,
+            "max": 0.31797299068421125
+          }
+        ],
+        "empty": 0,
+        "replay_differences": 0
+      },
+      "original_alignment": {
+        "requests": 72,
+        "p": {
+          "p50": 0.11820216034539044,
+          "p90": 0.2590205026790499,
+          "p95": 0.26729572885669767,
+          "p99": 0.3708138969866577,
+          "max": 0.5724277882836759
+        },
+        "rtf": {
+          "p50": 0.006286081474123004,
+          "p90": 0.011547519789797905,
+          "p95": 0.013183590114244546,
+          "p99": 0.022255467225104773,
+          "max": 0.02267938939317258
+        },
+        "pooled_rtf": 0.0075168742494117185,
+        "requests_per_second": 7.155251854346691,
+        "length_edges_s": [
+          13.705,
+          17.61,
+          21.495
+        ],
+        "length_quartiles": [
+          {
+            "p50": 0.07210867083631456,
+            "p90": 0.13059944170527163,
+            "p95": 0.1686967719579115,
+            "p99": 0.20121163830626748,
+            "max": 0.20934035489335656
+          },
+          {
+            "p50": 0.12914526765234768,
+            "p90": 0.18828175812959672,
+            "p95": 0.19391316371038553,
+            "p99": 0.21457925030961628,
+            "max": 0.21974577195942402
+          },
+          {
+            "p50": 0.16729561355896294,
+            "p90": 0.22442675423808395,
+            "p95": 0.22700148134026676,
+            "p99": 0.2273787108482793,
+            "max": 0.22747301822528243
+          },
+          {
+            "p50": 0.1400774430949241,
+            "p90": 0.2777796735521406,
+            "p95": 0.3310590451816093,
+            "p99": 0.5241540396632622,
+            "max": 0.5724277882836759
+          }
+        ],
+        "empty": 0,
+        "replay_differences": 0
+      }
+    },
+    "cold_s": 81.35389594594017,
+    "gpu": "NVIDIA A100 80GB PCIe",
+    "precision": "BF16 LM, FP32 encoder, FP64 CTC",
+    "scope": "cold model setup separately, warm offline HDF5-to-final-text requests"
+  },
+  "score_run_resources": {
+    "elapsed_seconds": 63.36208203434944,
+    "allocated_cpus": 4,
+    "host_ceiling_bytes": 12582912000,
+    "peak_accounted_host_bytes": 2886676480,
+    "peak_cgroup_bytes": 2904174592,
+    "peak_tree_rss_bytes": 1654411264,
+    "peak_tree_pss_bytes": 1645833216,
+    "peak_cuda_allocated_bytes": 262618112,
+    "peak_cuda_reserved_bytes": 532676608,
+    "peak_device_used_bytes": 1074593792,
+    "method": "job cgroup memory charge including page cache",
+    "cpu": {
+      "cpu_scope": "job cgroup",
+      "cpu_user_core_seconds": 31.868309,
+      "cpu_system_core_seconds": 10.39832,
+      "cpu_busy_cores_sample": 0.5776847558717287,
+      "cpu_busy_cores_average": 0.6679690913246469,
+      "cpu_utilization_of_allocation": 0.14442118896793218,
+      "cpu_average_utilization_of_allocation": 0.16699227283116172
+    },
+    "gpu": "NVIDIA A100 80GB PCIe"
+  },
+  "deployment_resources": {
+    "elapsed_seconds": 118.66443029372022,
+    "allocated_cpus": 4,
+    "host_ceiling_bytes": 12582912000,
+    "peak_accounted_host_bytes": 3308498944,
+    "peak_cgroup_bytes": 3325874176,
+    "peak_tree_rss_bytes": 1829330944,
+    "peak_tree_pss_bytes": 1803360256,
+    "peak_cuda_allocated_bytes": 537259520,
+    "peak_cuda_reserved_bytes": 1019215872,
+    "peak_device_used_bytes": 1563230208,
+    "method": "job cgroup memory charge including page cache",
+    "cpu": {
+      "cpu_scope": "job cgroup",
+      "cpu_user_core_seconds": 31.063595,
+      "cpu_system_core_seconds": 12.097263,
+      "cpu_busy_cores_sample": 0.45830199781330017,
+      "cpu_busy_cores_average": 0.3639983700976448,
+      "cpu_utilization_of_allocation": 0.11457549945332504,
+      "cpu_average_utilization_of_allocation": 0.0909995925244112
+    },
+    "gpu": "NVIDIA A100 80GB PCIe"
+  },
+  "run_provenance": {
+    "hashes": {
+      "registration": "a2304a6321890c8146bdd53ec94f7d5f8d7384d326db1599fec4f517c689be64",
+      "proposals": "cca3b738fc4983fdd3048b50977de2d55723496dee3accb8ff6ff30b50e7e20b",
+      "source": "327e898cdebf609a494834e41f4550acd8713294cbfe6dfbd209d5dbd5213d57",
+      "old_scores": "890dd6f79603701e20e25126ba7652fa520076aa4ccf0b85e2a0973472e916d1",
+      "proposal_config": "ccd1a6573cd88e437ee97a9ef1b9d912a86af3b9ee6ccb5f4d0e1c1501ed3960",
+      "arpa": "9729d4a5e3a8c4e14a54989482e786653964cb9e1b6e18411111601c6ec565e8",
+      "lexicon": "ac619b89b6f9121ba6d97e0eaf0467a483f340c0fbfea0c69130f321279dddd8",
+      "unigrams": "cc5b0a3958469dfda15f415ba8c2780aa794785762dc810fcec8c67427befd76",
+      "experiment": "648b9713e16a0dcad899c31506d0b32bf8faf5c2ec8d96f2719dbafbf33b09af",
+      "emission_manifest": "9d670650c72316ebdc9c72cdfc9de6bcf0778feedf04663b4da10c014a5fe048"
+    },
+    "split_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf",
+    "scorer": "faf1c546210c9fbc662badd07e0e5c20de906f0d975c85383c48e222ffbb2918"
+  },
+  "hidden_test_export": {
+    "status": "complete",
+    "partition": "test",
+    "references_loaded": false,
+    "expected_trials": 1450,
+    "selected_rule": "expanded_alignment",
+    "submission_sha256": "746812ba2b8f0bf2a40ffff25626b43518270ee8f3629b3a8f6e992db80a4da4",
+    "saved_predictions": 1450,
+    "empty": 0
+  },
+  "export_resources": {
+    "elapsed_seconds": 281.9765049130656,
+    "allocated_cpus": 4,
+    "host_ceiling_bytes": 12582912000,
+    "peak_accounted_host_bytes": 4433944576,
+    "peak_cgroup_bytes": 4451266560,
+    "peak_tree_rss_bytes": 1871790080,
+    "peak_tree_pss_bytes": 1854006272,
+    "peak_cuda_allocated_bytes": 534779392,
+    "peak_cuda_reserved_bytes": 1314914304,
+    "peak_device_used_bytes": 1858928640,
+    "method": "job cgroup memory charge including page cache",
+    "cpu": {
+      "cpu_scope": "job cgroup",
+      "cpu_user_core_seconds": 313.016999,
+      "cpu_system_core_seconds": 43.42138,
+      "cpu_busy_cores_sample": 1.1401823081087057,
+      "cpu_busy_cores_average": 1.2646255578686059,
+      "cpu_utilization_of_allocation": 0.2850455770271764,
+      "cpu_average_utilization_of_allocation": 0.31615638946715147
+    },
+    "gpu": "NVIDIA A100 80GB PCIe"
+  },
+  "timing_provenance": {
+    "hashes": {
+      "code": "bfe60912a9a9b5a9411ed17037847aba3aed0b6881da0e40e044c5425d839e18",
+      "study": "fe4f85054e630ae43e3e2942074f08986fbf835f59f3486339fc846eb65d973f",
+      "word_search": "6676cddc47120fb5d463c606fbbe0728ed45deaedf4895db723d087a74b40034",
+      "lexicon": "ac619b89b6f9121ba6d97e0eaf0467a483f340c0fbfea0c69130f321279dddd8",
+      "arpa": "9729d4a5e3a8c4e14a54989482e786653964cb9e1b6e18411111601c6ec565e8",
+      "unigrams": "cc5b0a3958469dfda15f415ba8c2780aa794785762dc810fcec8c67427befd76",
+      "config": "21b169e246b1fc4d3aa9e60bbd3e0988b5bd2479a11a5b1e673b7edc0ecf35a5",
+      "registration": "a2304a6321890c8146bdd53ec94f7d5f8d7384d326db1599fec4f517c689be64"
+    },
+    "split_hash": "8b7bbaa899ab516c3a1bba6e21ceb58eaf07798ac2d7a591fa14a3ad0a48ffbf",
+    "encoder": "47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1"
+  },
+  "paired_block_intervals": {
+    "expanded_alignment_vs_original_alignment": {
+      "blocks": 43,
+      "delta_errors": -11,
+      "ci_95": [
+        -0.0038381800668886757,
+        0.0
+      ]
+    },
+    "expanded_alignment_vs_original_path": {
+      "blocks": 43,
+      "delta_errors": -38,
+      "ci_95": [
+        -0.00953258598901828,
+        -0.003394887915401256
+      ]
+    },
+    "expanded_path_vs_original_path": {
+      "blocks": 43,
+      "delta_errors": 58,
+      "ci_95": [
+        0.004625151045380281,
+        0.0145847009854192
+      ]
+    }
+  }
+}

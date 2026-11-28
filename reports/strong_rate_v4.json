@@ -1,0 +1,61 @@
+{
+  "job_id": 12625552,
+  "status": "complete",
+  "split": "dev_tune",
+  "checkpoint_updates": 2048,
+  "original_freeze": "db4bae4fbcd3783cbdd55b50bfb5569002db7eeef5ded7c51db54cc867fef9b8",
+  "counts": {
+    "gru80": {
+      "trials": 926,
+      "words": 6033,
+      "empty": 0,
+      "aligned_substitutions": 728,
+      "aligned_insertions": 72,
+      "aligned_deletions": 17,
+      "text": 833,
+      "aligned_text": 817,
+      "first": 986,
+      "oracle": 602
+    },
+    "gru40": {
+      "trials": 926,
+      "words": 6033,
+      "empty": 0,
+      "aligned_substitutions": 1026,
+      "aligned_insertions": 99,
+      "aligned_deletions": 91,
+      "text": 1264,
+      "aligned_text": 1216,
+      "first": 1415,
+      "oracle": 951
+    },
+    "two_rate": {
+      "trials": 926,
+      "words": 6033,
+      "empty": 0,
+      "aligned_substitutions": 1312,
+      "aligned_insertions": 135,
+      "aligned_deletions": 21,
+      "text": 1559,
+      "aligned_text": 1468,
+      "first": 1632,
+      "oracle": 1264
+    }
+  },
+  "counts_guide": {
+    "first": "beam-250 first choice",
+    "text": "retained acoustic path plus DistilGPT2",
+    "aligned_text": "CTC alignment sum plus DistilGPT2",
+    "oracle": "best returned beam candidate using its reference transcript"
+  },
+  "pilot": {
+    "pilot_seconds": 905.9105729861185,
+    "requests": 7056,
+    "forecast_s": 570.3033090342781,
+    "remaining_s": 4478.554576776922,
+    "admitted": true
+  },
+  "peak_cgroup_bytes": 2243080192,
+  "peak_torch_allocated_bytes": 271199744,
+  "gpu": "NVIDIA A100 80GB PCIe"
+}

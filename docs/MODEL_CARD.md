@@ -21,4 +21,12 @@ The alternative encoders have separate model contracts and checkpoints:
 
 Neither alternative changes the baseline token map or its stored cache. Both completed with worse exploratory report accuracy than their respective GRU controls; the [aggregate evidence](../reports/continuation.json) retains those results and their uncertainty. The [continuation registration](CONTINUATION.md) records their data access and run contracts.
 
-Use is limited to offline research on this one-participant release. There is no clinical or live-device integration and no claim of clinical reliability. Published test-set results belong to their external systems; v2's exploratory benchmark status follows from v1 report exposure.
+## Trained phone clocks and consumer replay
+
+The expanded word decoder keeps up to 25 native candidates and adds up to 25 word-edit proposals. Each proposal must be supported by the pronunciation lexicon and scored against the GRU phoneme evidence. The final rule sums the CTC alignment mass for a retained pronunciation and adds 1.25 times the pinned DistilGPT2 candidate log likelihood. The model receives complete candidate sentences. The resulting text is an utterance-final decision. [Word-decoder evidence](../reports/phone_robustness.md)
+
+The rate study adapts the top two GRU layers and phone head on official training trials. Its two-rate model keeps the 80 ms recurrent updates and uses a small head to produce an intervening emission from the previous recurrent state and the change in the newest feature bins. The separate convolutional student retains the frozen session transforms and learns on patches using CTC and training-only GRU distillation. These models have their own contracts and require the verified parent checkpoint to restore a saved delta. [Study design](RATE_STUDY_V4.md)
+
+The laptop experiment runs the official model on recorded T15 features, with a dynamic INT8 option for the GRU and output projection. Timestamped replay uses completed input bins and a supplied trial boundary. The experiments evaluate one participant's intracortical recordings. Live-device reliability, automatic end-of-utterance detection and open-vocabulary speech decoding from scalp EEG remain unverified. A separate four-command scalp EEG experiment reports its own accuracy. [Scalp EEG experiment](../reports/scalp_eeg.md)
+
+Published test scores describe their authors' systems. The v2 report is exploratory after v1 exposure, and v4 model comparisons use the development split.

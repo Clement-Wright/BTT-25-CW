@@ -1,0 +1,1530 @@
+{
+  "status": "complete",
+  "trials_written": 926,
+  "cold_models_lexicon_and_worker_s": 89.86686418578029,
+  "cached_evaluation_s": 188.111484691035,
+  "counts": {
+    "native": {
+      "trials": 926,
+      "word_errors": 1152,
+      "words": 6033,
+      "phone_errors": 3175,
+      "phones": 26680,
+      "oracle": 937,
+      "empty": 0,
+      "candidates": 32595,
+      "new_likelihoods": 15725,
+      "frames": 413353,
+      "insertions": 119,
+      "deletions": 14,
+      "substitutions": 1019
+    },
+    "merge_agree": {
+      "trials": 926,
+      "word_errors": 914,
+      "words": 6033,
+      "phone_errors": 3175,
+      "phones": 26680,
+      "oracle": 697,
+      "empty": 0,
+      "candidates": 33062,
+      "new_likelihoods": 13950,
+      "frames": 215795,
+      "insertions": 78,
+      "deletions": 23,
+      "substitutions": 813
+    }
+  },
+  "by_corpus": {
+    "Switchboard": {
+      "native": {
+        "trials": 715,
+        "word_errors": 786,
+        "words": 4569,
+        "phone_errors": 2305,
+        "phones": 19710,
+        "oracle": 629,
+        "empty": 0,
+        "candidates": 25118,
+        "new_likelihoods": 12459,
+        "frames": 297669,
+        "insertions": 84,
+        "deletions": 13,
+        "substitutions": 689
+      },
+      "merge_agree": {
+        "trials": 715,
+        "word_errors": 608,
+        "words": 4569,
+        "phone_errors": 2305,
+        "phones": 19710,
+        "oracle": 447,
+        "empty": 0,
+        "candidates": 25623,
+        "new_likelihoods": 10440,
+        "frames": 155549,
+        "insertions": 49,
+        "deletions": 23,
+        "substitutions": 536
+      }
+    },
+    "Openwebtext": {
+      "native": {
+        "trials": 47,
+        "word_errors": 152,
+        "words": 411,
+        "phone_errors": 363,
+        "phones": 2019,
+        "oracle": 136,
+        "empty": 0,
+        "candidates": 1405,
+        "new_likelihoods": 375,
+        "frames": 27114,
+        "insertions": 17,
+        "deletions": 1,
+        "substitutions": 134
+      },
+      "merge_agree": {
+        "trials": 47,
+        "word_errors": 112,
+        "words": 411,
+        "phone_errors": 363,
+        "phones": 2019,
+        "oracle": 103,
+        "empty": 0,
+        "candidates": 1498,
+        "new_likelihoods": 1033,
+        "frames": 14288,
+        "insertions": 14,
+        "deletions": 0,
+        "substitutions": 98
+      }
+    },
+    "Random": {
+      "native": {
+        "trials": 39,
+        "word_errors": 102,
+        "words": 200,
+        "phone_errors": 220,
+        "phones": 1242,
+        "oracle": 79,
+        "empty": 0,
+        "candidates": 1426,
+        "new_likelihoods": 481,
+        "frames": 20677,
+        "insertions": 15,
+        "deletions": 0,
+        "substitutions": 87
+      },
+      "merge_agree": {
+        "trials": 39,
+        "word_errors": 92,
+        "words": 200,
+        "phone_errors": 220,
+        "phones": 1242,
+        "oracle": 69,
+        "empty": 0,
+        "candidates": 1392,
+        "new_likelihoods": 769,
+        "frames": 10753,
+        "insertions": 9,
+        "deletions": 0,
+        "substitutions": 83
+      }
+    },
+    "Harvard": {
+      "native": {
+        "trials": 25,
+        "word_errors": 81,
+        "words": 201,
+        "phone_errors": 163,
+        "phones": 832,
+        "oracle": 71,
+        "empty": 0,
+        "candidates": 1017,
+        "new_likelihoods": 413,
+        "frames": 16819,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 81
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 85,
+        "words": 201,
+        "phone_errors": 163,
+        "phones": 832,
+        "oracle": 69,
+        "empty": 0,
+        "candidates": 1031,
+        "new_likelihoods": 551,
+        "frames": 8708,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 83
+      }
+    },
+    "Freq words": {
+      "native": {
+        "trials": 100,
+        "word_errors": 31,
+        "words": 652,
+        "phone_errors": 124,
+        "phones": 2877,
+        "oracle": 22,
+        "empty": 0,
+        "candidates": 3629,
+        "new_likelihoods": 1997,
+        "frames": 51074,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 28
+      },
+      "merge_agree": {
+        "trials": 100,
+        "word_errors": 17,
+        "words": 652,
+        "phone_errors": 124,
+        "phones": 2877,
+        "oracle": 9,
+        "empty": 0,
+        "candidates": 3518,
+        "new_likelihoods": 1157,
+        "frames": 26497,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 13
+      }
+    }
+  },
+  "by_session": {
+    "t15.2023.08.13": {
+      "native": {
+        "trials": 35,
+        "word_errors": 30,
+        "words": 230,
+        "phone_errors": 86,
+        "phones": 962,
+        "oracle": 23,
+        "empty": 0,
+        "candidates": 1151,
+        "new_likelihoods": 560,
+        "frames": 12444,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 27
+      },
+      "merge_agree": {
+        "trials": 35,
+        "word_errors": 24,
+        "words": 230,
+        "phone_errors": 86,
+        "phones": 962,
+        "oracle": 16,
+        "empty": 0,
+        "candidates": 1255,
+        "new_likelihoods": 529,
+        "frames": 6543,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 21
+      }
+    },
+    "t15.2023.08.18": {
+      "native": {
+        "trials": 49,
+        "word_errors": 37,
+        "words": 277,
+        "phone_errors": 88,
+        "phones": 1193,
+        "oracle": 27,
+        "empty": 0,
+        "candidates": 1762,
+        "new_likelihoods": 889,
+        "frames": 16876,
+        "insertions": 6,
+        "deletions": 0,
+        "substitutions": 31
+      },
+      "merge_agree": {
+        "trials": 49,
+        "word_errors": 23,
+        "words": 277,
+        "phone_errors": 88,
+        "phones": 1193,
+        "oracle": 14,
+        "empty": 0,
+        "candidates": 1805,
+        "new_likelihoods": 630,
+        "frames": 8828,
+        "insertions": 2,
+        "deletions": 1,
+        "substitutions": 20
+      }
+    },
+    "t15.2023.08.20": {
+      "native": {
+        "trials": 48,
+        "word_errors": 23,
+        "words": 292,
+        "phone_errors": 80,
+        "phones": 1259,
+        "oracle": 20,
+        "empty": 0,
+        "candidates": 1722,
+        "new_likelihoods": 966,
+        "frames": 17018,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 21
+      },
+      "merge_agree": {
+        "trials": 48,
+        "word_errors": 27,
+        "words": 292,
+        "phone_errors": 80,
+        "phones": 1259,
+        "oracle": 17,
+        "empty": 0,
+        "candidates": 1781,
+        "new_likelihoods": 649,
+        "frames": 8948,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 24
+      }
+    },
+    "t15.2023.08.25": {
+      "native": {
+        "trials": 25,
+        "word_errors": 18,
+        "words": 159,
+        "phone_errors": 64,
+        "phones": 664,
+        "oracle": 12,
+        "empty": 0,
+        "candidates": 955,
+        "new_likelihoods": 545,
+        "frames": 9296,
+        "insertions": 0,
+        "deletions": 2,
+        "substitutions": 16
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 17,
+        "words": 159,
+        "phone_errors": 64,
+        "phones": 664,
+        "oracle": 8,
+        "empty": 0,
+        "candidates": 987,
+        "new_likelihoods": 371,
+        "frames": 4864,
+        "insertions": 1,
+        "deletions": 2,
+        "substitutions": 14
+      }
+    },
+    "t15.2023.09.01": {
+      "native": {
+        "trials": 24,
+        "word_errors": 12,
+        "words": 146,
+        "phone_errors": 34,
+        "phones": 599,
+        "oracle": 10,
+        "empty": 0,
+        "candidates": 811,
+        "new_likelihoods": 437,
+        "frames": 8467,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 11
+      },
+      "merge_agree": {
+        "trials": 24,
+        "word_errors": 8,
+        "words": 146,
+        "phone_errors": 34,
+        "phones": 599,
+        "oracle": 6,
+        "empty": 0,
+        "candidates": 875,
+        "new_likelihoods": 361,
+        "frames": 4436,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 7
+      }
+    },
+    "t15.2023.09.03": {
+      "native": {
+        "trials": 25,
+        "word_errors": 23,
+        "words": 139,
+        "phone_errors": 95,
+        "phones": 640,
+        "oracle": 19,
+        "empty": 0,
+        "candidates": 874,
+        "new_likelihoods": 380,
+        "frames": 8957,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 19
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 26,
+        "words": 139,
+        "phone_errors": 95,
+        "phones": 640,
+        "oracle": 17,
+        "empty": 0,
+        "candidates": 865,
+        "new_likelihoods": 384,
+        "frames": 4699,
+        "insertions": 5,
+        "deletions": 1,
+        "substitutions": 20
+      }
+    },
+    "t15.2023.09.24": {
+      "native": {
+        "trials": 10,
+        "word_errors": 15,
+        "words": 56,
+        "phone_errors": 36,
+        "phones": 227,
+        "oracle": 13,
+        "empty": 0,
+        "candidates": 393,
+        "new_likelihoods": 168,
+        "frames": 3884,
+        "insertions": 4,
+        "deletions": 1,
+        "substitutions": 10
+      },
+      "merge_agree": {
+        "trials": 10,
+        "word_errors": 9,
+        "words": 56,
+        "phone_errors": 36,
+        "phones": 227,
+        "oracle": 6,
+        "empty": 0,
+        "candidates": 352,
+        "new_likelihoods": 141,
+        "frames": 2019,
+        "insertions": 1,
+        "deletions": 1,
+        "substitutions": 7
+      }
+    },
+    "t15.2023.09.29": {
+      "native": {
+        "trials": 25,
+        "word_errors": 21,
+        "words": 139,
+        "phone_errors": 56,
+        "phones": 622,
+        "oracle": 18,
+        "empty": 0,
+        "candidates": 670,
+        "new_likelihoods": 325,
+        "frames": 10096,
+        "insertions": 7,
+        "deletions": 0,
+        "substitutions": 14
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 14,
+        "words": 139,
+        "phone_errors": 56,
+        "phones": 622,
+        "oracle": 10,
+        "empty": 0,
+        "candidates": 744,
+        "new_likelihoods": 344,
+        "frames": 5281,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 10
+      }
+    },
+    "t15.2023.10.01": {
+      "native": {
+        "trials": 44,
+        "word_errors": 87,
+        "words": 313,
+        "phone_errors": 231,
+        "phones": 1514,
+        "oracle": 73,
+        "empty": 0,
+        "candidates": 1496,
+        "new_likelihoods": 591,
+        "frames": 19046,
+        "insertions": 10,
+        "deletions": 1,
+        "substitutions": 76
+      },
+      "merge_agree": {
+        "trials": 44,
+        "word_errors": 61,
+        "words": 313,
+        "phone_errors": 231,
+        "phones": 1514,
+        "oracle": 57,
+        "empty": 0,
+        "candidates": 1504,
+        "new_likelihoods": 792,
+        "frames": 10055,
+        "insertions": 6,
+        "deletions": 0,
+        "substitutions": 55
+      }
+    },
+    "t15.2023.10.06": {
+      "native": {
+        "trials": 36,
+        "word_errors": 37,
+        "words": 222,
+        "phone_errors": 82,
+        "phones": 929,
+        "oracle": 29,
+        "empty": 0,
+        "candidates": 1216,
+        "new_likelihoods": 664,
+        "frames": 14917,
+        "insertions": 5,
+        "deletions": 0,
+        "substitutions": 32
+      },
+      "merge_agree": {
+        "trials": 36,
+        "word_errors": 21,
+        "words": 222,
+        "phone_errors": 82,
+        "phones": 929,
+        "oracle": 16,
+        "empty": 0,
+        "candidates": 1342,
+        "new_likelihoods": 601,
+        "frames": 7789,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 19
+      }
+    },
+    "t15.2023.10.08": {
+      "native": {
+        "trials": 7,
+        "word_errors": 24,
+        "words": 63,
+        "phone_errors": 46,
+        "phones": 285,
+        "oracle": 23,
+        "empty": 0,
+        "candidates": 186,
+        "new_likelihoods": 25,
+        "frames": 3444,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 21
+      },
+      "merge_agree": {
+        "trials": 7,
+        "word_errors": 16,
+        "words": 63,
+        "phone_errors": 46,
+        "phones": 285,
+        "oracle": 15,
+        "empty": 0,
+        "candidates": 198,
+        "new_likelihoods": 173,
+        "frames": 1829,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 14
+      }
+    },
+    "t15.2023.10.13": {
+      "native": {
+        "trials": 20,
+        "word_errors": 70,
+        "words": 101,
+        "phone_errors": 167,
+        "phones": 669,
+        "oracle": 58,
+        "empty": 0,
+        "candidates": 627,
+        "new_likelihoods": 140,
+        "frames": 9921,
+        "insertions": 9,
+        "deletions": 0,
+        "substitutions": 61
+      },
+      "merge_agree": {
+        "trials": 20,
+        "word_errors": 62,
+        "words": 101,
+        "phone_errors": 167,
+        "phones": 669,
+        "oracle": 54,
+        "empty": 0,
+        "candidates": 633,
+        "new_likelihoods": 448,
+        "frames": 5183,
+        "insertions": 5,
+        "deletions": 0,
+        "substitutions": 57
+      }
+    },
+    "t15.2023.10.15": {
+      "native": {
+        "trials": 20,
+        "word_errors": 59,
+        "words": 176,
+        "phone_errors": 139,
+        "phones": 834,
+        "oracle": 55,
+        "empty": 0,
+        "candidates": 668,
+        "new_likelihoods": 259,
+        "frames": 13120,
+        "insertions": 6,
+        "deletions": 0,
+        "substitutions": 53
+      },
+      "merge_agree": {
+        "trials": 20,
+        "word_errors": 47,
+        "words": 176,
+        "phone_errors": 139,
+        "phones": 834,
+        "oracle": 42,
+        "empty": 0,
+        "candidates": 742,
+        "new_likelihoods": 436,
+        "frames": 6865,
+        "insertions": 7,
+        "deletions": 0,
+        "substitutions": 40
+      }
+    },
+    "t15.2023.10.22": {
+      "native": {
+        "trials": 22,
+        "word_errors": 15,
+        "words": 125,
+        "phone_errors": 43,
+        "phones": 536,
+        "oracle": 9,
+        "empty": 0,
+        "candidates": 801,
+        "new_likelihoods": 441,
+        "frames": 8258,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 15
+      },
+      "merge_agree": {
+        "trials": 22,
+        "word_errors": 11,
+        "words": 125,
+        "phone_errors": 43,
+        "phones": 536,
+        "oracle": 6,
+        "empty": 0,
+        "candidates": 847,
+        "new_likelihoods": 271,
+        "frames": 4292,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 10
+      }
+    },
+    "t15.2023.11.03": {
+      "native": {
+        "trials": 25,
+        "word_errors": 81,
+        "words": 201,
+        "phone_errors": 163,
+        "phones": 832,
+        "oracle": 71,
+        "empty": 0,
+        "candidates": 1017,
+        "new_likelihoods": 413,
+        "frames": 16819,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 81
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 85,
+        "words": 201,
+        "phone_errors": 163,
+        "phones": 832,
+        "oracle": 69,
+        "empty": 0,
+        "candidates": 1031,
+        "new_likelihoods": 551,
+        "frames": 8708,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 83
+      }
+    },
+    "t15.2023.11.04": {
+      "native": {
+        "trials": 15,
+        "word_errors": 1,
+        "words": 80,
+        "phone_errors": 6,
+        "phones": 293,
+        "oracle": 1,
+        "empty": 0,
+        "candidates": 521,
+        "new_likelihoods": 350,
+        "frames": 6047,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 1
+      },
+      "merge_agree": {
+        "trials": 15,
+        "word_errors": 1,
+        "words": 80,
+        "phone_errors": 6,
+        "phones": 293,
+        "oracle": 0,
+        "empty": 0,
+        "candidates": 466,
+        "new_likelihoods": 78,
+        "frames": 3113,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 1
+      }
+    },
+    "t15.2023.11.26": {
+      "native": {
+        "trials": 19,
+        "word_errors": 32,
+        "words": 99,
+        "phone_errors": 53,
+        "phones": 573,
+        "oracle": 21,
+        "empty": 0,
+        "candidates": 799,
+        "new_likelihoods": 341,
+        "frames": 10756,
+        "insertions": 6,
+        "deletions": 0,
+        "substitutions": 26
+      },
+      "merge_agree": {
+        "trials": 19,
+        "word_errors": 30,
+        "words": 99,
+        "phone_errors": 53,
+        "phones": 573,
+        "oracle": 15,
+        "empty": 0,
+        "candidates": 759,
+        "new_likelihoods": 321,
+        "frames": 5570,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 26
+      }
+    },
+    "t15.2023.12.03": {
+      "native": {
+        "trials": 34,
+        "word_errors": 26,
+        "words": 212,
+        "phone_errors": 65,
+        "phones": 952,
+        "oracle": 17,
+        "empty": 0,
+        "candidates": 1214,
+        "new_likelihoods": 637,
+        "frames": 15166,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 23
+      },
+      "merge_agree": {
+        "trials": 34,
+        "word_errors": 14,
+        "words": 212,
+        "phone_errors": 65,
+        "phones": 952,
+        "oracle": 8,
+        "empty": 0,
+        "candidates": 1259,
+        "new_likelihoods": 505,
+        "frames": 7884,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 12
+      }
+    },
+    "t15.2023.12.08": {
+      "native": {
+        "trials": 50,
+        "word_errors": 16,
+        "words": 333,
+        "phone_errors": 73,
+        "phones": 1502,
+        "oracle": 11,
+        "empty": 0,
+        "candidates": 1788,
+        "new_likelihoods": 946,
+        "frames": 25240,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 14
+      },
+      "merge_agree": {
+        "trials": 50,
+        "word_errors": 14,
+        "words": 333,
+        "phone_errors": 73,
+        "phones": 1502,
+        "oracle": 7,
+        "empty": 0,
+        "candidates": 1741,
+        "new_likelihoods": 613,
+        "frames": 13142,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 10
+      }
+    },
+    "t15.2023.12.10": {
+      "native": {
+        "trials": 25,
+        "word_errors": 8,
+        "words": 168,
+        "phone_errors": 31,
+        "phones": 761,
+        "oracle": 6,
+        "empty": 0,
+        "candidates": 929,
+        "new_likelihoods": 490,
+        "frames": 14136,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 7
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 2,
+        "words": 168,
+        "phone_errors": 31,
+        "phones": 761,
+        "oracle": 2,
+        "empty": 0,
+        "candidates": 936,
+        "new_likelihoods": 345,
+        "frames": 7320,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 2
+      }
+    },
+    "t15.2023.12.29": {
+      "native": {
+        "trials": 25,
+        "word_errors": 23,
+        "words": 145,
+        "phone_errors": 61,
+        "phones": 605,
+        "oracle": 18,
+        "empty": 0,
+        "candidates": 1011,
+        "new_likelihoods": 507,
+        "frames": 9545,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 22
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 21,
+        "words": 145,
+        "phone_errors": 61,
+        "phones": 605,
+        "oracle": 16,
+        "empty": 0,
+        "candidates": 1013,
+        "new_likelihoods": 340,
+        "frames": 4983,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 20
+      }
+    },
+    "t15.2024.02.25": {
+      "native": {
+        "trials": 23,
+        "word_errors": 23,
+        "words": 164,
+        "phone_errors": 52,
+        "phones": 712,
+        "oracle": 21,
+        "empty": 0,
+        "candidates": 845,
+        "new_likelihoods": 437,
+        "frames": 11077,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 21
+      },
+      "merge_agree": {
+        "trials": 23,
+        "word_errors": 14,
+        "words": 164,
+        "phone_errors": 52,
+        "phones": 712,
+        "oracle": 11,
+        "empty": 0,
+        "candidates": 860,
+        "new_likelihoods": 366,
+        "frames": 5799,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 12
+      }
+    },
+    "t15.2024.03.08": {
+      "native": {
+        "trials": 24,
+        "word_errors": 49,
+        "words": 161,
+        "phone_errors": 145,
+        "phones": 703,
+        "oracle": 44,
+        "empty": 0,
+        "candidates": 913,
+        "new_likelihoods": 415,
+        "frames": 10437,
+        "insertions": 4,
+        "deletions": 0,
+        "substitutions": 45
+      },
+      "merge_agree": {
+        "trials": 24,
+        "word_errors": 42,
+        "words": 161,
+        "phone_errors": 145,
+        "phones": 703,
+        "oracle": 36,
+        "empty": 0,
+        "candidates": 951,
+        "new_likelihoods": 435,
+        "frames": 5450,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 40
+      }
+    },
+    "t15.2024.03.15": {
+      "native": {
+        "trials": 48,
+        "word_errors": 95,
+        "words": 362,
+        "phone_errors": 283,
+        "phones": 1599,
+        "oracle": 80,
+        "empty": 0,
+        "candidates": 1825,
+        "new_likelihoods": 816,
+        "frames": 22842,
+        "insertions": 4,
+        "deletions": 6,
+        "substitutions": 85
+      },
+      "merge_agree": {
+        "trials": 48,
+        "word_errors": 99,
+        "words": 362,
+        "phone_errors": 283,
+        "phones": 1599,
+        "oracle": 80,
+        "empty": 0,
+        "candidates": 1785,
+        "new_likelihoods": 825,
+        "frames": 11975,
+        "insertions": 1,
+        "deletions": 10,
+        "substitutions": 88
+      }
+    },
+    "t15.2024.03.17": {
+      "native": {
+        "trials": 25,
+        "word_errors": 31,
+        "words": 176,
+        "phone_errors": 102,
+        "phones": 745,
+        "oracle": 22,
+        "empty": 0,
+        "candidates": 774,
+        "new_likelihoods": 392,
+        "frames": 10385,
+        "insertions": 3,
+        "deletions": 0,
+        "substitutions": 28
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 17,
+        "words": 176,
+        "phone_errors": 102,
+        "phones": 745,
+        "oracle": 12,
+        "empty": 0,
+        "candidates": 739,
+        "new_likelihoods": 235,
+        "frames": 5431,
+        "insertions": 3,
+        "deletions": 3,
+        "substitutions": 11
+      }
+    },
+    "t15.2024.05.10": {
+      "native": {
+        "trials": 25,
+        "word_errors": 22,
+        "words": 156,
+        "phone_errors": 83,
+        "phones": 673,
+        "oracle": 18,
+        "empty": 0,
+        "candidates": 834,
+        "new_likelihoods": 349,
+        "frames": 10205,
+        "insertions": 2,
+        "deletions": 0,
+        "substitutions": 20
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 16,
+        "words": 156,
+        "phone_errors": 83,
+        "phones": 673,
+        "oracle": 9,
+        "empty": 0,
+        "candidates": 785,
+        "new_likelihoods": 326,
+        "frames": 5344,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 15
+      }
+    },
+    "t15.2024.06.14": {
+      "native": {
+        "trials": 25,
+        "word_errors": 31,
+        "words": 151,
+        "phone_errors": 81,
+        "phones": 634,
+        "oracle": 21,
+        "empty": 0,
+        "candidates": 950,
+        "new_likelihoods": 454,
+        "frames": 10875,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 30
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 21,
+        "words": 151,
+        "phone_errors": 81,
+        "phones": 634,
+        "oracle": 16,
+        "empty": 0,
+        "candidates": 952,
+        "new_likelihoods": 370,
+        "frames": 5647,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 21
+      }
+    },
+    "t15.2024.07.19": {
+      "native": {
+        "trials": 48,
+        "word_errors": 85,
+        "words": 350,
+        "phone_errors": 263,
+        "phones": 1517,
+        "oracle": 71,
+        "empty": 0,
+        "candidates": 1719,
+        "new_likelihoods": 731,
+        "frames": 17603,
+        "insertions": 10,
+        "deletions": 1,
+        "substitutions": 74
+      },
+      "merge_agree": {
+        "trials": 48,
+        "word_errors": 69,
+        "words": 350,
+        "phone_errors": 263,
+        "phones": 1517,
+        "oracle": 54,
+        "empty": 0,
+        "candidates": 1814,
+        "new_likelihoods": 899,
+        "frames": 9300,
+        "insertions": 5,
+        "deletions": 2,
+        "substitutions": 62
+      }
+    },
+    "t15.2024.07.21": {
+      "native": {
+        "trials": 23,
+        "word_errors": 8,
+        "words": 165,
+        "phone_errors": 32,
+        "phones": 693,
+        "oracle": 8,
+        "empty": 0,
+        "candidates": 824,
+        "new_likelihoods": 463,
+        "frames": 11928,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 7
+      },
+      "merge_agree": {
+        "trials": 23,
+        "word_errors": 5,
+        "words": 165,
+        "phone_errors": 32,
+        "phones": 693,
+        "oracle": 3,
+        "empty": 0,
+        "candidates": 806,
+        "new_likelihoods": 288,
+        "frames": 6201,
+        "insertions": 1,
+        "deletions": 0,
+        "substitutions": 4
+      }
+    },
+    "t15.2025.01.12": {
+      "native": {
+        "trials": 47,
+        "word_errors": 43,
+        "words": 298,
+        "phone_errors": 139,
+        "phones": 1299,
+        "oracle": 33,
+        "empty": 0,
+        "candidates": 1466,
+        "new_likelihoods": 830,
+        "frames": 25585,
+        "insertions": 5,
+        "deletions": 1,
+        "substitutions": 37
+      },
+      "merge_agree": {
+        "trials": 47,
+        "word_errors": 30,
+        "words": 298,
+        "phone_errors": 139,
+        "phones": 1299,
+        "oracle": 24,
+        "empty": 0,
+        "candidates": 1412,
+        "new_likelihoods": 439,
+        "frames": 13236,
+        "insertions": 2,
+        "deletions": 1,
+        "substitutions": 27
+      }
+    },
+    "t15.2025.03.16": {
+      "native": {
+        "trials": 24,
+        "word_errors": 47,
+        "words": 172,
+        "phone_errors": 125,
+        "phones": 764,
+        "oracle": 36,
+        "empty": 0,
+        "candidates": 668,
+        "new_likelihoods": 281,
+        "frames": 14692,
+        "insertions": 8,
+        "deletions": 1,
+        "substitutions": 38
+      },
+      "merge_agree": {
+        "trials": 24,
+        "word_errors": 24,
+        "words": 172,
+        "phone_errors": 125,
+        "phones": 764,
+        "oracle": 15,
+        "empty": 0,
+        "candidates": 677,
+        "new_likelihoods": 311,
+        "frames": 7605,
+        "insertions": 1,
+        "deletions": 1,
+        "substitutions": 22
+      }
+    },
+    "t15.2025.03.30": {
+      "native": {
+        "trials": 6,
+        "word_errors": 3,
+        "words": 43,
+        "phone_errors": 10,
+        "phones": 189,
+        "oracle": 2,
+        "empty": 0,
+        "candidates": 257,
+        "new_likelihoods": 110,
+        "frames": 2750,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 3
+      },
+      "merge_agree": {
+        "trials": 6,
+        "word_errors": 1,
+        "words": 43,
+        "phone_errors": 10,
+        "phones": 189,
+        "oracle": 0,
+        "empty": 0,
+        "candidates": 219,
+        "new_likelihoods": 84,
+        "frames": 1448,
+        "insertions": 0,
+        "deletions": 0,
+        "substitutions": 1
+      }
+    },
+    "t15.2025.04.13": {
+      "native": {
+        "trials": 25,
+        "word_errors": 57,
+        "words": 159,
+        "phone_errors": 161,
+        "phones": 701,
+        "oracle": 47,
+        "empty": 0,
+        "candidates": 909,
+        "new_likelihoods": 373,
+        "frames": 11521,
+        "insertions": 6,
+        "deletions": 1,
+        "substitutions": 50
+      },
+      "merge_agree": {
+        "trials": 25,
+        "word_errors": 43,
+        "words": 159,
+        "phone_errors": 161,
+        "phones": 701,
+        "oracle": 36,
+        "empty": 0,
+        "candidates": 927,
+        "new_likelihoods": 489,
+        "frames": 6008,
+        "insertions": 4,
+        "deletions": 1,
+        "substitutions": 38
+      }
+    }
+  },
+  "emission_sha256": {
+    "native": "df071eaf71563b4565ddefe07bc6e535d3821e8a864fcb5cb91201ebeea795ab",
+    "merge_agree": "37803bdcbf917c25e841261876f191eda0246a03dd60c717b8027e560c249834"
+  },
+  "paired": {
+    "helped": 211,
+    "harmed": 57,
+    "lower": -0.05160206325082156,
+    "upper": -0.027223051658292637,
+    "units": 43,
+    "valid_replicates": 2000
+  },
+  "timing": {
+    "merge_agree": {
+      "requests": 72,
+      "seconds": {
+        "p50": 0.14301078882999718,
+        "p90": 0.30649266662076113,
+        "p95": 0.33677365656476477,
+        "p99": 0.38848481189925227,
+        "max": 0.3911599023267627
+      },
+      "rtf": {
+        "p50": 0.009722334048564388,
+        "p90": 0.013496551719487913,
+        "p95": 0.015028170148484812,
+        "p99": 0.02250573273093464,
+        "max": 0.030805443120213053
+      },
+      "pooled_rtf": 0.009290988137052935,
+      "requests_per_s": 5.788956741586641,
+      "empty": 0,
+      "changed": 0,
+      "length_edges_s": [
+        13.705,
+        17.61,
+        21.495
+      ],
+      "length_quartiles": [
+        {
+          "p50": 0.10496171866543591,
+          "p90": 0.1364831490907818,
+          "p95": 0.17086531554814396,
+          "p99": 0.32054046235512906,
+          "max": 0.3579592490568757
+        },
+        {
+          "p50": 0.1665469955187291,
+          "p90": 0.18612220571376384,
+          "p95": 0.19039777333382515,
+          "p99": 0.19867431790102272,
+          "max": 0.20074345404282212
+        },
+        {
+          "p50": 0.22636855207383633,
+          "p90": 0.3153370708227158,
+          "p95": 0.3261758068809285,
+          "p99": 0.3567115101637318,
+          "max": 0.3643454359844327
+        },
+        {
+          "p50": 0.16364938113838434,
+          "p90": 0.3312248590402306,
+          "p95": 0.38795732927974313,
+          "p99": 0.3905193877173588,
+          "max": 0.3911599023267627
+        }
+      ]
+    },
+    "native": {
+      "requests": 72,
+      "seconds": {
+        "p50": 0.14769607852213085,
+        "p90": 0.3032535599544644,
+        "p95": 0.3369543930515648,
+        "p99": 0.39225415545515757,
+        "max": 0.4374569612555206
+      },
+      "rtf": {
+        "p50": 0.0089433730856693,
+        "p90": 0.014908706079162164,
+        "p95": 0.015615035474903095,
+        "p99": 0.017689690943329124,
+        "max": 0.018862339497933797
+      },
+      "pooled_rtf": 0.009303755531478204,
+      "requests_per_s": 5.781012649141328,
+      "empty": 0,
+      "changed": 0,
+      "length_edges_s": [
+        13.705,
+        17.61,
+        21.495
+      ],
+      "length_quartiles": [
+        {
+          "p50": 0.11830669012852013,
+          "p90": 0.14656066973693668,
+          "p95": 0.14942320610862223,
+          "p99": 0.1580126341199502,
+          "max": 0.16015999112278223
+        },
+        {
+          "p50": 0.15040893596597016,
+          "p90": 0.2001201907172799,
+          "p95": 0.2013394043315202,
+          "p99": 0.2055493535939604,
+          "max": 0.20660184090957046
+        },
+        {
+          "p50": 0.22036092006601393,
+          "p90": 0.30832683704793457,
+          "p95": 0.32427344690077003,
+          "p99": 0.3524676420446485,
+          "max": 0.35951619083061814
+        },
+        {
+          "p50": 0.17560066585429013,
+          "p90": 0.3637317810673267,
+          "p95": 0.38334092614240933,
+          "p99": 0.42663375423289823,
+          "max": 0.4374569612555206
+        }
+      ]
+    }
+  },
+  "compact_controls": {
+    "native": {
+      "counts": {
+        "trials": 926,
+        "empty": 0,
+        "frames": 413353,
+        "original_frames": 413353,
+        "word_substitutions": 1516,
+        "word_deletions": 34,
+        "word_insertions": 169,
+        "word_reference_length": 6033,
+        "word_errors": 1719,
+        "phone_substitutions": 2037,
+        "phone_deletions": 521,
+        "phone_insertions": 617,
+        "phone_reference_length": 26680,
+        "phone_errors": 3175
+      },
+      "wer": 0.2849328692192939,
+      "per": 0.11900299850074962
+    },
+    "merge_agree": {
+      "counts": {
+        "trials": 926,
+        "empty": 0,
+        "frames": 215795,
+        "original_frames": 413353,
+        "word_substitutions": 1039,
+        "word_deletions": 54,
+        "word_insertions": 99,
+        "word_reference_length": 6033,
+        "word_errors": 1192,
+        "phone_substitutions": 2037,
+        "phone_deletions": 521,
+        "phone_insertions": 617,
+        "phone_reference_length": 26680,
+        "phone_errors": 3175
+      },
+      "wer": 0.19757997679429803,
+      "per": 0.11900299850074962
+    }
+  },
+  "admission": {
+    "strong_pilot_seconds": 905.9105729861185,
+    "strong_pilot_requests": 7056,
+    "measured_expanded_p95_s": 0.3088200466707349,
+    "requests": 1998,
+    "safety_margin": 1.35,
+    "forecast_s": 1918.668415661827,
+    "app_budget_s": 2550,
+    "admitted": true
+  },
+  "provenance": {
+    "hashes": {
+      "source": "4cfcab37587c0983600e02fc1a170dca6980d605b85c4a17f5799efda81e3d9a",
+      "registration": "a2304a6321890c8146bdd53ec94f7d5f8d7384d326db1599fec4f517c689be64",
+      "proposal_config": "ccd1a6573cd88e437ee97a9ef1b9d912a86af3b9ee6ccb5f4d0e1c1501ed3960",
+      "native_lm_predictions": "fb3cf18b938cc563babd8b3a447cf9c75b8ec92e873c3a382bb1e387c00c6bd9",
+      "trained_predictions": "e0e5d516a05658988d113b101854472ab0d13e32a8103fe8122bee5da19a50b6",
+      "prior_timing": "7b64cdb2413fd6e744cb38f270798e283065dd07f2703ffa1d99aea8b2d0f89b",
+      "strong_pilot": "55c2ed927d00cf04dc00ff7036bb48e1ee359fbe60ed61f83276db5d1bd18125",
+      "arpa": "9729d4a5e3a8c4e14a54989482e786653964cb9e1b6e18411111601c6ec565e8",
+      "lm": "6676cddc47120fb5d463c606fbbe0728ed45deaedf4895db723d087a74b40034",
+      "lexicon": "ac619b89b6f9121ba6d97e0eaf0467a483f340c0fbfea0c69130f321279dddd8",
+      "counts": "cc5b0a3958469dfda15f415ba8c2780aa794785762dc810fcec8c67427befd76"
+    },
+    "encoder_delta": "cb1c7b359896433a96dd05509e4ef063fad1b2d47a116b60df788a4f33aaa4c7",
+    "parent": "47969ef1de6ba1510e685a02fadca27b7f40aac0b9fc033c8f2e9e0cec8933d1"
+  },
+  "resources": {
+    "elapsed_seconds": 308.1940206331201,
+    "method": "job cgroup memory charge including page cache",
+    "allocated_cpus": 4,
+    "peak_accounted_host_bytes": 4132593664,
+    "host_ceiling_bytes": 13631488000,
+    "host_limit_source": "Slurm allocation",
+    "slurm_requested_bytes": 13631488000,
+    "cgroup_effective_limit_bytes": 13631488000,
+    "cgroup_events_delta": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0
+    },
+    "peak_cgroup_bytes": 4150001664,
+    "peak_tree_rss_bytes": 2026905600,
+    "peak_tree_pss_bytes": 2007592960,
+    "peak_tree_uss_bytes": 1996099584,
+    "peak_cuda_allocated_bytes": 535418880,
+    "peak_cuda_reserved_bytes": 1050673152,
+    "peak_device_used_bytes": 1595998208,
+    "cpu": {
+      "cpu_scope": "job cgroup",
+      "cpu_user_core_seconds": 235.624204,
+      "cpu_system_core_seconds": 35.088397,
+      "cpu_busy_cores_sample": 0.7514558237395975,
+      "cpu_busy_cores_average": 0.8787013792894947,
+      "cpu_utilization_of_allocation": 0.18786395593489938,
+      "cpu_average_utilization_of_allocation": 0.21967534482237366
+    },
+    "sampler_seconds": 37.01566465385258,
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "gpu_counters": {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "total_vram_bytes": 42405855232,
+      "capability": [
+        8,
+        0
+      ],
+      "device_wide_samples": 262,
+      "used_mib": {
+        "mean": 970.3778625954199,
+        "peak": 1523.0
+      },
+      "utilization_percent": {
+        "mean": 3.7786259541984735,
+        "peak": 35.0
+      },
+      "temperature_c": {
+        "mean": 29.641221374045802,
+        "peak": 32.0
+      },
+      "power_w": {
+        "mean": 55.73358778625955,
+        "peak": 132.07
+      },
+      "sm_clock_mhz": {
+        "mean": 1091.6221374045801,
+        "peak": 1095.0
+      },
+      "memory_clock_mhz": {
+        "mean": 1215.0,
+        "peak": 1215.0
+      },
+      "peak_sampled_owned_processes_mib": 1512.0
+    }
+  },
+  "scheduler": {
+    "JobID": "12627738",
+    "State": "COMPLETED",
+    "Elapsed": "00:05:55",
+    "TotalCPU": "04:36.052",
+    "ExitCode": "0:0"
+  }
+}

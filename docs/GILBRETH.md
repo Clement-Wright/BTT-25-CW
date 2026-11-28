@@ -160,3 +160,6 @@ For interrupted inference, resubmit the same `infer` command and run directory. 
 The finite dependency examples use `afterok` to stop on error; resuming an interrupted prerequisite requires an explicit new submission and a deliberate successor chain. Requeue alone does not restore optimizer state. Cancel only an exact job you own, after requesting a safe stop and checking the latest checkpoint. Never delete run evidence to make a retry appear fresh.
 
 Export the verified source revision, frozen metadata, manifests, metrics, logs and required restart/final checkpoints to authorized durable storage. Keep downloaded neural data and reference-bearing caches private under their release terms. Scratch alone is not a completed archive.
+## Rate-study jobs
+
+The rate study uses new job directories under `$RCAC_SCRATCH/btt-25-cw/v4-rate-20261127`. The primary comparisons use the allocated A100s. Supplementary training, decoder checks and exports can use preemptible standby GPUs. Each training job saves an optimizer checkpoint and its hash in the condition directory. The comparison benchmark runs all completed encoder variants on one GPU with four allocated CPU cores. [Launch and recovery commands](REPRODUCE_RATE_STUDY.md) · [Evidence and current state](STATE.md)
