@@ -257,6 +257,57 @@ def render_v2(data, output):
             save(fig, output, "v2_memory_accounting")
 
 
+def render_temporal(data, output):
+    conditions = data["conditions"]
+    labels = {
+        "baseline-s4": "Official Gaussian",
+        "raw-s4": "Unsmoothed input",
+        "gaussian-1-s4": "Lighter Gaussian",
+        "box-5-s4": "Five-bin moving average",
+        "coarse-40-s4": "40 ms input averages",
+        "coarse-80-s4": "80 ms input averages",
+        "baseline-s2": "40 ms GRU output step",
+        "baseline-s1": "20 ms GRU output step",
+    }
+    with plt.rc_context(STYLE):
+        fig, (ax,) = panels("The frozen GRU lost accuracy at faster output steps", rows=len(labels), width=9)
+        rows_on(ax, list(labels.values()))
+        for i, key in enumerate(labels):
+            row = conditions[key]
+            ax.hlines(i, 100 * row["per"], 100 * row["wer"], color=GRID, lw=2)
+            dot(ax, 100 * row["per"], i, "", color=BLUE)
+            ax.annotate(f"{row['per']:.1%}", (100 * row["per"], i), xytext=(-7, 0),
+                        textcoords="offset points", ha="right", va="center", color=BLUE, fontsize=9)
+            dot(ax, 100 * row["wer"], i, f"{row['wer']:.1%}", color=ORANGE, marker="D")
+        ax.scatter([], [], color=BLUE, label="Phoneme error rate")
+        ax.scatter([], [], color=ORANGE, marker="D", label="Word error rate")
+        legend(ax)
+        ax.set_xlim(0, 85)
+        ax.set_xlabel("Corpus error rate on 926 tuning trials (%)")
+        save(fig, output, "temporal_screen")
+
+        phone_input = data.get("reference_phone", {}).get("repaired_kenlm_spike")
+        if phone_input is None:
+            return
+        counts = phone_input["overall"]
+        fig, (ax,) = panels("Word errors drop when the decoder gets reference phones", rows=2, width=9)
+        rows_on(ax, ["Flashlight + KenLM", "Exact dictionary lookup"])
+        for y, (actual, reference) in enumerate((
+            ("saved_errors", "reference_phone_errors"),
+            ("neural_exact_lexicon_errors", "exact_lexicon_errors"),
+        )):
+            low, high = [100 * counts[k] / counts["reference_words"] for k in (reference, actual)]
+            ax.hlines(y, low, high, color=GRID, lw=2)
+            dot(ax, low, y, f"{low:.2f}%", color=BLUE)
+            dot(ax, high, y, f"{high:.2f}%", color=ORANGE, marker="D")
+        ax.scatter([], [], color=ORANGE, marker="D", label="GRU phone evidence")
+        ax.scatter([], [], color=BLUE, label="Reference phones and boundaries")
+        legend(ax)
+        ax.set_xlim(0, 26)
+        ax.set_xlabel("Word error rate on 926 tuning trials (%)")
+        save(fig, output, "reference_phone_diagnostic")
+
+
 def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("--reports", type=Path, default=Path("reports"))
@@ -264,6 +315,9 @@ def main():
     for stem, render in (("results", render_v1), ("continuation", render_v2)):
         data = json.loads((args.reports / f"{stem}.json").read_text(encoding="utf-8"))
         render(data, args.reports / "figures")
+    temporal = args.reports / "temporal.json"
+    if temporal.is_file():
+        render_temporal(json.loads(temporal.read_text(encoding="utf-8")), args.reports / "figures")
 
 
 if __name__ == "__main__":
